@@ -1,0 +1,259 @@
+{
+  "image": "assets-wiki-icons.png",
+  "width": 896,
+  "height": 384,
+  "icons": {
+    "acid": {
+      "x": 13,
+      "y": 9,
+      "w": 102,
+      "h": 110,
+      "sourceSize": [
+        102,
+        110
+      ],
+      "sourceFile": "Acid.png",
+      "sourceUrl": "https://static.wikia.nocookie.net/among-us-wiki/images/1/18/Acid.png/revision/latest?cb=20250909183145"
+    },
+    "shift": {
+      "x": 134,
+      "y": 13,
+      "w": 115,
+      "h": 101,
+      "sourceSize": [
+        115,
+        101
+      ],
+      "sourceFile": "Shift.png",
+      "sourceUrl": "https://static.wikia.nocookie.net/among-us-wiki/images/0/00/Shift.png/revision/latest?cb=20211109233109"
+    },
+    "protect": {
+      "x": 265,
+      "y": 8,
+      "w": 110,
+      "h": 112,
+      "sourceSize": [
+        110,
+        112
+      ],
+      "sourceFile": "Protect.png",
+      "sourceUrl": "https://static.wikia.nocookie.net/among-us-wiki/images/f/f6/Protect.png/revision/latest?cb=20211109232548"
+    },
+    "vanish": {
+      "x": 390,
+      "y": 10,
+      "w": 115,
+      "h": 107,
+      "sourceSize": [
+        115,
+        107
+      ],
+      "sourceFile": "Vanish.png",
+      "sourceUrl": "https://static.wikia.nocookie.net/among-us-wiki/images/b/b6/Vanish.png/revision/latest?cb=20240712153232"
+    },
+    "interrogate": {
+      "x": 525,
+      "y": 4,
+      "w": 101,
+      "h": 120,
+      "sourceSize": [
+        112,
+        133
+      ],
+      "sourceFile": "Interrogate.png",
+      "sourceUrl": "https://static.wikia.nocookie.net/among-us-wiki/images/6/69/Interrogate.png/revision/latest?cb=20250909182941"
+    },
+    "track": {
+      "x": 648,
+      "y": 6,
+      "w": 112,
+      "h": 115,
+      "sourceSize": [
+        112,
+        115
+      ],
+      "sourceFile": "Track.png",
+      "sourceUrl": "https://static.wikia.nocookie.net/among-us-wiki/images/5/51/Track.png/revision/latest?cb=20240712153742"
+    },
+    "overrule": {
+      "x": 792,
+      "y": 22,
+      "w": 80,
+      "h": 84,
+      "sourceSize": [
+        80,
+        84
+      ],
+      "sourceFile": "Overrule.png",
+      "sourceUrl": "https://static.wikia.nocookie.net/among-us-wiki/images/8/81/Overrule.png/revision/latest?cb=20260818180426"
+    },
+    "message": {
+      "x": 6,
+      "y": 141,
+      "w": 115,
+      "h": 101,
+      "sourceSize": [
+        115,
+        101
+      ],
+      "sourceFile": "Message.png",
+      "sourceUrl": "https://static.wikia.nocookie.net/among-us-wiki/images/a/a5/Message.png/revision/latest?cb=20260929172931"
+    },
+    "notes_empty": {
+      "x": 132,
+      "y": 146,
+      "w": 120,
+      "h": 92,
+      "sourceSize": [
+        132,
+        101
+      ],
+      "sourceFile": "Notes empty.png",
+      "sourceUrl": "https://static.wikia.nocookie.net/among-us-wiki/images/5/5e/Notes_empty.png/revision/latest?cb=20250909182951"
+    },
+    "notes_full": {
+      "x": 260,
+      "y": 147,
+      "w": 120,
+      "h": 90,
+      "sourceSize": [
+        135,
+        101
+      ],
+      "sourceFile": "Notes full.png",
+      "sourceUrl": "https://static.wikia.nocookie.net/among-us-wiki/images/7/7f/Notes_full.png/revision/latest?cb=20250909183004"
+    },
+    "role_viper": {
+      "x": 388,
+      "y": 139,
+      "w": 120,
+      "h": 105,
+      "sourceSize": [
+        129,
+        113
+      ],
+      "sourceFile": "Viper icon.png",
+      "sourceUrl": "https://static.wikia.nocookie.net/among-us-wiki/images/5/5f/Viper_icon.png/revision/latest?cb=20250909183118"
+    },
+    "role_shapeshifter": {
+      "x": 516,
+      "y": 139,
+      "w": 120,
+      "h": 105,
+      "sourceSize": [
+        129,
+        113
+      ],
+      "sourceFile": "Shapeshifter icon.png",
+      "sourceUrl": "https://static.wikia.nocookie.net/among-us-wiki/images/c/c6/Shapeshifter_icon.png/revision/latest?cb=20241219002213"
+    },
+    "role_tracker": {
+      "x": 644,
+      "y": 139,
+      "w": 120,
+      "h": 105,
+      "sourceSize": [
+        129,
+        113
+      ],
+      "sourceFile": "Tracker icon.png",
+      "sourceUrl": "https://static.wikia.nocookie.net/among-us-wiki/images/0/0a/Tracker_icon.png/revision/latest?cb=20241219002341"
+    },
+    "role_judge": {
+      "x": 772,
+      "y": 139,
+      "w": 120,
+      "h": 105,
+      "sourceSize": [
+        129,
+        113
+      ],
+      "sourceFile": "Judge icon.png",
+      "sourceUrl": "https://static.wikia.nocookie.net/among-us-wiki/images/4/43/Judge_icon.png/revision/latest?cb=20260818180428"
+    },
+    "role_influencer": {
+      "x": 4,
+      "y": 267,
+      "w": 120,
+      "h": 105,
+      "sourceSize": [
+        129,
+        113
+      ],
+      "sourceFile": "Influencer icon.png",
+      "sourceUrl": "https://static.wikia.nocookie.net/among-us-wiki/images/a/a2/Influencer_icon.png/revision/latest?cb=20260929172202"
+    },
+    "role_engineer": {
+      "x": 132,
+      "y": 267,
+      "w": 120,
+      "h": 105,
+      "sourceSize": [
+        129,
+        113
+      ],
+      "sourceFile": "Engineer icon.png",
+      "sourceUrl": "https://static.wikia.nocookie.net/among-us-wiki/images/4/41/Engineer_icon.png/revision/latest?cb=20241219002410"
+    },
+    "role_scientist": {
+      "x": 260,
+      "y": 267,
+      "w": 120,
+      "h": 105,
+      "sourceSize": [
+        129,
+        113
+      ],
+      "sourceFile": "Scientist icon.png",
+      "sourceUrl": "https://static.wikia.nocookie.net/among-us-wiki/images/1/16/Scientist_icon.png/revision/latest?cb=20241219002353"
+    },
+    "role_guardian_angel": {
+      "x": 388,
+      "y": 267,
+      "w": 120,
+      "h": 105,
+      "sourceSize": [
+        129,
+        113
+      ],
+      "sourceFile": "Guardian Angel icon.png",
+      "sourceUrl": "https://static.wikia.nocookie.net/among-us-wiki/images/5/5d/Guardian_Angel_icon.png/revision/latest?cb=20241219002734"
+    },
+    "role_noisemaker": {
+      "x": 516,
+      "y": 267,
+      "w": 120,
+      "h": 105,
+      "sourceSize": [
+        129,
+        113
+      ],
+      "sourceFile": "Noisemaker icon.png",
+      "sourceUrl": "https://static.wikia.nocookie.net/among-us-wiki/images/0/09/Noisemaker_icon.png/revision/latest?cb=20241219002243"
+    },
+    "role_phantom": {
+      "x": 644,
+      "y": 267,
+      "w": 120,
+      "h": 105,
+      "sourceSize": [
+        129,
+        113
+      ],
+      "sourceFile": "Phantom icon.png",
+      "sourceUrl": "https://static.wikia.nocookie.net/among-us-wiki/images/f/f8/Phantom_icon.png/revision/latest?cb=20241219002155"
+    },
+    "role_detective": {
+      "x": 772,
+      "y": 267,
+      "w": 120,
+      "h": 105,
+      "sourceSize": [
+        129,
+        113
+      ],
+      "sourceFile": "Detective icon.png",
+      "sourceUrl": "https://static.wikia.nocookie.net/among-us-wiki/images/3/34/Detective_icon.png/revision/latest?cb=20260818185505"
+    }
+  }
+}

@@ -1,0 +1,389 @@
+{
+  "image": "assets-wiki-lime-acid-fall.png",
+  "sourceFile": "Lime's acid dead body fall.gif",
+  "sourceUrl": "https://static.wikia.nocookie.net/among-us-wiki/images/c/c6/Lime%27s_acid_dead_body_fall.gif/revision/latest?cb=20260813204525",
+  "sourceRevision": "2026-08-13T20:45:25Z",
+  "sourceDeliveredFormat": "WEBP",
+  "frameCount": 23,
+  "cellWidth": 169,
+  "cellHeight": 139,
+  "columns": 6,
+  "width": 1014,
+  "height": 556,
+  "durationMs": 1130,
+  "anchor": [
+    84.5,
+    139
+  ],
+  "alignment": "Original full source canvas preserved in every frame; no per-frame trimming or scaling.",
+  "bakedScene": false,
+  "note": "Lime-colored in-world body fall; retained unchanged.",
+  "frames": [
+    {
+      "x": 0,
+      "y": 0,
+      "w": 169,
+      "h": 139,
+      "durationMs": 30,
+      "startMs": 0
+    },
+    {
+      "x": 169,
+      "y": 0,
+      "w": 169,
+      "h": 139,
+      "durationMs": 40,
+      "startMs": 30
+    },
+    {
+      "x": 338,
+      "y": 0,
+      "w": 169,
+      "h": 139,
+      "durationMs": 30,
+      "startMs": 70
+    },
+    {
+      "x": 507,
+      "y": 0,
+      "w": 169,
+      "h": 139,
+      "durationMs": 30,
+      "startMs": 100
+    },
+    {
+      "x": 676,
+      "y": 0,
+      "w": 169,
+      "h": 139,
+      "durationMs": 40,
+      "startMs": 130
+    },
+    {
+      "x": 845,
+      "y": 0,
+      "w": 169,
+      "h": 139,
+      "durationMs": 30,
+      "startMs": 170
+    },
+    {
+      "x": 0,
+      "y": 139,
+      "w": 169,
+      "h": 139,
+      "durationMs": 30,
+      "startMs": 200
+    },
+    {
+      "x": 169,
+      "y": 139,
+      "w": 169,
+      "h": 139,
+      "durationMs": 40,
+      "startMs": 230
+    },
+    {
+      "x": 338,
+      "y": 139,
+      "w": 169,
+      "h": 139,
+      "durationMs": 30,
+      "startMs": 270
+    },
+    {
+      "x": 507,
+      "y": 139,
+      "w": 169,
+      "h": 139,
+      "durationMs": 30,
+      "startMs": 300
+    },
+    {
+      "x": 676,
+      "y": 139,
+      "w": 169,
+      "h": 139,
+      "durationMs": 40,
+      "startMs": 330
+    },
+    {
+      "x": 845,
+      "y": 139,
+      "w": 169,
+      "h": 139,
+      "durationMs": 30,
+      "startMs": 370
+    },
+    {
+      "x": 0,
+      "y": 278,
+      "w": 169,
+      "h": 139,
+      "durationMs": 30,
+      "startMs": 400
+    },
+    {
+      "x": 169,
+      "y": 278,
+      "w": 169,
+      "h": 139,
+      "durationMs": 40,
+      "startMs": 430
+    },
+    {
+      "x": 338,
+      "y": 278,
+      "w": 169,
+      "h": 139,
+      "durationMs": 30,
+      "startMs": 470
+    },
+    {
+      "x": 507,
+      "y": 278,
+      "w": 169,
+      "h": 139,
+      "durationMs": 30,
+      "startMs": 500
+    },
+    {
+      "x": 676,
+      "y": 278,
+      "w": 169,
+      "h": 139,
+      "durationMs": 40,
+      "startMs": 530
+    },
+    {
+      "x": 845,
+      "y": 278,
+      "w": 169,
+      "h": 139,
+      "durationMs": 30,
+      "startMs": 570
+    },
+    {
+      "x": 0,
+      "y": 417,
+      "w": 169,
+      "h": 139,
+      "durationMs": 30,
+      "startMs": 600
+    },
+    {
+      "x": 169,
+      "y": 417,
+      "w": 169,
+      "h": 139,
+      "durationMs": 40,
+      "startMs": 630
+    },
+    {
+      "x": 338,
+      "y": 417,
+      "w": 169,
+      "h": 139,
+      "durationMs": 60,
+      "startMs": 670
+    },
+    {
+      "x": 507,
+      "y": 417,
+      "w": 169,
+      "h": 139,
+      "durationMs": 70,
+      "startMs": 730
+    },
+    {
+      "x": 676,
+      "y": 417,
+      "w": 169,
+      "h": 139,
+      "durationMs": 330,
+      "startMs": 800
+    }
+  ],
+  "paletteTop20": [
+    {
+      "rgb": [
+        22,
+        168,
+        67
+      ],
+      "hex": "#16a843",
+      "count": 10481
+    },
+    {
+      "rgb": [
+        80,
+        240,
+        56
+      ],
+      "hex": "#50f038",
+      "count": 4061
+    },
+    {
+      "rgb": [
+        24,
+        167,
+        67
+      ],
+      "hex": "#18a743",
+      "count": 2435
+    },
+    {
+      "rgb": [
+        20,
+        169,
+        67
+      ],
+      "hex": "#14a943",
+      "count": 2259
+    },
+    {
+      "rgb": [
+        22,
+        169,
+        65
+      ],
+      "hex": "#16a941",
+      "count": 2061
+    },
+    {
+      "rgb": [
+        22,
+        168,
+        69
+      ],
+      "hex": "#16a845",
+      "count": 2056
+    },
+    {
+      "rgb": [
+        80,
+        239,
+        58
+      ],
+      "hex": "#50ef3a",
+      "count": 1178
+    },
+    {
+      "rgb": [
+        24,
+        167,
+        69
+      ],
+      "hex": "#18a745",
+      "count": 1140
+    },
+    {
+      "rgb": [
+        50,
+        57,
+        57
+      ],
+      "hex": "#323939",
+      "count": 1134
+    },
+    {
+      "rgb": [
+        52,
+        56,
+        57
+      ],
+      "hex": "#343839",
+      "count": 895
+    },
+    {
+      "rgb": [
+        20,
+        169,
+        69
+      ],
+      "hex": "#14a945",
+      "count": 875
+    },
+    {
+      "rgb": [
+        20,
+        169,
+        65
+      ],
+      "hex": "#14a941",
+      "count": 822
+    },
+    {
+      "rgb": [
+        51,
+        58,
+        58
+      ],
+      "hex": "#333a3a",
+      "count": 794
+    },
+    {
+      "rgb": [
+        24,
+        168,
+        65
+      ],
+      "hex": "#18a841",
+      "count": 764
+    },
+    {
+      "rgb": [
+        80,
+        240,
+        54
+      ],
+      "hex": "#50f036",
+      "count": 747
+    },
+    {
+      "rgb": [
+        25,
+        167,
+        67
+      ],
+      "hex": "#19a743",
+      "count": 583
+    },
+    {
+      "rgb": [
+        48,
+        58,
+        57
+      ],
+      "hex": "#303a39",
+      "count": 529
+    },
+    {
+      "rgb": [
+        50,
+        59,
+        58
+      ],
+      "hex": "#323b3a",
+      "count": 521
+    },
+    {
+      "rgb": [
+        50,
+        56,
+        59
+      ],
+      "hex": "#32383b",
+      "count": 496
+    },
+    {
+      "rgb": [
+        53,
+        55,
+        57
+      ],
+      "hex": "#353739",
+      "count": 458
+    }
+  ]
+}

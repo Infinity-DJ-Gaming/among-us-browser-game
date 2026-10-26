@@ -1,0 +1,51 @@
+{
+  "image": "assets-cosmetics-visors.png",
+  "cellWidth": 96,
+  "cellHeight": 112,
+  "columns": 6,
+  "items": [
+    {
+      "id": "glasses",
+      "name": "Small Glasses",
+      "frame": 0,
+      "source": "visor_SmallGlasses.png"
+    },
+    {
+      "id": "blush",
+      "name": "Blush",
+      "frame": 1,
+      "source": "visor_Blush.png"
+    },
+    {
+      "id": "teeth",
+      "name": "Monster Mouth",
+      "frame": 2,
+      "source": "visor_Mouth.png"
+    },
+    {
+      "id": "eyepatch",
+      "name": "Eyepatch",
+      "frame": 3,
+      "source": "visor_EyepatchR.png"
+    },
+    {
+      "id": "crack",
+      "name": "Cracked Visor",
+      "frame": 4,
+      "source": "visor_Crack.png"
+    },
+    {
+      "id": "goggles",
+      "name": "Ski Goggles",
+      "frame": 5,
+      "source": "visor_SkiGoggleBlack.png"
+    }
+  ],
+  "drawOffset": [
+    -48,
+    -108
+  ],
+  "headBob": "Add assets-modern-metadata.json walk.hatBob[actorFrame] to y. Mirror together with actor when facing left.",
+  "source": "https://github.com/itsssskye/amongus-assets/tree/main/Assets/Texture2D",
+  "palette": "Original full-color cosmetics; never recolor to suit palette."
+}

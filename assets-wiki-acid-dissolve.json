@@ -1,0 +1,269 @@
+{
+  "image": "assets-wiki-acid-dissolve.png",
+  "sourceFile": "Acid Body Dissolving.gif",
+  "sourceUrl": "https://static.wikia.nocookie.net/among-us-wiki/images/8/8a/Acid_Body_Dissolving.gif/revision/latest?cb=20250913230135",
+  "sourceRevision": "2025-09-13T23:01:35Z",
+  "sourceDeliveredFormat": "WEBP",
+  "frameCount": 8,
+  "cellWidth": 184,
+  "cellHeight": 105,
+  "columns": 4,
+  "width": 736,
+  "height": 210,
+  "durationMs": 4400,
+  "anchor": [
+    92.0,
+    105
+  ],
+  "alignment": "Original full source canvas preserved in every frame; no per-frame trimming or scaling.",
+  "bakedScene": false,
+  "note": "RGB mask body plus colored yellow-green acid; recolor body channels only.",
+  "frames": [
+    {
+      "x": 0,
+      "y": 0,
+      "w": 184,
+      "h": 105,
+      "durationMs": 1050,
+      "startMs": 0
+    },
+    {
+      "x": 184,
+      "y": 0,
+      "w": 184,
+      "h": 105,
+      "durationMs": 100,
+      "startMs": 1050
+    },
+    {
+      "x": 368,
+      "y": 0,
+      "w": 184,
+      "h": 105,
+      "durationMs": 50,
+      "startMs": 1150
+    },
+    {
+      "x": 552,
+      "y": 0,
+      "w": 184,
+      "h": 105,
+      "durationMs": 1350,
+      "startMs": 1200
+    },
+    {
+      "x": 0,
+      "y": 105,
+      "w": 184,
+      "h": 105,
+      "durationMs": 100,
+      "startMs": 2550
+    },
+    {
+      "x": 184,
+      "y": 105,
+      "w": 184,
+      "h": 105,
+      "durationMs": 50,
+      "startMs": 2650
+    },
+    {
+      "x": 368,
+      "y": 105,
+      "w": 184,
+      "h": 105,
+      "durationMs": 1300,
+      "startMs": 2700
+    },
+    {
+      "x": 552,
+      "y": 105,
+      "w": 184,
+      "h": 105,
+      "durationMs": 400,
+      "startMs": 4000
+    }
+  ],
+  "paletteTop20": [
+    {
+      "rgb": [
+        106,
+        110,
+        21
+      ],
+      "hex": "#6a6e15",
+      "count": 5271
+    },
+    {
+      "rgb": [
+        91,
+        77,
+        1
+      ],
+      "hex": "#5b4d01",
+      "count": 2363
+    },
+    {
+      "rgb": [
+        55,
+        59,
+        60
+      ],
+      "hex": "#373b3c",
+      "count": 1979
+    },
+    {
+      "rgb": [
+        0,
+        0,
+        255
+      ],
+      "hex": "#0000ff",
+      "count": 1642
+    },
+    {
+      "rgb": [
+        91,
+        77,
+        2
+      ],
+      "hex": "#5b4d02",
+      "count": 813
+    },
+    {
+      "rgb": [
+        233,
+        231,
+        223
+      ],
+      "hex": "#e9e7df",
+      "count": 788
+    },
+    {
+      "rgb": [
+        133,
+        138,
+        19
+      ],
+      "hex": "#858a13",
+      "count": 635
+    },
+    {
+      "rgb": [
+        191,
+        182,
+        172
+      ],
+      "hex": "#bfb6ac",
+      "count": 535
+    },
+    {
+      "rgb": [
+        133,
+        138,
+        20
+      ],
+      "hex": "#858a14",
+      "count": 275
+    },
+    {
+      "rgb": [
+        98,
+        98,
+        17
+      ],
+      "hex": "#626211",
+      "count": 266
+    },
+    {
+      "rgb": [
+        94,
+        84,
+        5
+      ],
+      "hex": "#5e5405",
+      "count": 226
+    },
+    {
+      "rgb": [
+        126,
+        2,
+        56
+      ],
+      "hex": "#7e0238",
+      "count": 204
+    },
+    {
+      "rgb": [
+        67,
+        11,
+        36
+      ],
+      "hex": "#430b24",
+      "count": 201
+    },
+    {
+      "rgb": [
+        234,
+        230,
+        222
+      ],
+      "hex": "#eae6de",
+      "count": 191
+    },
+    {
+      "rgb": [
+        255,
+        16,
+        16
+      ],
+      "hex": "#ff1010",
+      "count": 185
+    },
+    {
+      "rgb": [
+        235,
+        231,
+        223
+      ],
+      "hex": "#ebe7df",
+      "count": 184
+    },
+    {
+      "rgb": [
+        133,
+        139,
+        19
+      ],
+      "hex": "#858b13",
+      "count": 166
+    },
+    {
+      "rgb": [
+        90,
+        77,
+        2
+      ],
+      "hex": "#5a4d02",
+      "count": 166
+    },
+    {
+      "rgb": [
+        192,
+        182,
+        172
+      ],
+      "hex": "#c0b6ac",
+      "count": 146
+    },
+    {
+      "rgb": [
+        190,
+        182,
+        172
+      ],
+      "hex": "#beb6ac",
+      "count": 142
+    }
+  ]
+}

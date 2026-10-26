@@ -1,1 +1,1 @@
-{"name":"among-us-browser","version":"1.0.0","private":true,"type":"module","scripts":{"start":"node serve.mjs","test":"node tests.mjs"}}
+{"name":"among-us-browser","version":"2.0.0","private":true,"type":"module","scripts":{"start":"node serve.mjs","test":"node --test tests.mjs tests-v2.mjs"}}

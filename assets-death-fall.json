@@ -1,0 +1,14 @@
+{
+  "source": "https://github.com/itsssskye/amongus-assets",
+  "image": "assets-death-fall.png",
+  "cellWidth": 192,
+  "cellHeight": 176,
+  "columns": 8,
+  "frames": 41,
+  "fps": 30,
+  "anchor": [
+    96,
+    139
+  ],
+  "notes": "Original Dead0001-Dead0041 mesh-masked in-world corpse fall. RGB suit mask, neutral bone, native red blood. 30fps is presentation timing, not a verified clip rate."
+}

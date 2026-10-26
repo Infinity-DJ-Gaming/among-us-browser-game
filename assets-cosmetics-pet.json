@@ -1,0 +1,49 @@
+{
+  "image": "assets-cosmetics-pet.png",
+  "id": "dog",
+  "name": "Doggy",
+  "cellWidth": 64,
+  "cellHeight": 64,
+  "columns": 8,
+  "frames": 21,
+  "anchor": [
+    32,
+    55
+  ],
+  "drawOffset": [
+    -32,
+    -55
+  ],
+  "states": {
+    "idle": {
+      "start": 0,
+      "count": 8,
+      "fps": 8,
+      "loop": true
+    },
+    "walk": {
+      "start": 8,
+      "count": 8,
+      "fps": 12,
+      "loop": true
+    },
+    "scared": {
+      "start": 16,
+      "count": 4,
+      "fps": 8,
+      "loop": true
+    },
+    "sad": {
+      "start": 20,
+      "count": 1,
+      "fps": 8,
+      "loop": false
+    }
+  },
+  "sizeRelativeToActor": "Draw 64\u00d764 at existing map-world scale; visible dog is about52\u00d738 vs actor80\u00d7100. Follow owner roughly65px behind, mirror with movement direction.",
+  "palette": "Original cyan/blue dog. Do not apply crewmate suit palette.",
+  "sourceTexture": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/Texture2D/pets1.png",
+  "sourceMetadata": "Assets/Sprite/dog_{idle,walk,scared}NNNN.json and dog_sad.json",
+  "timingNote": "Original native art frames; fps values are browser presentation recommendations, not verified Unity clip rates.",
+  "notes": "Idle native names begin at0003 because duplicate exported0001/0002 are absent. Walk8 nativeframes, idle8, scared4, sad1."
+}

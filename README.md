@@ -1,49 +1,58 @@
-# Among Us — browser fan game
+# Among Us — browser fan game v2
 
-A static, unofficial browser implementation using genuine Among Us artwork and sound effects. No build, API key, or game server is needed for bot matches.
+A static, unofficial fan implementation with genuine Among Us artwork and sound recordings. Play at https://infinity-dj-gaming.github.io/among-us-browser-game/.
 
-## Play
+## Play and controls
 
-Serve this folder over HTTP. With Node installed, run `node serve.mjs`, then open http://127.0.0.1:8123. ES modules and map data require an HTTP server, rather than double-clicking index.html.
+Run `node serve.mjs` and open http://127.0.0.1:8123 for local play. Bot matches need no API key or game server. GitHub Pages serves the same flat files without a build.
 
-- **Play with bots** opens a customizable 4–10-player lobby.
-- **Host Online** opens a WebRTC friend lobby. Share the six-character code; friends use **Enter Code**. Bots fill remaining slots. The host must keep the tab open. PeerJS Cloud provides signaling; some NATs/firewalls prevent connections without a separately configured TURN relay.
-- Select **Your Role** in a solo lobby to practice; online roles are random.
+**Play with bots** opens a movable 4–10 player lobby. Walk with WASD/arrows or click the floor. Customize your name, color, hat, visor and Doggy pet in the wardrobe. Solo lobbies offer a practice-role selector; online roles are randomized.
 
-## Controls
+E/Space: use; Q: kill; R: report; V: vent; F: sabotage; C: role ability; Tab/M: map; Esc: close/pause. Touch joystick and action buttons are included. Tasks support native pointer controls and keyboard alternatives; hold Space on the card for 0.35–1.4 seconds to swipe.
 
-WASD / arrows: move; click the floor, a task entry, or a map marker to walk there. E / Space: use. Q: kill. R: report. V: vent. F: sabotage. C: scientist vitals. Tab / M: map. Esc: close / pause. Touch joystick and action buttons are included. Tasks accept touch; wiring supports both click-pairing and dragging. Card swipe also supports holding and releasing Space for 0.35–1.4 seconds.
+**Host Online** uses PeerJS/WebRTC. Share the six-character room code with friends; bots fill spare seats. Keep the host tab open. Some networks require a TURN relay, which is not bundled. Online play is intended for trusted friends rather than competitive anti-cheat.
 
-## Implemented
+## Included gameplay
 
-- Full Skeld artwork with collision geometry, connected navigation, line of sight, limited vision, and ghosts.
-- Crewmate, Impostor, Engineer and Scientist roles; randomized assignment, team wins, cooldowns, reports, emergency meetings and ejections.
-- Twelve playable task locations: wiring, card swipe, asteroids, reactor memory, data download, divert power, MedBay scan, steering, garbage, shields, manifolds and fueling.
-- Lights, reactor, oxygen (two panels), communications and cafeteria doors; crew repairs and sabotage victories.
-- Security camera feeds, Admin occupancy and Scientist vitals.
-- Bot personalities, task navigation, visual-task clears, local memories, witnessed kills/vents, body reports, opportunistic kills, fake tasks, vent escapes, sabotage repairs, evidence-based discussions and votes. Chat uses authored contextual responses and evidence rules; it is not an LLM and cannot understand arbitrary conversation.
-- Local settings, profile and win record; real sound effects; responsive touch controls.
-- Host-authoritative friend lobbies with private roles, online chat and bot replacement after disconnects. Designed for trusted friends, not competitive anti-cheat.
+- The Skeld with collision navigation, wall occlusion, lighter feathered scenery shadows, ghosts, cameras and Admin occupancy.
+- Lobby movement, original twelve-frame redesigned walking art, interpolated movement, ten hats, six visors and an animated original Doggy pet.
+- Crewmate, Engineer, Scientist, Tracker, Noisemaker, Detective, Judge, Impostor, Shapeshifter, Phantom, Viper, Guardian Angel and Influencer. Role abilities, faction wins, cooldowns and support abilities are implemented; settings use this implementation's balancing values.
+- All nineteen named Skeld jobs: Fix Wiring, Swipe Card, Clear Asteroids, Start Reactor, Download/Upload Data, Divert/Accept Power, Submit Scan, Stabilize Steering, Empty Garbage, Empty Chute, Prime Shields, Unlock Manifolds, Refuel Engines, Align Engine Output, Calibrate Distributor, Chart Course, Clean O2 Filter, Clean Vent and Inspect Sample. Multi-room stages, four-step refueling, five reactor sequences and sixty-second sample incubation are included.
+- Original task panel artwork and components, per-action task recordings, button tones, footsteps by room material, role sounds, report/emergency sounds and kill audio. The sound bank contains 181 original recordings plus separate role/acid clips. Browser gestures unlock audio.
+- Meetings, discussion, votes, ties, ejections, reports in the dead player's color, emergency calls, sabotage/repair and critical-system victories.
+- Kill perspectives are separated: the killer stays in the room while the original forty-one-frame corpse animation plays; the victim sees the full kill cinematic. Viper bodies fall with acid and dissolve until they become unreportable.
+- Contextual bot dialogue with addressed replies, typing delays, reply threads, consistent route alibis, witnessed evidence, accusations, denials, corroboration and counterarguments. Bots navigate, kill, fake/complete tasks, use special abilities, report, repair and vote. Witnesses identify a disguised killer by the identity they actually saw.
+- Local profile/settings/win record and host-authoritative friend rooms with disconnect replacement.
 
-## GitHub Pages
+## Scope and fidelity
 
-All game paths are relative and work under a repository subpath. Upload the **files at the top level of this folder** into a public repository, then choose **Settings → Pages → Deploy from a branch → main → /(root) → Save**. No Node server runs on Pages. `serve.mjs` is only a local preview server.
+This is a browser fan implementation, not the official client. It contains one map, a selection of cosmetics, and authored contextual bot dialogue rather than an LLM. It cannot understand arbitrary conversation and does not connect to official servers or provide public matchmaking/accounts.
 
-Run `node tests.mjs` for simulation tests. All runtime assets are named `assets-…` so the complete static game can be uploaded in one batch through GitHub’s web interface.
+Original source frames and panels are used where available; browser layout, timing, role balance, task controls and transitions are implemented here. The original general kill animations are reconstructed from clean independent color-mask layers. The Viper victim presentation uses clean original acid corpse assets; it does not reproduce the entire official acid-attack cutscene. Influencer uses a limited image-card set. The asset archive's precise client build is unknown; a 2026 wiki revision or video title does not establish that every bundled asset is from the latest client.
 
-## Scope
+## Validation
 
-This is a playable fan implementation, not the official client. It includes one map and four roles, not every official map, cosmetic, role, account system, matchmaking service or game mode. It does not connect to official Among Us servers.
+Run `npm test` (or `node --test tests.mjs tests-v2.mjs`) for the simulation and perspective regression checks. See the accompanying validation report for browser checks. All paths are relative, including when hosted beneath the GitHub repository subpath.
 
-## Asset credits
+## Asset credits and references
 
-Among Us, The Skeld, characters, task/UI artwork and original audio © Innersloth LLC. No ownership or exclusive rights to those assets are claimed. This noncommercial fan project is not affiliated with or endorsed by Innersloth. Support the original: https://www.innersloth.com/games/among-us/.
+Among Us, The Skeld, characters, cosmetics, task/UI artwork and original audio © Innersloth LLC. This noncommercial fan project is not affiliated with or endorsed by Innersloth. No ownership of these assets is claimed. Support the original: https://www.innersloth.com/games/among-us/.
 
-Public asset sources:
+Public archives and references:
 
-- https://github.com/AI0702/Among-Us-clone — Skeld map/collision data, RGB player animations, bodies, tasks, meeting/result artwork and sounds. Sprite masks are recolored using the crewmate palette.
-- https://github.com/AlvajoyAsante/among-us-assets — Among Us logo.
-- https://github.com/arizkhalid/among-us-clone — lobby image.
+- https://github.com/AI0702/Among-Us-clone — Skeld map/collision data and baseline task/UI/audio assets.
+- https://github.com/itsssskye/amongus-assets — modern original walk/death/kill/transformation frames, cosmetics, pets, task textures and sound recordings. Tightly packed sprites are restored with their native mesh masks.
+- https://github.com/arizkhalid/among-us-clone — lobby and report artwork.
+- https://github.com/AlvajoyAsante/among-us-assets — logo and legacy source archive.
+- https://www.reddit.com/r/AmongUs/comments/ivepl6/all_of_the_games_assets_for_use_in_your_memes_and/ — all six supplied 2020 asset-gallery photos inspected against the linked archive.
+- https://among-us.fandom.com/wiki/Category:Images/Game_assets — original role/action icons, current acid corpse fall/dissolve references and audio. Provenance URLs are included in atlas metadata.
+- https://www.youtube.com/watch?v=7n5NO4QdYq0 — February 2, 2026 Skeld crewmate footage, including the live-room green asteroid overlay.
+- https://www.youtube.com/watch?v=oSbaSD_OZ-A — impostor point-of-view reference, titled 2026 and uploaded December 31, 2025.
+- https://www.innersloth.com/new-roles-are-on-the-scene-of-17-0-0-emergency-meeting-41/ — official Detective/Viper mechanics. Other role references are listed below.
+- https://www.innersloth.com/role-peek-the-shapeshifter/
+- https://www.innersloth.com/new-roles-enter-the-fray-v2024-6-18-emergency-meeting-38/
+- https://www.innersloth.com/new-crewmate-role-the-judge-emergency-meeting-43/
+- https://www.innersloth.com/new-ghost-crewmate-role-the-influencer-emergency-meeting-44/
 - PeerJS 1.5.5, https://github.com/peers/peerjs — MIT; see THIRD_PARTY_NOTICES.md.
 
-Original browser simulation, UI and task code was created for this project. Third-party art/audio retain their original ownership and are not covered by a new blanket software license.
+Browser simulation, dialogue, task and renderer code is a new implementation. Third-party art/audio retain their ownership and are not covered by a blanket software license.
