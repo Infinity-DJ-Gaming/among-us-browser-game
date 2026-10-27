@@ -1,9 +1,9 @@
-import {SKELD,mapById,mapRoomAt} from './maps.js?v=3.0.0';
-import {STATIONS,stationFor,tasksFor,TASK_MIN,WIRE_PANELS} from './task-data.js?v=3.0.0';
+import {SKELD,mapById,mapRoomAt} from './maps.js?v=3.1.0';
+import {STATIONS,stationFor,tasksFor,TASK_MIN,WIRE_PANELS} from './task-data.js?v=3.1.0';
 export {STATIONS,stationFor,tasksFor};
-import {isImp,IMPOSTOR_ROLES,ALL_ROLES,initializeRoles,becomeGhost,roleAction,tickRole} from './roles.js?v=3.0.0';
+import {isImp,IMPOSTOR_ROLES,ALL_ROLES,initializeRoles,becomeGhost,roleAction,tickRole} from './roles.js?v=3.1.0';
 export {isImp};
-import {beginConversation,hearMessage,tickConversation,openingStatement} from './conversation.js?v=3.0.0';
+import {beginConversation,hearMessage,tickConversation,openingStatement} from './conversation.js?v=3.1.0';
 // Original browser implementation. Among Us artwork and audio belong to Innersloth.
 export const COLORS=['red','blue','green','pink','orange','yellow','black','white','purple','brown','cyan','lime','maroon','rose','banana','gray','tan','coral'];
 export const HEX=['#c51111','#132ed1','#127f2d','#ed54ba','#ef7d0d','#f5f557','#3f474e','#d6e0f0','#6b2fbb','#71491e','#44fff7','#5bfe4b','#6c2b3d','#ffd6ec','#ffffbe','#8397a7','#9f9989','#ec7578'];
@@ -82,7 +82,7 @@ export class Game {
   if(nx>603&&nx<710&&ny<480)ny=480;p.moving=Math.hypot(nx-p.x,ny-p.y)>.1;if(Math.abs(dx)>.05)p.face=dx<0?-1:1;p.x=nx;p.y=ny;
  }
  start(){
-  if(this.s.players.length<4)return false;this.s.round++;this.s.matchId=globalThis.crypto?.randomUUID?.()||Date.now().toString(36)+'-'+this.rand().toString(36);this.s.phase='intro';this.s.intro=5;this.s.elapsed=0;this.s.winner=null;this.s.bodies=[];this.s.sabotage=null;this.s.meeting=null;this.s.chat=[];this.s.doors=0;this.s.closedDoors={};this.s.decontamination={};this.s.taskDone=0;this.s.taskShown=0;this.s.emergencyReady=this.s.time+this.settings.emergencyCooldown;this.s.cases=[];beginConversation(this);
+  if(this.s.players.length<4)return false;this.s.round++;this.s.matchId=globalThis.crypto?.randomUUID?.()||Date.now().toString(36)+'-'+this.rand().toString(36);this.s.phase='intro';this.s.intro=9;this.s.elapsed=0;this.s.winner=null;this.s.bodies=[];this.s.sabotage=null;this.s.meeting=null;this.s.chat=[];this.s.doors=0;this.s.closedDoors={};this.s.decontamination={};this.s.taskDone=0;this.s.taskShown=0;this.s.emergencyReady=this.s.time+this.settings.emergencyCooldown;this.s.cases=[];beginConversation(this);
   let selected=this.shuffle(this.s.players),preferred=this.settings.preferred,me=this.s.players.find(p=>!p.bot);
   if(preferred!=='Random'&&me){selected=selected.filter(p=>p!==me);if(IMPOSTOR_ROLES.includes(preferred))selected.unshift(me);else selected.push(me);}
   let imps=Math.min(this.settings.impostors,Math.floor((this.s.players.length-1)/3));

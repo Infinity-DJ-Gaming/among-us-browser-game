@@ -26,3 +26,12 @@ Additional original menu, tablet, nameplate, palette-mask and shader/noise sourc
 ## Expanded v3.0 original assets
 
 The Polus scene/panels/fog, expanded cosmetic and UI atlases, Cosmicube covers/Pods, native skin poses and additional sound recordings are Innersloth game assets. Asset metadata records source URLs and processing. They are included as referenced fan assets; no ownership or separate license to the original game artwork/audio is claimed. The added FLAC banks are processed original recordings, not generated substitutes. Original native English localization supplies cosmetic names. See assets-catalog.json, assets-polus-tasks.json, assets-audio-v4.json and REFERENCE_NOTES.md for provenance and reconstruction limits.
+
+
+### v3.1 installed-game references
+
+Read-only source: the user's installed `C:/XboxGames/Among Us/Content/Among Us_Data`. No installation files were changed. `initialmaps_assets_all.bundle` supplied Sprite `map` (Skeld), `mapPB` (Polus), and `sabotage_comms`, `sabotage_reactor`, `sabotage_Doors`, `sabotage_O2`, `sabotage_electricity`. The red tint masks retain their original silhouettes/white outlines and are tinted blue or red with translucency for the browser overlay. `sharedassets2.assets` supplied `progress_bar` and `ghost0001`. `resources.assets` supplied `VCR SDF Atlas` and the VCR TMP character/glyph metrics. All original game art and typography remain Innersloth property. These extracts do not include game executables or private game configuration.
+
+The Shhh figure, circle and lettering use the user's supplied original-game screenshot, sampled inside the browser renderer without the surrounding UI. The larger layout, title scale, crew arrangement, individual-role view, task list, and Play cards follow the user's references. Original Wiki task marker: https://among-us.fandom.com/wiki/Personal_map . Additional reference URLs: https://among-us.fandom.com/wiki/Role , https://among-us.fandom.com/wiki/Main_menu , https://among-us.fandom.com/wiki/Play . Installed assets were used for the map instead of embedding Wiki screenshots with a second background/player/UI baked into them.
+
+Firebase Authentication uses the official modular Web SDK from Google's gstatic CDN. Integration reference: https://firebase.google.com/docs/auth/web/password-auth and https://firebase.google.com/docs/web/alt-setup . The public client configuration identifies this dedicated fan-game project and contains no administrator or service-account credentials.

@@ -1,4 +1,4 @@
-# Among Us — browser fan game v3.0
+# Among Us — browser fan game v3.1
 
 Play: https://infinity-dj-gaming.github.io/among-us-browser-game/
 
@@ -45,4 +45,13 @@ Archives: https://github.com/itsssskye/amongus-assets , https://github.com/AI070
 
 ## Checks
 
-Run `npm test` (`node --test tests.mjs tests-v2.mjs tests-v4.mjs`). The suite covers roles, tasks, maps, partial visibility, audio falloff, Lights, Polus systems, progression/ownership/path rules, privacy and complete seeded matches. The accompanying validation report records browser checks. Temporary QA pages are excluded from releases.
+Run `npm test` (`node --test tests.mjs tests-v2.mjs tests-v4.mjs tests-v5.mjs`). The suite covers roles, tasks, maps, partial visibility, audio falloff, Lights, Polus systems, progression/ownership/path rules, privacy and complete seeded matches. The accompanying validation report records browser checks. Temporary QA pages are excluded from releases.
+
+
+## v3.1 map, reveal and accounts
+
+The installed Xbox game supplied the original Skeld/Polus personal-map silhouettes, five sabotage icons, task-bar frame, VCR font atlas/metrics, and ghost sprite. The blue personal map is translucent and stays open during WASD, touch movement and click-to-walk. Task markers remain usable without closing it. F opens the red sabotage map with the native system icons. Reports and phase changes close the overlay. Communications hides task markers.
+
+The nine-second intro has separate Shhh, faction lineup/count, and individual role phases. Role audio plays once on the individual-role transition. Every crewmate appears in the crew lineup; an Impostor sees their team. The local player stands at the front. Victory/Defeat shows the winning team, including native translucent ghosts, followed by Continue and the earned-rewards view. Play uses the full Local/Online card artwork and original labels. The HUD uses an outlined compact task list, vertical Tasks tab, completed-stage counts and segmented task bar.
+
+My Account supports real Firebase email/password sign-up, sign-in, sign-out, display-name changes, verification emails and password-recovery emails. The production project is `among-us-browser-game`, with Email/Password enabled and `infinity-dj-gaming.github.io` authorized. Firebase uses session persistence and does not store raw passwords in this game's local storage. Guests can keep playing when Firebase is unavailable. These are accounts for this fan game, separate from official Among Us accounts. Wallets, cosmetics and statistics remain browser-local; Firebase cloud progression is not implemented. See FIREBASE_SETUP.md.

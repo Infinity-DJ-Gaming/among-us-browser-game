@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"><meta name="theme-color" content="#06070b"><meta name="description" content="An unofficial Among Us browser fan game. Play The Skeld with bots or host a friend lobby."><title>Among Us • Browser Fan Game</title><link rel="icon" href="assets-crew-red.png"><link rel="stylesheet" href="styles.css?v=3.0.0"><link rel="stylesheet" href="v2.css?v=3.0.0"><link rel="stylesheet" href="v3.css?v=3.0.0"><link rel="stylesheet" href="v4.css?v=3.0.0"></head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"><meta name="theme-color" content="#06070b"><meta name="description" content="An unofficial Among Us browser fan game. Play The Skeld with bots or host a friend lobby."><title>Among Us • Browser Fan Game</title><link rel="icon" href="assets-crew-red.png"><link rel="stylesheet" href="styles.css?v=3.1.0"><link rel="stylesheet" href="v2.css?v=3.1.0"><link rel="stylesheet" href="v3.css?v=3.1.0"><link rel="stylesheet" href="v4.css?v=3.1.0"><link rel="stylesheet" href="v5.css?v=3.1.0">
+</head>
 <body>
  <canvas id="space" aria-hidden="true"></canvas>
  <main id="menu" class="screen ship-menu">
@@ -18,7 +19,7 @@
   </nav>
   <div class="menu-window"><span id="loading-ship" role="status">Loading game assets…</span><canvas id="menu-space" aria-label="Crewmates drifting past the ship window"></canvas><div class="menu-window-shine"></div><div class="menu-window-frame"></div><button id="menu-spawn" aria-label="More floating crewmates">×</button>
    <section id="play-menu" class="hidden" aria-label="Play"><button id="play-back" class="round-button" aria-label="Back to main menu">←</button><h1>PLAY</h1><button id="solo" disabled class="au-button primary">PLAY WITH BOTS</button><button id="host" disabled class="au-button">HOST ONLINE</button><button id="join" disabled class="au-button">ENTER CODE</button><div><button id="guide" class="round-button" aria-label="How to play">?</button><button id="sound" class="round-button" aria-label="Toggle sound">♫</button></div></section>
-  </div><span class="menu-build">Browser fan game · v3.0</span>
+  </div><span class="menu-build">Browser fan game · v3.1</span>
  </main>
  <section id="lobby" class="screen hidden">
   <canvas id="lobby-canvas" aria-label="Lobby with crewmates"></canvas>
@@ -31,7 +32,7 @@
  <section id="match" class="screen hidden">
   <canvas id="game" tabindex="0" aria-label="The Skeld. Move with WASD or arrow keys. E to use, R to report, Q to kill, Tab for map."></canvas>
   <div id="task-bar"><span>TOTAL TASKS COMPLETED</span><div><i id="task-progress"></i></div></div>
-  <div id="task-panel"><button id="task-collapse">Tasks <span>▾</span></button><div id="task-list"></div></div>
+  <div id="task-panel"><button id="task-collapse" aria-expanded="true" aria-label="Toggle task list">Tasks</button><div id="task-list"></div></div>
   <div class="match-top"><button id="map-button" class="round-button" aria-label="Open map (Tab)"><img src="assets-ui-map.png" alt="Map"></button><button id="pause-button" class="round-button" aria-label="Pause and settings">⚙</button></div>
   <div id="role-tag"></div><div id="room-name">Cafeteria</div><div id="ghost-note" class="hidden">You are a ghost. Finish your tasks to help your team.</div>
   <div id="sabotage-alert" class="hidden"></div><div id="context-hint"></div>
@@ -52,6 +53,6 @@
  <div id="overlay" class="overlay hidden" role="dialog" aria-modal="true"><div id="modal" class="modal"></div></div>
  <div id="intro" class="cinematic hidden"></div><div id="banner" class="cinematic hidden"></div><canvas id="kill-cinematic" class="hidden" aria-label="Kill animation"></canvas>
  <div id="toast" role="status"></div>
- <script src="peerjs.min.js"></script><script type="module" src="game.js?v=3.0.1"></script>
+ <script src="peerjs.min.js"></script><script type="module" src="game.js?v=3.1.0"></script>
 </body></html>
 
