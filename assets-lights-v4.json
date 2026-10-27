@@ -1,0 +1,148 @@
+{
+  "file": "assets-lights-v4.png",
+  "width": 651,
+  "height": 504,
+  "frames": {
+    "base": {
+      "x": 0,
+      "y": 0,
+      "w": 504,
+      "h": 504,
+      "sourceSprite": "electricity_switches_base",
+      "sourceRect": {
+        "m_Height": 504,
+        "m_Width": 504,
+        "m_X": 90,
+        "m_Y": 3
+      },
+      "pivot": {
+        "m_X": 0.5,
+        "m_Y": 0.5
+      }
+    },
+    "lever": {
+      "x": 508,
+      "y": 0,
+      "w": 39,
+      "h": 52,
+      "sourceSprite": "electricity_switches_Switch",
+      "sourceRect": {
+        "m_Height": 52,
+        "m_Width": 39,
+        "m_X": 205,
+        "m_Y": 513
+      },
+      "pivot": {
+        "m_X": 0.47435898,
+        "m_Y": 0.07692308
+      }
+    },
+    "leverShadow": {
+      "x": 551,
+      "y": 0,
+      "w": 37,
+      "h": 49,
+      "sourceSprite": "electricity_switches_SwitchShadow",
+      "sourceRect": {
+        "m_Height": 49,
+        "m_Width": 37,
+        "m_X": 51,
+        "m_Y": 434
+      },
+      "pivot": {
+        "m_X": 0.4864865,
+        "m_Y": 0.9591837
+      }
+    },
+    "indicator": {
+      "x": 592,
+      "y": 0,
+      "w": 30,
+      "h": 33,
+      "sourceSprite": "electricity_switches_button",
+      "sourceRect": {
+        "m_Height": 33,
+        "m_Width": 30,
+        "m_X": 1,
+        "m_Y": 694
+      },
+      "pivot": {
+        "m_X": 0.5,
+        "m_Y": 0.5
+      }
+    },
+    "indicatorShine": {
+      "x": 626,
+      "y": 0,
+      "w": 21,
+      "h": 21,
+      "sourceSprite": "electricity_switches_buttonShine",
+      "sourceRect": {
+        "m_Height": 21,
+        "m_Width": 21,
+        "m_X": 1,
+        "m_Y": 671
+      },
+      "pivot": {
+        "m_X": 0.5,
+        "m_Y": 0.5
+      }
+    }
+  },
+  "layout": {
+    "width": 504,
+    "height": 504,
+    "switchPivots": [
+      [
+        60,
+        384
+      ],
+      [
+        157,
+        384
+      ],
+      [
+        253,
+        384
+      ],
+      [
+        350,
+        384
+      ],
+      [
+        447,
+        384
+      ]
+    ],
+    "indicatorCenters": [
+      [
+        60,
+        451
+      ],
+      [
+        157,
+        451
+      ],
+      [
+        253,
+        451
+      ],
+      [
+        350,
+        451
+      ],
+      [
+        447,
+        451
+      ]
+    ],
+    "leverPivot": [
+      18.5,
+      48
+    ],
+    "leverNote": "Draw the original lever rotated 180 degrees around each pivot to flip. Source switch head/shaft is one image. Green lamp means switch is on.",
+    "sourceLayout": "Layout measured from original base socket centers; game switch states come from host."
+  },
+  "source": "https://github.com/itsssskye/amongus-assets/blob/main/Assets/Texture2D/SwitchesPanel.png",
+  "notes": "Original source sprites cropped using exported Unity texture rects. Lamps are neutral masks and may be color-tinted green/gray. No Divert Power panel."
+}

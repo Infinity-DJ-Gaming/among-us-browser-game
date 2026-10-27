@@ -1,0 +1,541 @@
+{
+  "image": "assets-polus-tasks.png",
+  "width": 2048,
+  "height": 4670,
+  "frames": {
+    "panel_water_pipeside": {
+      "x": 0,
+      "y": 0,
+      "w": 107,
+      "h": 1015,
+      "texture": "WaterWheel.png"
+    },
+    "panel_wifi_bg": {
+      "x": 111,
+      "y": 0,
+      "w": 366,
+      "h": 716,
+      "texture": "Wifi.png"
+    },
+    "panel_waterpipeBG": {
+      "x": 481,
+      "y": 0,
+      "w": 423,
+      "h": 706,
+      "texture": "WaterWheel.png"
+    },
+    "panel_drill_Phone": {
+      "x": 908,
+      "y": 0,
+      "w": 399,
+      "h": 686,
+      "texture": "Drill.png"
+    },
+    "tree_BG": {
+      "x": 0,
+      "y": 1019,
+      "w": 831,
+      "h": 632,
+      "texture": "MonitorOxy.png"
+    },
+    "panel_wifi_lidside": {
+      "x": 835,
+      "y": 1019,
+      "w": 132,
+      "h": 591,
+      "texture": "Wifi.png"
+    },
+    "panel_specimen_lidclose": {
+      "x": 971,
+      "y": 1019,
+      "w": 123,
+      "h": 590,
+      "texture": "Specimen.png"
+    },
+    "panel_wifi_closingthing": {
+      "x": 1098,
+      "y": 1019,
+      "w": 71,
+      "h": 587,
+      "texture": "Wifi.png"
+    },
+    "panel_weather_BG": {
+      "x": 1173,
+      "y": 1019,
+      "w": 655,
+      "h": 585,
+      "texture": "weather2.png"
+    },
+    "panel_wheelMain": {
+      "x": 0,
+      "y": 1655,
+      "w": 580,
+      "h": 580,
+      "texture": "WaterWheel.png"
+    },
+    "panel_specimen_lidbottom": {
+      "x": 584,
+      "y": 1655,
+      "w": 69,
+      "h": 579,
+      "texture": "Specimen.png"
+    },
+    "panel_key_panel": {
+      "x": 657,
+      "y": 1655,
+      "w": 123,
+      "h": 560,
+      "texture": "Keys.png"
+    },
+    "panel_temp_backgroundCold": {
+      "x": 784,
+      "y": 1655,
+      "w": 644,
+      "h": 543,
+      "texture": "Temp.png"
+    },
+    "panel_temp_backgroundHot": {
+      "x": 0,
+      "y": 2239,
+      "w": 644,
+      "h": 543,
+      "texture": "Temp.png"
+    },
+    "Panel_boardingpassgreen": {
+      "x": 648,
+      "y": 2239,
+      "w": 494,
+      "h": 524,
+      "texture": "BoardingPass.png"
+    },
+    "Panel_boardingpassprogress": {
+      "x": 1146,
+      "y": 2239,
+      "w": 494,
+      "h": 524,
+      "texture": "BoardingPass.png"
+    },
+    "Panel_boardingpassscan": {
+      "x": 0,
+      "y": 2786,
+      "w": 494,
+      "h": 524,
+      "texture": "BoardingPass.png"
+    },
+    "Panel_drill_BG": {
+      "x": 498,
+      "y": 2786,
+      "w": 324,
+      "h": 511,
+      "texture": "Drill.png"
+    },
+    "panel_specimen_trunk": {
+      "x": 826,
+      "y": 2786,
+      "w": 336,
+      "h": 505,
+      "texture": "Specimen.png"
+    },
+    "panel_wifi_lid": {
+      "x": 1166,
+      "y": 2786,
+      "w": 360,
+      "h": 493,
+      "texture": "Wifi.png"
+    },
+    "panel_key_keychain": {
+      "x": 1530,
+      "y": 2786,
+      "w": 233,
+      "h": 449,
+      "texture": "Keys.png"
+    },
+    "panel_boardingBack": {
+      "x": 0,
+      "y": 3314,
+      "w": 326,
+      "h": 417,
+      "texture": "BoardingPass.png"
+    },
+    "panel_boardingFront": {
+      "x": 330,
+      "y": 3314,
+      "w": 326,
+      "h": 417,
+      "texture": "BoardingPass.png"
+    },
+    "panel_water_pipesideback": {
+      "x": 660,
+      "y": 3314,
+      "w": 62,
+      "h": 417,
+      "texture": "WaterWheel.png"
+    },
+    "panel_weather1_BG": {
+      "x": 726,
+      "y": 3314,
+      "w": 823,
+      "h": 408,
+      "texture": "weather1.png"
+    },
+    "Panel_water_outline": {
+      "x": 1553,
+      "y": 3314,
+      "w": 291,
+      "h": 401,
+      "texture": "RefillWater.png"
+    },
+    "panel_water_bg": {
+      "x": 0,
+      "y": 3735,
+      "w": 266,
+      "h": 382,
+      "texture": "RefillWater.png"
+    },
+    "panel_o2fill_plug": {
+      "x": 270,
+      "y": 3735,
+      "w": 158,
+      "h": 336,
+      "texture": "FillCanisters.png"
+    },
+    "tele_07": {
+      "x": 432,
+      "y": 3735,
+      "w": 237,
+      "h": 312,
+      "texture": "Telescope.png"
+    },
+    "tree_box": {
+      "x": 673,
+      "y": 3735,
+      "w": 85,
+      "h": 311,
+      "texture": "MonitorOxy.png"
+    },
+    "panel_drill_drill": {
+      "x": 762,
+      "y": 3735,
+      "w": 104,
+      "h": 306,
+      "texture": "Drill.png"
+    },
+    "panel_o2fill_bg": {
+      "x": 870,
+      "y": 3735,
+      "w": 628,
+      "h": 296,
+      "texture": "FillCanisters.png"
+    },
+    "tele_02": {
+      "x": 1502,
+      "y": 3735,
+      "w": 293,
+      "h": 288,
+      "texture": "Telescope.png"
+    },
+    "Reticle": {
+      "x": 0,
+      "y": 4121,
+      "w": 322,
+      "h": 273,
+      "texture": "Telescope.png"
+    },
+    "tele_01": {
+      "x": 326,
+      "y": 4121,
+      "w": 225,
+      "h": 201,
+      "texture": "Telescope.png"
+    },
+    "Panel_keys_Mainkey": {
+      "x": 555,
+      "y": 4121,
+      "w": 82,
+      "h": 192,
+      "texture": "Keys.png"
+    },
+    "tele_05": {
+      "x": 641,
+      "y": 4121,
+      "w": 190,
+      "h": 191,
+      "texture": "Telescope.png"
+    },
+    "panel_o2fill_cannister": {
+      "x": 835,
+      "y": 4121,
+      "w": 470,
+      "h": 186,
+      "texture": "FillCanisters.png"
+    },
+    "panel_boardingpicwindow": {
+      "x": 1309,
+      "y": 4121,
+      "w": 180,
+      "h": 165,
+      "texture": "BoardingPass.png"
+    },
+    "panel_specimen_crystal": {
+      "x": 1493,
+      "y": 4121,
+      "w": 66,
+      "h": 165,
+      "texture": "Specimen.png"
+    },
+    "tele_03": {
+      "x": 1563,
+      "y": 4121,
+      "w": 174,
+      "h": 165,
+      "texture": "Telescope.png"
+    },
+    "panel_specimen_leaf": {
+      "x": 1741,
+      "y": 4121,
+      "w": 77,
+      "h": 156,
+      "texture": "Specimen.png"
+    },
+    "panel_boarding_Face0007": {
+      "x": 1822,
+      "y": 4121,
+      "w": 173,
+      "h": 146,
+      "texture": "BoardingPass.png"
+    },
+    "panel_boardingpicBG": {
+      "x": 0,
+      "y": 4398,
+      "w": 156,
+      "h": 139,
+      "texture": "BoardingPass.png"
+    },
+    "water_buttonDown": {
+      "x": 160,
+      "y": 4398,
+      "w": 205,
+      "h": 137,
+      "texture": "RefillWater.png"
+    },
+    "water_buttonUp": {
+      "x": 369,
+      "y": 4398,
+      "w": 205,
+      "h": 137,
+      "texture": "RefillWater.png"
+    },
+    "tele_06": {
+      "x": 578,
+      "y": 4398,
+      "w": 250,
+      "h": 132,
+      "texture": "Telescope.png"
+    },
+    "tele_04": {
+      "x": 832,
+      "y": 4398,
+      "w": 224,
+      "h": 128,
+      "texture": "Telescope.png"
+    },
+    "Panel_boardingpull": {
+      "x": 1060,
+      "y": 4398,
+      "w": 85,
+      "h": 125,
+      "texture": "BoardingPass.png"
+    },
+    "panel_drill_alert0001": {
+      "x": 1149,
+      "y": 4398,
+      "w": 95,
+      "h": 113,
+      "texture": "Drill.png"
+    },
+    "panel_key_keyinsertmain": {
+      "x": 1248,
+      "y": 4398,
+      "w": 43,
+      "h": 112,
+      "texture": "Keys.png"
+    },
+    "panel_specimen_diamando": {
+      "x": 1295,
+      "y": 4398,
+      "w": 107,
+      "h": 108,
+      "texture": "Specimen.png"
+    },
+    "panel_boardingFlip": {
+      "x": 1406,
+      "y": 4398,
+      "w": 294,
+      "h": 102,
+      "texture": "BoardingPass.png"
+    },
+    "panel_key_keyslotglow": {
+      "x": 1704,
+      "y": 4398,
+      "w": 99,
+      "h": 101,
+      "texture": "Keys.png"
+    },
+    "panel_key_keyslotSet": {
+      "x": 1807,
+      "y": 4398,
+      "w": 101,
+      "h": 99,
+      "texture": "Keys.png"
+    },
+    "panel_key_keyslot": {
+      "x": 1912,
+      "y": 4398,
+      "w": 89,
+      "h": 89,
+      "texture": "Keys.png"
+    },
+    "panel_speciment_undertalesans": {
+      "x": 0,
+      "y": 4541,
+      "w": 78,
+      "h": 82,
+      "texture": "Specimen.png"
+    },
+    "panel_temp_button": {
+      "x": 82,
+      "y": 4541,
+      "w": 217,
+      "h": 81,
+      "texture": "Temp.png"
+    },
+    "panel_temp_buttonDown": {
+      "x": 303,
+      "y": 4541,
+      "w": 217,
+      "h": 81,
+      "texture": "Temp.png"
+    },
+    "panel_weather2_lampOn": {
+      "x": 524,
+      "y": 4541,
+      "w": 82,
+      "h": 79,
+      "texture": "weather2.png"
+    },
+    "panel_weather2_switch": {
+      "x": 610,
+      "y": 4541,
+      "w": 115,
+      "h": 64,
+      "texture": "weather2.png"
+    },
+    "tree_slider": {
+      "x": 729,
+      "y": 4541,
+      "w": 101,
+      "h": 59,
+      "texture": "MonitorOxy.png"
+    },
+    "panel_weather2_screen": {
+      "x": 834,
+      "y": 4541,
+      "w": 336,
+      "h": 57,
+      "texture": "weather2.png"
+    },
+    "panel_weather2_screendisabled": {
+      "x": 1174,
+      "y": 4541,
+      "w": 336,
+      "h": 57,
+      "texture": "weather2.png"
+    },
+    "panel_key_top": {
+      "x": 1514,
+      "y": 4541,
+      "w": 40,
+      "h": 56,
+      "texture": "Keys.png"
+    },
+    "panel_weather2_lampOff": {
+      "x": 1558,
+      "y": 4541,
+      "w": 56,
+      "h": 53,
+      "texture": "weather2.png"
+    },
+    "panel_o2fill_bar": {
+      "x": 1618,
+      "y": 4541,
+      "w": 301,
+      "h": 45,
+      "texture": "FillCanisters.png"
+    },
+    "panel_wifi-lever": {
+      "x": 1923,
+      "y": 4541,
+      "w": 63,
+      "h": 45,
+      "texture": "Wifi.png"
+    },
+    "panel_water_waterlevel0001": {
+      "x": 0,
+      "y": 4627,
+      "w": 61,
+      "h": 43,
+      "texture": "WaterWheel.png"
+    },
+    "panel_weather1_deadsquare": {
+      "x": 65,
+      "y": 4627,
+      "w": 41,
+      "h": 41,
+      "texture": "weather1.png"
+    },
+    "Panel_weather1_controlnode": {
+      "x": 110,
+      "y": 4627,
+      "w": 31,
+      "h": 31,
+      "texture": "weather1.png"
+    },
+    "panel_weather1_block": {
+      "x": 145,
+      "y": 4627,
+      "w": 31,
+      "h": 23,
+      "texture": "weather1.png"
+    },
+    "panel_wifi_nodeOff": {
+      "x": 180,
+      "y": 4627,
+      "w": 17,
+      "h": 19,
+      "texture": "Wifi.png"
+    },
+    "panel_wifi_nodeOn": {
+      "x": 201,
+      "y": 4627,
+      "w": 17,
+      "h": 19,
+      "texture": "Wifi.png"
+    },
+    "panel_drill_statusBAD": {
+      "x": 222,
+      "y": 4627,
+      "w": 33,
+      "h": 14,
+      "texture": "Drill.png"
+    },
+    "tree_point": {
+      "x": 259,
+      "y": 4627,
+      "w": 105,
+      "h": 9,
+      "texture": "MonitorOxy.png"
+    }
+  },
+  "source": "https://github.com/itsssskye/amongus-assets",
+  "processing": "Native sprite UV and polygon-alpha reconstruction. Runtime composition and task logic are a new browser implementation."
+}

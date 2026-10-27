@@ -1,0 +1,1040 @@
+{
+  "version": 4,
+  "sampleRate": 22050,
+  "banks": {
+    "actions": {
+      "file": "assets-audio-v4-actions.flac",
+      "duration": 181.23015873015873,
+      "bytes": 3496154
+    },
+    "ambience": {
+      "file": "assets-audio-v4-ambience.flac",
+      "duration": 268.94258503401363,
+      "bytes": 4874352
+    },
+    "music": {
+      "file": "assets-audio-v4-music.flac",
+      "duration": 357.694693877551,
+      "bytes": 9973629
+    }
+  },
+  "clips": {
+    "rewardMultiplier": {
+      "bank": "actions",
+      "start": 0.0,
+      "duration": 0.6922448979591836,
+      "source": "endgame_multiplier.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/endgame_multiplier.wav",
+      "kind": "short"
+    },
+    "rewardPod": {
+      "bank": "actions",
+      "start": 0.8522448979591837,
+      "duration": 0.9853968253968254,
+      "source": "Endgame_Podget.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/Endgame_Podget.wav",
+      "kind": "short"
+    },
+    "rewardMultiplierEnd": {
+      "bank": "actions",
+      "start": 1.997641723356009,
+      "duration": 1.4788208616780045,
+      "source": "endgame_multiplierend.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/endgame_multiplierend.wav",
+      "kind": "short"
+    },
+    "lobbySettings": {
+      "bank": "actions",
+      "start": 3.6364625850340135,
+      "duration": 3.1071201814058957,
+      "source": "setting_update.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/setting_update.wav",
+      "kind": "short"
+    },
+    "rewardXP": {
+      "bank": "actions",
+      "start": 6.903582766439909,
+      "duration": 1.8546938775510204,
+      "source": "Endgame_xp.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/Endgame_xp.wav",
+      "kind": "short"
+    },
+    "lobbyTimeout": {
+      "bank": "actions",
+      "start": 8.91827664399093,
+      "duration": 2.3582766439909295,
+      "source": "Lobby_Timeout.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/Lobby_Timeout.wav",
+      "kind": "short"
+    },
+    "playerDisconnect": {
+      "bank": "actions",
+      "start": 11.436553287981859,
+      "duration": 0.19591836734693877,
+      "source": "playerdisconnect.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/playerdisconnect.wav",
+      "kind": "short"
+    },
+    "rewardLevel": {
+      "bank": "actions",
+      "start": 11.792471655328798,
+      "duration": 3.3756009070294786,
+      "source": "endgame_Levelup.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/endgame_Levelup.wav",
+      "kind": "short"
+    },
+    "settingsOpen": {
+      "bank": "actions",
+      "start": 15.328072562358276,
+      "duration": 1.8561451247165532,
+      "source": "settings_Slidein.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/settings_Slidein.wav",
+      "kind": "short"
+    },
+    "notificationError": {
+      "bank": "actions",
+      "start": 17.34421768707483,
+      "duration": 0.21333333333333335,
+      "source": "notification-error.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/notification-error.wav",
+      "kind": "short"
+    },
+    "notification": {
+      "bank": "actions",
+      "start": 17.717551020408163,
+      "duration": 0.3468480725623583,
+      "source": "notification.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/notification.wav",
+      "kind": "short"
+    },
+    "settingsClose": {
+      "bank": "actions",
+      "start": 18.224399092970522,
+      "duration": 1.885170068027211,
+      "source": "settings_slideout.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/settings_slideout.wav",
+      "kind": "short"
+    },
+    "lobbyCopy": {
+      "bank": "actions",
+      "start": 20.269569160997733,
+      "duration": 4.514829931972789,
+      "source": "settings_copycode.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/settings_copycode.wav",
+      "kind": "short"
+    },
+    "rewardPods": {
+      "bank": "actions",
+      "start": 24.94439909297052,
+      "duration": 3.7645351473922903,
+      "source": "Endgame_Podgroup.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/Endgame_Podgroup.wav",
+      "kind": "short"
+    },
+    "lobbyStart": {
+      "bank": "actions",
+      "start": 28.86893424036281,
+      "duration": 5.0764625850340135,
+      "source": "Lobby_Timerstart.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/Lobby_Timerstart.wav",
+      "kind": "short"
+    },
+    "doorSwitch": {
+      "bank": "actions",
+      "start": 34.105396825396824,
+      "duration": 0.21768707482993196,
+      "source": "panel_doorswitch.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_doorswitch.wav",
+      "kind": "short"
+    },
+    "cooldownReady": {
+      "bank": "actions",
+      "start": 34.48308390022676,
+      "duration": 0.9900226757369615,
+      "source": "CooldownRefresh.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/CooldownRefresh.wav",
+      "kind": "short"
+    },
+    "commsStatic": {
+      "bank": "actions",
+      "start": 35.633106575963716,
+      "duration": 2.004172335600907,
+      "source": "panel_comms_static.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_comms_static.wav",
+      "kind": "short"
+    },
+    "alarmCritical": {
+      "bank": "actions",
+      "start": 37.797278911564625,
+      "duration": 1.9940136054421769,
+      "source": "sabotage_alarm.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/sabotage_alarm.wav",
+      "kind": "short"
+    },
+    "polusVentOpen": {
+      "bank": "actions",
+      "start": 39.951292517006806,
+      "duration": 0.43247165532879817,
+      "source": "ventGroundEnter.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/ventGroundEnter.wav",
+      "kind": "short"
+    },
+    "polusVentMove1": {
+      "bank": "actions",
+      "start": 40.5437641723356,
+      "duration": 0.4706575963718821,
+      "source": "ventMoveGround1.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/ventMoveGround1.wav",
+      "kind": "short"
+    },
+    "protectAnnouncement": {
+      "bank": "actions",
+      "start": 41.17442176870748,
+      "duration": 1.957732426303855,
+      "source": "role_GA_protectAnnouncement.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/role_GA_protectAnnouncement.wav",
+      "kind": "short"
+    },
+    "polusVentMove2": {
+      "bank": "actions",
+      "start": 43.292154195011335,
+      "duration": 0.9113832199546485,
+      "source": "ventMoveGround2.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/ventMoveGround2.wav",
+      "kind": "short"
+    },
+    "doorPanelClose": {
+      "bank": "actions",
+      "start": 44.36353741496599,
+      "duration": 0.3,
+      "source": "sabotage_doorgame_disappear.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/sabotage_doorgame_disappear.wav",
+      "kind": "short"
+    },
+    "cosmicUnlock": {
+      "bank": "actions",
+      "start": 44.82353741496598,
+      "duration": 5.665986394557823,
+      "source": "cube_unlock.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/cube_unlock.wav",
+      "kind": "short"
+    },
+    "doorPanelOpen": {
+      "bank": "actions",
+      "start": 50.64952380952381,
+      "duration": 0.4786848072562358,
+      "source": "sabotage_doorgame_appear.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/sabotage_doorgame_appear.wav",
+      "kind": "short"
+    },
+    "polusVentMove3": {
+      "bank": "actions",
+      "start": 51.28820861678005,
+      "duration": 0.6066666666666667,
+      "source": "ventMoveGround3.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/ventMoveGround3.wav",
+      "kind": "short"
+    },
+    "polusDoorOpen": {
+      "bank": "actions",
+      "start": 52.05487528344671,
+      "duration": 2.573061224489796,
+      "source": "sabotage_door_open.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/sabotage_door_open.wav",
+      "kind": "short"
+    },
+    "polusDoorClose": {
+      "bank": "actions",
+      "start": 54.78793650793651,
+      "duration": 1.811156462585034,
+      "source": "sabotage_door_close.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/sabotage_door_close.wav",
+      "kind": "short"
+    },
+    "doorPanelHit": {
+      "bank": "actions",
+      "start": 56.75909297052154,
+      "duration": 0.6946485260770975,
+      "source": "sabotage_doorgame_hit.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/sabotage_doorgame_hit.wav",
+      "kind": "short"
+    },
+    "keyOpen": {
+      "bank": "actions",
+      "start": 57.61374149659864,
+      "duration": 0.42376417233560093,
+      "source": "panel_keysOpen.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_keysOpen.wav",
+      "kind": "short"
+    },
+    "decontamDoorOpen": {
+      "bank": "actions",
+      "start": 58.19750566893424,
+      "duration": 1.9112925170068027,
+      "source": "Decontamination_doorOpen.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/Decontamination_doorOpen.wav",
+      "kind": "short"
+    },
+    "keyGrab": {
+      "bank": "actions",
+      "start": 60.268798185941044,
+      "duration": 0.35555555555555557,
+      "source": "panel_keyGrab.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_keyGrab.wav",
+      "kind": "short"
+    },
+    "voteDead": {
+      "bank": "actions",
+      "start": 60.784353741496595,
+      "duration": 2.9500226757369616,
+      "source": "votescreen_playerdead.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/votescreen_playerdead.wav",
+      "kind": "short"
+    },
+    "decontamButton": {
+      "bank": "actions",
+      "start": 63.89437641723356,
+      "duration": 0.6786848072562358,
+      "source": "Decontamination_Button.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/Decontamination_Button.wav",
+      "kind": "short"
+    },
+    "keyInsert": {
+      "bank": "actions",
+      "start": 64.7330612244898,
+      "duration": 0.1364172335600907,
+      "source": "panel_keyInsert.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_keyInsert.wav",
+      "kind": "short"
+    },
+    "decontamDoorClose": {
+      "bank": "actions",
+      "start": 65.02947845804988,
+      "duration": 1.4091609977324262,
+      "source": "Decontamination_doorClose.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/Decontamination_doorClose.wav",
+      "kind": "short"
+    },
+    "keyTurn": {
+      "bank": "actions",
+      "start": 66.59863945578232,
+      "duration": 0.27573696145124715,
+      "source": "panel_keyTurn.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_keyTurn.wav",
+      "kind": "short"
+    },
+    "weatherMove": {
+      "bank": "actions",
+      "start": 67.03437641723356,
+      "duration": 0.04789115646258504,
+      "source": "panel_weatherNodeMove.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_weatherNodeMove.wav",
+      "kind": "short"
+    },
+    "boardingSlide": {
+      "bank": "actions",
+      "start": 67.24226757369614,
+      "duration": 0.38798185941043084,
+      "source": "panel_boardingSlidein.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_boardingSlidein.wav",
+      "kind": "short"
+    },
+    "boardingScan": {
+      "bank": "actions",
+      "start": 67.79024943310658,
+      "duration": 0.4266666666666667,
+      "source": "panel_boardingStartscan.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_boardingStartscan.wav",
+      "kind": "short"
+    },
+    "weatherSwitch": {
+      "bank": "actions",
+      "start": 68.37691609977324,
+      "duration": 1.134875283446712,
+      "source": "panel_weatherSwitch.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_weatherSwitch.wav",
+      "kind": "short"
+    },
+    "boardingFlip": {
+      "bank": "actions",
+      "start": 69.67179138321995,
+      "duration": 0.12399092970521541,
+      "source": "panel_boardingFlip.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_boardingFlip.wav",
+      "kind": "short"
+    },
+    "telescope": {
+      "bank": "actions",
+      "start": 69.95578231292517,
+      "duration": 0.020317460317460317,
+      "source": "panel_telescopeScan.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_telescopeScan.wav",
+      "kind": "short"
+    },
+    "drill": {
+      "bank": "actions",
+      "start": 70.13609977324263,
+      "duration": 0.020317460317460317,
+      "source": "panel_drillButton.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_drillButton.wav",
+      "kind": "short"
+    },
+    "boardingFinish": {
+      "bank": "actions",
+      "start": 70.31641723356009,
+      "duration": 0.2568707482993197,
+      "source": "panel_boardingBoop.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_boardingBoop.wav",
+      "kind": "short"
+    },
+    "temperature": {
+      "bank": "actions",
+      "start": 70.7332879818594,
+      "duration": 0.09532879818594105,
+      "source": "Panel_TempButton.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/Panel_TempButton.wav",
+      "kind": "short"
+    },
+    "waterwheelOpen": {
+      "bank": "actions",
+      "start": 70.98861678004535,
+      "duration": 0.7430385487528345,
+      "source": "panel_waterwheelOpen.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_waterwheelOpen.wav",
+      "kind": "short"
+    },
+    "waterFill": {
+      "bank": "actions",
+      "start": 71.89165532879818,
+      "duration": 4.3740589569161,
+      "source": "panel_waterfill.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_waterfill.wav",
+      "kind": "short"
+    },
+    "wifiSlider": {
+      "bank": "actions",
+      "start": 76.42571428571429,
+      "duration": 0.10448979591836735,
+      "source": "panel_WifiSlider.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_WifiSlider.wav",
+      "kind": "short"
+    },
+    "wifiClose": {
+      "bank": "actions",
+      "start": 76.69020408163266,
+      "duration": 0.2438095238095238,
+      "source": "panel_WifiClose.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_WifiClose.wav",
+      "kind": "short"
+    },
+    "wifiOpen": {
+      "bank": "actions",
+      "start": 77.09401360544217,
+      "duration": 0.9853968253968254,
+      "source": "panel_WifiOpen.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_WifiOpen.wav",
+      "kind": "short"
+    },
+    "canisterIn": {
+      "bank": "actions",
+      "start": 78.239410430839,
+      "duration": 0.4992290249433107,
+      "source": "panel_O2plugin.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_O2plugin.wav",
+      "kind": "short"
+    },
+    "waterwheelWater": {
+      "bank": "actions",
+      "start": 78.89863945578232,
+      "duration": 1.5766893424036281,
+      "source": "panel_waterwheelWaterFirst.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_waterwheelWaterFirst.wav",
+      "kind": "short"
+    },
+    "waterwheelLoop": {
+      "bank": "actions",
+      "start": 80.63532879818594,
+      "duration": 1.2066666666666668,
+      "source": "panel_waterwheelWaterloop.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_waterwheelWaterloop.wav",
+      "kind": "short"
+    },
+    "specimenOpen": {
+      "bank": "actions",
+      "start": 82.00199546485261,
+      "duration": 0.38893424036281177,
+      "source": "panel_specimenOpen.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_specimenOpen.wav",
+      "kind": "short"
+    },
+    "canisterOut": {
+      "bank": "actions",
+      "start": 82.55092970521542,
+      "duration": 2.628208616780045,
+      "source": "panel_O2plugout.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_O2plugout.wav",
+      "kind": "short"
+    },
+    "specimenClose": {
+      "bank": "actions",
+      "start": 85.33913832199546,
+      "duration": 0.313469387755102,
+      "source": "panel_specimenClose.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_specimenClose.wav",
+      "kind": "short"
+    },
+    "waterwheelTurn": {
+      "bank": "actions",
+      "start": 85.81260770975057,
+      "duration": 1.0920181405895693,
+      "source": "panel_waterwheelTurn.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_waterwheelTurn.wav",
+      "kind": "short"
+    },
+    "specimenPlace": {
+      "bank": "actions",
+      "start": 87.06462585034014,
+      "duration": 0.22058956916099773,
+      "source": "panel_specimenPlace.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_specimenPlace.wav",
+      "kind": "short"
+    },
+    "specimenPlace2": {
+      "bank": "actions",
+      "start": 87.44521541950114,
+      "duration": 0.39909297052154197,
+      "source": "panel_specimenPlace2.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_specimenPlace2.wav",
+      "kind": "short"
+    },
+    "canisterLoop": {
+      "bank": "actions",
+      "start": 88.00430839002267,
+      "duration": 2.718185941043084,
+      "source": "panel_O2Airloop.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_O2Airloop.wav",
+      "kind": "short"
+    },
+    "treeCO2": {
+      "bank": "actions",
+      "start": 90.88249433106576,
+      "duration": 5.00390022675737,
+      "source": "Panel_NutrientCO2.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/Panel_NutrientCO2.wav",
+      "kind": "short"
+    },
+    "sortPickup1": {
+      "bank": "actions",
+      "start": 96.04639455782313,
+      "duration": 0.422312925170068,
+      "source": "panel_sortsamplePickup01.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_sortsamplePickup01.wav",
+      "kind": "short"
+    },
+    "sortDrop1": {
+      "bank": "actions",
+      "start": 96.62870748299319,
+      "duration": 0.2438095238095238,
+      "source": "panel_sortsampleDrop01.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_sortsampleDrop01.wav",
+      "kind": "short"
+    },
+    "sortPickup2": {
+      "bank": "actions",
+      "start": 97.03251700680272,
+      "duration": 0.4092517006802721,
+      "source": "panel_sortsamplePickup02.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_sortsamplePickup02.wav",
+      "kind": "short"
+    },
+    "treeOxy": {
+      "bank": "actions",
+      "start": 97.60176870748299,
+      "duration": 5.00390022675737,
+      "source": "Panel_NutrientOxy.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/Panel_NutrientOxy.wav",
+      "kind": "short"
+    },
+    "treeWater": {
+      "bank": "actions",
+      "start": 102.76566893424037,
+      "duration": 5.00390022675737,
+      "source": "Panel_NutrientWater.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/Panel_NutrientWater.wav",
+      "kind": "short"
+    },
+    "sortDrop2": {
+      "bank": "actions",
+      "start": 107.92956916099773,
+      "duration": 0.4986848072562358,
+      "source": "panel_sortsampleDrop02.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_sortsampleDrop02.wav",
+      "kind": "short"
+    },
+    "treeRad": {
+      "bank": "actions",
+      "start": 108.58825396825397,
+      "duration": 5.00390022675737,
+      "source": "Panel_NutrientRad.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/Panel_NutrientRad.wav",
+      "kind": "short"
+    },
+    "sortPickup4": {
+      "bank": "actions",
+      "start": 113.75215419501134,
+      "duration": 0.5471201814058957,
+      "source": "panel_sortsamplePickup04.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_sortsamplePickup04.wav",
+      "kind": "short"
+    },
+    "ventDiscovered": {
+      "bank": "actions",
+      "start": 114.45927437641723,
+      "duration": 2.980861678004535,
+      "source": "ImpostorDiscovered.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/ImpostorDiscovered.wav",
+      "kind": "short"
+    },
+    "weatherMeasure": {
+      "bank": "actions",
+      "start": 117.60013605442177,
+      "duration": 5.050340136054421,
+      "source": "Panel_weatherstart.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/Panel_weatherstart.wav",
+      "kind": "short"
+    },
+    "sortPickup3": {
+      "bank": "actions",
+      "start": 122.8104761904762,
+      "duration": 0.6458049886621315,
+      "source": "panel_sortsamplePickup03.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_sortsamplePickup03.wav",
+      "kind": "short"
+    },
+    "sortDrop3": {
+      "bank": "actions",
+      "start": 123.61628117913833,
+      "duration": 0.555328798185941,
+      "source": "panel_sortsampleDrop03.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_sortsampleDrop03.wav",
+      "kind": "short"
+    },
+    "sortDrop4": {
+      "bank": "actions",
+      "start": 124.33160997732426,
+      "duration": 0.9006802721088435,
+      "source": "panel_sortsampleDrop04.wav",
+      "url": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/AudioClip/panel_sortsampleDrop04.wav",
+      "kind": "short"
+    },
+    "notes3": {
+      "bank": "actions",
+      "start": 125.3922902494331,
+      "duration": 0.6849886621315193,
+      "source": "Notes use 3.wav",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/9/9a/Notes_use_3.wav/revision/latest?cb=20250909221513",
+      "kind": "short"
+    },
+    "notes1": {
+      "bank": "actions",
+      "start": 126.23727891156463,
+      "duration": 0.8707482993197279,
+      "source": "Notes use 1.wav",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/9/91/Notes_use_1.wav/revision/latest?cb=20250909221538",
+      "kind": "short"
+    },
+    "notes2": {
+      "bank": "actions",
+      "start": 127.26802721088436,
+      "duration": 0.8359183673469388,
+      "source": "Notes use 2.wav",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/6/6d/Notes_use_2.wav/revision/latest?cb=20250909221517",
+      "kind": "short"
+    },
+    "createCapacity": {
+      "bank": "actions",
+      "start": 128.2639455782313,
+      "duration": 0.17034013605442178,
+      "source": "Create Game capacity change.wav",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/d/d4/Create_Game_capacity_change.wav/revision/latest?cb=20250401014343",
+      "kind": "short"
+    },
+    "interrogate": {
+      "bank": "actions",
+      "start": 128.59428571428572,
+      "duration": 2.621451247165533,
+      "source": "Interrogate use.wav",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/0/0a/Interrogate_use.wav/revision/latest?cb=20250909221526",
+      "kind": "short"
+    },
+    "roleJudge": {
+      "bank": "actions",
+      "start": 131.37573696145125,
+      "duration": 5.106349206349206,
+      "source": "Judge role reveal sound.wav",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/c/c3/Judge_role_reveal_sound.wav/revision/latest?cb=20260818181648",
+      "kind": "short"
+    },
+    "roleViper": {
+      "bank": "actions",
+      "start": 136.64208616780044,
+      "duration": 6.426485260770975,
+      "source": "Viper role reveal sound.wav",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/1/10/Viper_role_reveal_sound.wav/revision/latest?cb=20250909221519",
+      "kind": "short"
+    },
+    "roleDetective": {
+      "bank": "actions",
+      "start": 143.22857142857143,
+      "duration": 6.235283446712018,
+      "source": "Detective role reveal sound.wav",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/0/0d/Detective_role_reveal_sound.wav/revision/latest?cb=20250909221534",
+      "kind": "short"
+    },
+    "findOpen": {
+      "bank": "actions",
+      "start": 149.62385487528346,
+      "duration": 2.300408163265306,
+      "source": "Find Game open.wav",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/8/8d/Find_Game_open.wav/revision/latest?cb=20250401013434",
+      "kind": "short"
+    },
+    "findClose": {
+      "bank": "actions",
+      "start": 152.08426303854876,
+      "duration": 2.1465759637188206,
+      "source": "Find Game close.wav",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/2/24/Find_Game_close.wav/revision/latest?cb=20250401013345",
+      "kind": "short"
+    },
+    "polusEject": {
+      "bank": "actions",
+      "start": 154.39083900226757,
+      "duration": 1.7219954648526077,
+      "source": "Polus ejection lava drop.ogg",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/1/1d/Polus_ejection_lava_drop.ogg/revision/latest?cb=20210123085031",
+      "kind": "short"
+    },
+    "findRefreshEnd": {
+      "bank": "actions",
+      "start": 156.2728344671202,
+      "duration": 2.2668934240362812,
+      "source": "Find Game refresh end.wav",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/3/3c/Find_Game_refresh_end.wav/revision/latest?cb=20250401012837",
+      "kind": "short"
+    },
+    "influencerSend": {
+      "bank": "actions",
+      "start": 158.69972789115647,
+      "duration": 3.0026303854875285,
+      "source": "Send use.wav",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/6/64/Send_use.wav/revision/latest?cb=20260929194555",
+      "kind": "short"
+    },
+    "enterCode": {
+      "bank": "actions",
+      "start": 161.862358276644,
+      "duration": 1.9210884353741497,
+      "source": "Enter Code code enter.wav",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/b/b8/Enter_Code_code_enter.wav/revision/latest?cb=20250401013744",
+      "kind": "short"
+    },
+    "ambLobby": {
+      "bank": "ambience",
+      "start": 0.0,
+      "duration": 10.84780045351474,
+      "source": "The Skeld ambience.ogg",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/d/db/The_Skeld_ambience.ogg/revision/latest?cb=20201213192658",
+      "kind": "loop"
+    },
+    "ambSkeldHallway": {
+      "bank": "ambience",
+      "start": 11.00780045351474,
+      "duration": 10.582040816326531,
+      "source": "The Skeld hallways ambience.ogg",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/8/8e/The_Skeld_hallways_ambience.ogg/revision/latest?cb=20201213192625",
+      "kind": "loop"
+    },
+    "ambSkeldEngine": {
+      "bank": "ambience",
+      "start": 21.74984126984127,
+      "duration": 4.34140589569161,
+      "source": "The Skeld Engines ambience.ogg",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/8/8b/The_Skeld_Engines_ambience.ogg/revision/latest?cb=20201201174157",
+      "kind": "loop"
+    },
+    "ambSkeldO2": {
+      "bank": "ambience",
+      "start": 26.25124716553288,
+      "duration": 6.446303854875284,
+      "source": "The Skeld O2 ambience.ogg",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/0/08/The_Skeld_O2_ambience.ogg/revision/latest?cb=20201213192631",
+      "kind": "loop"
+    },
+    "ambSkeldReactor": {
+      "bank": "ambience",
+      "start": 32.85755102040817,
+      "duration": 4.919727891156462,
+      "source": "The Skeld Reactor ambience.ogg",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/1/13/The_Skeld_Reactor_ambience.ogg/revision/latest?cb=20201213192639",
+      "kind": "loop"
+    },
+    "ambSkeldElectrical": {
+      "bank": "ambience",
+      "start": 37.937278911564626,
+      "duration": 18.32857142857143,
+      "source": "The Skeld Electrical ambience.ogg",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/5/56/The_Skeld_Electrical_ambience.ogg/revision/latest?cb=20200901185141",
+      "kind": "loop"
+    },
+    "ambSkeldShields": {
+      "bank": "ambience",
+      "start": 56.42585034013605,
+      "duration": 0.8678458049886622,
+      "source": "The Skeld Shields ambience.ogg",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/e/e3/The_Skeld_Shields_ambience.ogg/revision/latest?cb=20201213192651",
+      "kind": "loop"
+    },
+    "findClear": {
+      "bank": "actions",
+      "start": 163.94344671201813,
+      "duration": 1.415873015873016,
+      "source": "Find Game filter clear.wav",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/6/64/Find_Game_filter_clear.wav/revision/latest?cb=20250401013154",
+      "kind": "short"
+    },
+    "ambMedBay": {
+      "bank": "ambience",
+      "start": 57.45369614512472,
+      "duration": 6.2903401360544215,
+      "source": "MedBay ambience.ogg",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/7/70/MedBay_ambience.ogg/revision/latest?cb=20201213192630",
+      "kind": "loop"
+    },
+    "findRefreshStart": {
+      "bank": "actions",
+      "start": 165.51931972789114,
+      "duration": 2.102312925170068,
+      "source": "Find Game refresh start.wav",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/3/30/Find_Game_refresh_start.wav/revision/latest?cb=20250401012705",
+      "kind": "short"
+    },
+    "menuMusic": {
+      "bank": "music",
+      "start": 0.0,
+      "duration": 86.39909297052154,
+      "source": "Among Us main menu theme.ogg",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/d/dd/Among_Us_main_menu_theme.ogg/revision/latest?cb=20200902185244",
+      "kind": "loop"
+    },
+    "ambWeapons": {
+      "bank": "ambience",
+      "start": 63.90403628117914,
+      "duration": 3.3750113378684805,
+      "source": "Weapons ambience.ogg",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/2/27/Weapons_ambience.ogg/revision/latest?cb=20201201175329",
+      "kind": "loop"
+    },
+    "stardustPurchase": {
+      "bank": "actions",
+      "start": 167.78163265306122,
+      "duration": 2.475736961451247,
+      "source": "Stardust Purchase.wav",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/8/80/Stardust_Purchase.wav/revision/latest?cb=20250918225123",
+      "kind": "short"
+    },
+    "ambSecurity": {
+      "bank": "ambience",
+      "start": 67.43904761904761,
+      "duration": 2.3190929705215417,
+      "source": "Security ambience.ogg",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/0/0f/Security_ambience.ogg/revision/latest?cb=20201213192648",
+      "kind": "loop"
+    },
+    "createLobby": {
+      "bank": "actions",
+      "start": 170.41736961451247,
+      "duration": 2.238185941043084,
+      "source": "Create Game lobby create.wav",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/7/7e/Create_Game_lobby_create.wav/revision/latest?cb=20250401013832",
+      "kind": "short"
+    },
+    "ambPolusComms": {
+      "bank": "ambience",
+      "start": 69.91814058956916,
+      "duration": 13.688390022675737,
+      "source": "Polus Communications ambience.ogg",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/b/be/Polus_Communications_ambience.ogg/revision/latest?cb=20201201173641",
+      "kind": "loop"
+    },
+    "ambPolusDecontam": {
+      "bank": "ambience",
+      "start": 83.76653061224489,
+      "duration": 20.07968253968254,
+      "source": "Polus Decontamination ambience.ogg",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/1/1a/Polus_Decontamination_ambience.ogg/revision/latest?cb=20201201172556",
+      "kind": "loop"
+    },
+    "ambSkeldComms": {
+      "bank": "ambience",
+      "start": 104.00621315192744,
+      "duration": 28.35265306122449,
+      "source": "The Skeld Communications ambience.ogg",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/a/ab/The_Skeld_Communications_ambience.ogg/revision/latest?cb=20201201173546",
+      "kind": "loop"
+    },
+    "ambPolusElectrical": {
+      "bank": "ambience",
+      "start": 132.51886621315194,
+      "duration": 6.514603174603175,
+      "source": "Polus Electrical ambience.ogg",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/c/c7/Polus_Electrical_ambience.ogg/revision/latest?cb=20200901185215",
+      "kind": "loop"
+    },
+    "ambPolusOutside2": {
+      "bank": "ambience",
+      "start": 139.1934693877551,
+      "duration": 17.978548752834467,
+      "source": "Polus Outside ambience 2.ogg",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/7/72/Polus_Outside_ambience_2.ogg/revision/latest?cb=20201213192632",
+      "kind": "loop"
+    },
+    "ambPolusBoiler": {
+      "bank": "ambience",
+      "start": 157.33201814058958,
+      "duration": 9.240725623582767,
+      "source": "Polus Boiler Room ambience.ogg",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/1/1f/Polus_Boiler_Room_ambience.ogg/revision/latest?cb=20201213192655",
+      "kind": "loop"
+    },
+    "ambPolusLava": {
+      "bank": "ambience",
+      "start": 166.73274376417234,
+      "duration": 7.73514739229025,
+      "source": "Polus Outside lava pit ambience.ogg",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/2/2e/Polus_Outside_lava_pit_ambience.ogg/revision/latest?cb=20201201175038",
+      "kind": "loop"
+    },
+    "ambPolusTree": {
+      "bank": "ambience",
+      "start": 174.6278911564626,
+      "duration": 16.11374149659864,
+      "source": "Polus O2 tree ambience.ogg",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/8/89/Polus_O2_tree_ambience.ogg/revision/latest?cb=20201201180500",
+      "kind": "loop"
+    },
+    "ambPolusPods": {
+      "bank": "ambience",
+      "start": 190.90163265306123,
+      "duration": 14.925895691609977,
+      "source": "Polus pods ambience.ogg",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/7/74/Polus_pods_ambience.ogg/revision/latest?cb=20201213192634",
+      "kind": "loop"
+    },
+    "ambPolusDrill": {
+      "bank": "ambience",
+      "start": 205.9875283446712,
+      "duration": 2.2876190476190477,
+      "source": "Polus Laboratory Repair Drill ambience.ogg",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/4/43/Polus_Laboratory_Repair_Drill_ambience.ogg/revision/latest?cb=20201201173110",
+      "kind": "loop"
+    },
+    "ambPolusBathroom": {
+      "bank": "ambience",
+      "start": 208.43514739229025,
+      "duration": 8.090430839002268,
+      "source": "Polus Laboratory bathroom ambience.ogg",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/0/00/Polus_Laboratory_bathroom_ambience.ogg/revision/latest?cb=20201213192652",
+      "kind": "loop"
+    },
+    "ambPolusLab": {
+      "bank": "ambience",
+      "start": 216.6855782312925,
+      "duration": 10.189659863945579,
+      "source": "Polus Laboratory ambience.ogg",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/0/00/Polus_Laboratory_ambience.ogg/revision/latest?cb=20201201173004",
+      "kind": "loop"
+    },
+    "ambPolusOutside": {
+      "bank": "ambience",
+      "start": 227.0352380952381,
+      "duration": 16.061678004535146,
+      "source": "Polus Outside ambience.ogg",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/e/e0/Polus_Outside_ambience.ogg/revision/latest?cb=20201213192632",
+      "kind": "loop"
+    },
+    "ambPolusSeismic": {
+      "bank": "ambience",
+      "start": 243.25691609977324,
+      "duration": 1.2117913832199547,
+      "source": "Polus Seismic Stabilizers ambience.ogg",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/b/b3/Polus_Seismic_Stabilizers_ambience.ogg/revision/latest?cb=20201213192650",
+      "kind": "loop"
+    },
+    "victoryCrew": {
+      "bank": "music",
+      "start": 86.55909297052155,
+      "duration": 10.026666666666667,
+      "source": "Crewmate victory music.ogg",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/5/51/Crewmate_victory_music.ogg/revision/latest?cb=20200914131738",
+      "kind": "loop"
+    },
+    "decontamSpray": {
+      "bank": "actions",
+      "start": 172.81555555555556,
+      "duration": 8.254603174603174,
+      "source": "Decontamination spray.ogg",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/0/04/Decontamination_spray.ogg/revision/latest?cb=20201213192703",
+      "kind": "loop"
+    },
+    "ambPolusBathroom2": {
+      "bank": "ambience",
+      "start": 244.6287074829932,
+      "duration": 11.310657596371883,
+      "source": "Polus Laboratory bathroom ambience 2.ogg",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/5/59/Polus_Laboratory_bathroom_ambience_2.ogg/revision/latest?cb=20201201173135",
+      "kind": "loop"
+    },
+    "ambPolusO2": {
+      "bank": "ambience",
+      "start": 256.0993650793651,
+      "duration": 4.34140589569161,
+      "source": "Polus O2 ambience.ogg",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/5/56/Polus_O2_ambience.ogg/revision/latest?cb=20201213192634",
+      "kind": "loop"
+    },
+    "ambPolusSpecimen": {
+      "bank": "ambience",
+      "start": 260.60077097505666,
+      "duration": 4.994013605442177,
+      "source": "Polus Specimen Room ambience.ogg",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/c/c9/Polus_Specimen_Room_ambience.ogg/revision/latest?cb=20201201180210",
+      "kind": "loop"
+    },
+    "ambPolusWeather": {
+      "bank": "ambience",
+      "start": 265.7547845804989,
+      "duration": 3.027800453514739,
+      "source": "Polus Laboratory weather station ambience.ogg",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/8/86/Polus_Laboratory_weather_station_ambience.ogg/revision/latest?cb=20201201180722",
+      "kind": "loop"
+    },
+    "lobbyMusic": {
+      "bank": "music",
+      "start": 96.74575963718821,
+      "duration": 247.9891156462585,
+      "source": "Lobby theme.mp3",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/5/5c/Lobby_theme.mp3/revision/latest?cb=20240913194844",
+      "kind": "loop"
+    },
+    "victoryImpostor": {
+      "bank": "music",
+      "start": 344.8948752834467,
+      "duration": 12.639818594104309,
+      "source": "Impostor victory music.wav",
+      "url": "https://static.wikia.nocookie.net/among-us-wiki/images/3/34/Impostor_victory_music.wav/revision/latest?cb=20250329225138",
+      "kind": "loop"
+    }
+  },
+  "notes": "Original Innersloth recordings from the user-supplied audio catalogue and extracted archive. RIFF zero-length export headers repaired where needed. Downmixed/resampled to 22050 Hz mono and losslessly FLAC encoded. No synthetic replacement sounds. Unsupported other maps, 3D, Hide n Seek and promo clips excluded. Actions preload; ambience/music banks load on demand."
+}

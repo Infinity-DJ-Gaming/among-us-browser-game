@@ -32,4 +32,40 @@ Menu wall/window/panel, native icons, tablet body/button, portraits, nameplates,
 
 The first ten color variants remain from the earlier archive. The eight additions use current wiki display main/shadow pairs from https://among-us.fandom.com/wiki/Module:Common/colors , with exact pairs in assets-colors-v3.json. This does not establish an exact client Palette.PlayerColors version.
 
-The runtime is a new browser implementation. Exact original timing/material values are not all exported. Settings have bounded browser-game choices. This release contains one map and selected cosmetics; official accounts, friends services, purchases, public matchmaking, other maps and modes are not implemented. Bots use authored contextual rules. The Viper victim presentation and limited Influencer card deck retain the limitations documented in README.md.
+The runtime is a new browser implementation. Exact original timing/material values are not all exported. Settings have bounded browser-game choices. This release contains two maps and the expanded selected cosmetic catalog; official accounts, friends services, purchases, official public matchmaking, other maps and modes are not implemented. Bots use authored contextual rules. The Viper victim presentation and limited Influencer card deck retain the limitations documented in README.md.
+
+
+## v3.0 deeper audit (October 27, 2026)
+
+Traversed all 1,300 entries in Category:Audio, including pagination. The category also contains unsupported Among Us 3D, other maps, Hide n Seek and promotional clips; those are not mapped to unrelated actions. The release has 314 distinct native audio keys: the earlier 181 clips, six external role/acid clips and 127 additional recordings. Three new FLAC audiosprites preserve 22,050 Hz mono samples. The browser decoded all banks successfully. Every clip has its action/source URL in assets-audio-v4.json.
+
+Read the supplied Play, Wardrobe, Shop, News, Account and Stats pages, then relevant links: Local, Online, Practice, How to Play, My Account, Create Game, Find Game, Enter Code, Lobby, Currency, Beans, Stars, Pods, Level, Cosmicubes and the MIRA/Polus/Snack pages. Read Polus/Gallery, its task/location pages, Fix Lights, Reset Seismic Stabilizers, vents, doors and decontamination. Native task/map/cosmetic exports and localized names were checked against those references. This is a focused implementation-related crawl, not every wiki article.
+
+- https://among-us.fandom.com/wiki/Category:Audio
+- https://among-us.fandom.com/wiki/Play
+- https://among-us.fandom.com/wiki/Wardrobe
+- https://among-us.fandom.com/wiki/Shop
+- https://among-us.fandom.com/wiki/News
+- https://among-us.fandom.com/wiki/Account
+- https://among-us.fandom.com/wiki/Stats
+- https://among-us.fandom.com/wiki/Polus
+- https://among-us.fandom.com/wiki/Polus/Gallery
+- https://among-us.fandom.com/wiki/Fix_Lights
+- https://among-us.fandom.com/wiki/Reset_Seismic_Stabilizers
+- https://among-us.fandom.com/wiki/Cosmicubes
+- https://among-us.fandom.com/wiki/MIRA_Cosmicube
+- https://among-us.fandom.com/wiki/Polus_Cosmicube
+- https://among-us.fandom.com/wiki/Snack_Cosmicube
+- https://among-us.fandom.com/wiki/Beans
+- https://among-us.fandom.com/wiki/Pods
+- https://among-us.fandom.com/wiki/Level
+
+News summaries were checked against the official announcements, not invented updates: https://www.innersloth.com/impostor-month-begins/ (October 1, 2026) and https://www.innersloth.com/new-ghost-crewmate-role-the-influencer-emergency-meeting-44/ (September 29, 2026). The in-game links open the full original posts.
+
+The cosmetic catalog metadata includes sources, original native localization, matched wiki Bean prices, 35 native animated skin sets and calibrated attachment rectangles. All 115 Cosmicube items, costs and marker locations are sourced from the wiki layouts; graph edges were recovered from visible native connector roads. The central hub is a free starting point, not a purchasable node. Stars are premium official-game currency and are not earned as ordinary match rewards. Bundle covers use the supplied reference offers; no official purchase service is simulated.
+
+Native Polus scene sprites, task/vent positions and original ground meshes came from PolusShip and exported texture/sprite data. 106 sprite placements reconstruct the map. Exported vertex colors were unavailable, so flat ground/lava colors were estimated from references. Collision navigation is newly traced and conservative; all task stages, vents and scanner targets were route-checked. Weather mazes, panel animation pacing, door logic and decontamination timing are browser implementations.
+
+New standalone original panel/fog textures: https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/Texture2D/panel_doors_bg.png , panel_door_breaker.png and decontaminationFog.png in that same directory. Fix Lights sprites are restored from SwitchesPanel.png and source sprite rectangles; native UI geometry is preserved while graph traces are drawn at runtime.
+
+Rewards use tasks/correct ejections/kills/wins and a randomized 0.5×–5× level-up multiplier as documented. Exact base rewards and XP thresholds were not exposed, so progression.js states its local tuning directly. The community PeerJS directory is a new browser service and does not claim official servers, account identity, currency synchronization or LAN discovery.

@@ -1,0 +1,1 @@
+export function nearestTaskBeforeFacility(player,tasks,map){const distance=p=>Math.hypot(player.x-p.x,player.y-p.y),task=tasks.filter(t=>distance(t)<190).sort((a,b)=>distance(a)-distance(b))[0];if(!task)return null;const facilities=[map.emergency,map.security,map.admin,map.vitals].filter(Boolean);return distance(task)<=Math.min(...facilities.map(distance))?task:null;}

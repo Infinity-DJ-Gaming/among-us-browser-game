@@ -1,6 +1,6 @@
 // A local, evidence-based conversation system: turn-taking, references, questions,
 // rebuttals and persistent claims. No API key or remote language service is used.
-import {isImp} from './roles.js?v=2.1.0';
+import {isImp} from './roles.js?v=3.0.0';
 const colors=['red','blue','green','pink','orange','yellow','black','white','purple','brown','cyan','lime','maroon','rose','banana','gray','tan','coral'];
 const norm=t=>String(t).toLowerCase().replace(/[’']/g,'').replace(/[^a-z0-9?@\s]/g,' ').replace(/\s+/g,' ').trim();
 const last=(a,p)=>[...a].reverse().find(p);
@@ -8,7 +8,7 @@ export function beginConversation(g){g.s.conversation={queue:[],typing:null,last
 export function parseMessage(g,speaker,text){
  let low=norm(text),named=g.s.players.filter(p=>p.id!==speaker.id&&(new RegExp('(^|\\W)'+norm(p.name)+'(\\W|$)').test(low)||new RegExp('\\b'+colors[p.color]+'\\b').test(low)));
  let direct=named.find(p=>low.startsWith('@'+norm(p.name)+',')||low.startsWith('@'+norm(p.name)+' '));if(direct&&named.length>1)named=named.filter(p=>p!==direct);named.sort((a,b)=>low.indexOf(norm(a.name))-low.indexOf(norm(b.name)));
- let rooms=['Cafeteria','Weapons','O2','Navigation','Shields','Communications','Storage','Admin','Electrical','MedBay','Security','Reactor','Upper Engine','Lower Engine'];let room=rooms.find(r=>low.includes(norm(r)))||(/\belec\b/.test(low)?'Electrical':/\bmed\b/.test(low)?'MedBay':/\bnav\b/.test(low)?'Navigation':null);
+ let rooms=['Cafeteria','Weapons','O2','Navigation','Shields','Communications','Storage','Admin','Electrical','MedBay','Security','Reactor','Upper Engine','Lower Engine','Dropship','Office','Laboratory','Specimen Room','Boiler Room','Outside','Decontamination'];let room=rooms.find(r=>low.includes(norm(r)))||(/\belec\b/.test(low)?'Electrical':/\bmed\b/.test(low)?'MedBay':/\bnav\b/.test(low)?'Navigation':null);
  const intent=/\b(hi|hey|hello|yo|sup|gl|ready|start|gg|good luck)\b/.test(low)&&g.s.phase==='lobby'?'greeting':
   /\b(skip|no evidence|not enough|dont vote)\b/.test(low)?'skip':
   /\b(why|proof|evidence|sure|how do|how did|explain|counter|did you see|what did you see)\b/.test(low)?'evidence':

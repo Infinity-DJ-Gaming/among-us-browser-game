@@ -21,3 +21,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 Barlow Regular, Bold, ExtraBold and Black are redistributed under the SIL Open Font License, Version 1.1. The upstream license is included in BARLOW-OFL.txt. Source: https://github.com/google/fonts/tree/main/ofl/barlow . The original game archive includes Barlow SDF atlases. Native Brook bitmap glyph masks are Among Us artwork; the prepared static labels use reconstructed spacing because original glyph metrics were unavailable.
 
 Additional original menu, tablet, nameplate, palette-mask and shader/noise sources are documented in REFERENCE_NOTES.md and the accompanying atlas metadata. Reference crops are labeled as such and are not claimed to be clean native bitmap exports.
+
+
+## Expanded v3.0 original assets
+
+The Polus scene/panels/fog, expanded cosmetic and UI atlases, Cosmicube covers/Pods, native skin poses and additional sound recordings are Innersloth game assets. Asset metadata records source URLs and processing. They are included as referenced fan assets; no ownership or separate license to the original game artwork/audio is claimed. The added FLAC banks are processed original recordings, not generated substitutes. Original native English localization supplies cosmetic names. See assets-catalog.json, assets-polus-tasks.json, assets-audio-v4.json and REFERENCE_NOTES.md for provenance and reconstruction limits.

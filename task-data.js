@@ -22,6 +22,9 @@ export const STATIONS=[
  {id:'ventclean',name:'Clean Vent',room:'Cafeteria',x:3900,y:880,type:'ventclean',category:'Short'},
  {id:'sample',name:'Inspect Sample',room:'MedBay',x:2610,y:1250,type:'sample',category:'Long',steps:[step('MedBay',2610,1250,'sample','Inspect Sample'),step('MedBay',2610,1250,'sample-result','Inspect Sample')]},
 ];
-export function stationFor(p,task){const t=typeof task==='string'?STATIONS.find(t=>t.id===task):task;if(!t)return null;const steps=t.id==='wires'&&p?.wireRoute?.length===3?p.wireRoute:t.steps;let stage=p?.progress?.[t.id]||0;return {...t,...steps?.[Math.min(stage,(steps?.length||1)-1)],steps,stage,stages:steps?.length||1,readyAt:t.id==='sample'&&stage===1?p?.sampleReady||0:0};}
-export const tasksFor=p=>STATIONS.filter(t=>p?.tasks?.includes(t.id)&&!p.done.includes(t.id)).map(t=>stationFor(p,t));
+const taskMaps={};
+export function registerTaskMap(id,stations){taskMaps[id]=stations;}
+export const stationsFor=p=>taskMaps[p?.mapId]||STATIONS;
+export function stationFor(p,task){const t=typeof task==='string'?stationsFor(p).find(t=>t.id===task):task;if(!t)return null;const variant=p?.taskVariants?.[t.id];const rawSteps=variant?.steps||t.steps;const steps=t.id==='wires'&&p?.wireRoute?.length===3?p.wireRoute:rawSteps;let stage=p?.progress?.[t.id]||0;const stepIndex=t.unordered?steps.map((_,i)=>i).filter(i=>!p?.waterDone?.includes(i)).sort((a,b)=>Math.hypot(p.x-steps[a].x,p.y-steps[a].y)-Math.hypot(p.x-steps[b].x,p.y-steps[b].y))[0]??0:Math.min(stage,(steps?.length||1)-1);return {...t,...steps?.[stepIndex],id:t.id,stepIndex,steps,stage,stages:steps?.length||1,readyAt:t.id==='sample'&&stage===1?p?.sampleReady||0:t.id==='wifi'&&stage===1?p?.wifiReady||0:0};}
+export const tasksFor=p=>stationsFor(p).filter(t=>p?.tasks?.includes(t.id)&&!p.done.includes(t.id)).map(t=>stationFor(p,t));
 export const TASK_MIN={wires:1.2,card:.5,asteroids:2,sequence:4,download:8,upload:8,power:.5,accept:.2,scan:9,steering:.4,garbage:2,shields:.5,numbers:1,fuel:2.5,align:.5,distributor:1,course:1,filter:.5,ventclean:.5,sample:.5,'sample-result':.3};

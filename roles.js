@@ -40,7 +40,7 @@ export function roleAction(g,p,action,data){
  }
  if(action==='interrogate'){
   let target=g.player(data.target),m=g.s.meeting;if(p.role!=='Detective'||!p.alive||phase!=='meeting'||!m?.body||p.interrogations<=0||p.abilityCooldown>0||!target)return false;
-  const death=g.s.cases.find(c=>c.victim===m.body),location=death?.locations[target.id]||'Unknown';p.interrogations--;p.abilityCooldown=4;p.notes.push({victim:m.body,target:target.id,location});g.event('notes',{player:p.id,target:target.id,location,victim:m.body});return true;
+  const death=g.s.cases.find(c=>c.victim===m.body),location=death?.locations[target.id]||'Unknown';p.interrogations--;p.metrics.interrogated=(p.metrics.interrogated||0)+1;if(p.interrogations===0)p.metrics.notesFilled=(p.metrics.notesFilled||0)+1;p.abilityCooldown=4;p.notes.push({victim:m.body,target:target.id,location});g.event('notes',{player:p.id,target:target.id,location,victim:m.body});return true;
  }
  if(action!=='ability')return null;
  if(!['playing','meeting'].includes(phase)||p.abilityCooldown>0||g.s.sabotage?.type==='comms'&&['Guardian Angel','Scientist','Tracker'].includes(p.role))return false;
@@ -51,11 +51,11 @@ export function roleAction(g,p,action,data){
   const visible=g.s.players.filter(q=>q.bot&&q.alive&&q!==p&&g.canSee(q,p));for(const q of visible){q.memory.push({type:'shift',who:p.id,as:target.id,room:g.roomAt(p),time:g.s.time});q.suspicion[p.id]=12;}
   p.shifted={id:target.id,name:target.name,color:target.color,cosmetics:{...target.cosmetics}};p.abilityTime=20;p.transformUntil=g.s.time+1.5;p.transformKind='Shapeshift';g.event('shift',{player:p.id,color:target.color});return true;
  }
- if(p.role==='Phantom'&&p.alive&&phase==='playing'&&p.vent<0){p.phantom=p.phantom>0?0:10;p.transformUntil=g.s.time+1.5;p.transformKind=p.phantom?'Phantom_vanish_charge':'Phantom_vanish_poof';if(!p.phantom)p.abilityCooldown=25;g.event('phantom',{player:p.id});return true;}
+ if(p.role==='Phantom'&&p.alive&&phase==='playing'&&p.vent<0){p.phantom=p.phantom>0?0:10;p.transformUntil=g.s.time+1.5;p.transformKind=p.phantom?'Phantom_vanish_charge':'Phantom_vanish_poof';if(!p.phantom)p.abilityCooldown=25;g.event('phantom',{player:p.id,vanish:p.phantom>0});return true;}
  if(p.role==='Tracker'&&p.alive&&phase==='playing'&&target?.alive&&target!==p){p.tracking=target.id;p.trackTime=15;p.abilityCooldown=35;g.event('track',{player:p.id});return true;}
- if(p.role==='Guardian Angel'&&!p.alive&&phase==='playing'&&target?.alive&&!isImp(target)){target.shield=10;p.abilityCooldown=25;g.event('protect',{player:p.id,target:target.id});return true;}
+ if(p.role==='Guardian Angel'&&!p.alive&&phase==='playing'&&target?.alive&&!isImp(target)){target.shield=10;target.shieldedBy=p.id;p.abilityCooldown=25;g.event('protect',{player:p.id,target:target.id});return true;}
  if(p.role==='Influencer'&&!p.alive&&phase==='playing'&&target?.alive&&Array.isArray(data.cards)&&data.cards.length>0&&data.cards.length<=3&&data.cards.every(n=>Number.isInteger(n)&&n>=0&&n<18)){
-  p.abilityCooldown=35;p.messagesSent++;g.event('influence',{player:p.id,target:target.id,cards:data.cards});return true;
+  p.abilityCooldown=35;p.messagesSent++;p.metrics.messages=(p.metrics.messages||0)+1;g.event('influence',{player:p.id,target:target.id,cards:data.cards});return true;
  }
  return false;
 }
@@ -63,7 +63,7 @@ export function tickRole(g,p,dt){
  p.abilityCooldown=Math.max(0,(p.abilityCooldown||0)-dt);p.shield=Math.max(0,(p.shield||0)-dt);
  if(p.vitalsOpen){p.battery=Math.max(0,p.battery-dt);if(!p.battery||g.s.sabotage?.type==='comms')p.vitalsOpen=false;}
  if(p.shifted){p.abilityTime-=dt;if(p.abilityTime<=0){p.shifted=null;p.abilityCooldown=25;p.transformUntil=g.s.time+1.5;p.transformKind='Shapeshift';g.event('unshift',{player:p.id});}}
- if(p.phantom>0){p.phantom-=dt;if(p.phantom<=0){p.phantom=0;p.abilityCooldown=25;p.transformUntil=g.s.time+1.5;p.transformKind='Phantom_vanish_poof';g.event('phantom',{player:p.id});}}
+ if(p.phantom>0){p.phantom-=dt;if(p.phantom<=0){p.phantom=0;p.abilityCooldown=25;p.transformUntil=g.s.time+1.5;p.transformKind='Phantom_vanish_poof';g.event('phantom',{player:p.id,vanish:p.phantom>0});}}
  p.trackTime=Math.max(0,(p.trackTime||0)-dt);if(!p.trackTime)p.tracking=null;
  if(!p.bot||p.abilityCooldown>0||g.s.phase!=='playing')return;
  if(p.role==='Guardian Angel'&&!p.alive&&!g.s.sabotage){let target=g.s.players.filter(q=>q.alive&&!isImp(q)).sort((a,b)=>Number(b.id==='you')-Number(a.id==='you'))[0];if(target&&g.random()<dt*.12)roleAction(g,p,'ability',{target:target.id});}

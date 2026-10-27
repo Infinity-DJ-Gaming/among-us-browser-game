@@ -1,5 +1,5 @@
 export class Room {
- constructor(game,onState,onStatus){this.game=game;this.onState=onState;this.onStatus=onStatus;this.mode='solo';this.id='you';this.code='';this.peer=null;this.connections=new Map();this.last=0;}
+ constructor(game,onState,onStatus){this.game=game;this.onState=onState;this.onStatus=onStatus;this.mode='solo';this.id='you';this.code='';this.peer=null;this.connections=new Map();this.banned=new Set();this.last=0;}
  close(){this.peer?.destroy();this.peer=null;this.connections.clear();this.mode='solo';this.id='you';this.code='';}
  host(){
   this.close();if(!globalThis.Peer){this.onStatus('The online library did not load. Bot matches are still available.');return;}
@@ -11,6 +11,7 @@ export class Room {
    conn.on('data',data=>{
     if(!data||typeof data!=='object')return;
     if(data.type==='hello'&&!humanId){
+     if(this.banned.has(conn.peer)){conn.send({type:'error',text:'You were banned from this room.'});conn.close();return;}
      if(this.game.s.phase!=='lobby'||this.connections.size>=this.game.settings.players-1){conn.send({type:'error',text:'This room is full or the match has already started.'});conn.close();return;}
      humanId='human-'+conn.peer;this.connections.set(humanId,conn);const positions=new Map(this.game.s.players.filter(p=>!p.bot).map(p=>[p.id,{x:p.x,y:p.y}]));this.game.addHuman(humanId,data.name,data.color,data.cosmetics);this.game.lobby();for(const [id,pos]of positions)Object.assign(this.game.player(id),pos);this.game.say(null,`${this.game.player(humanId).name} joined the room.`);conn.send({type:'welcome',id:humanId,code:this.code});this.broadcast();
     }else if(data.type==='action'&&humanId){this.game.action(humanId,data.action,data.data||{});}
@@ -30,5 +31,6 @@ export class Room {
   setTimeout(()=>{if(this.mode==='client'&&!welcomed)this.onStatus('Still connecting. Some networks block peer-to-peer connections; try another network or play with bots.');},12000);
  }
  action(action,data={}){if(this.mode==='client'){if(this.server?.open)this.server.send({type:'action',action,data});return;}return this.game.action(this.id,action,data);}
+ kick(id,ban=false){if(this.mode!=='host')return false;const conn=this.connections.get(id);if(!conn)return false;if(ban)this.banned.add(conn.peer);conn.send({type:'error',text:ban?'The host banned you from this room.':'The host kicked you from this room.'});conn.close();return true;}
  broadcast(){if(this.mode!=='host')return;for(const [id,conn] of this.connections)if(conn.open)conn.send({type:'state',state:this.game.snapshot(id)});}
 }
