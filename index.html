@@ -1,15 +1,24 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"><meta name="theme-color" content="#06070b"><meta name="description" content="An unofficial Among Us browser fan game. Play The Skeld with bots or host a friend lobby."><title>Among Us • Browser Fan Game</title><link rel="icon" href="assets-crew-red.png"><link rel="stylesheet" href="styles.css?v=2.0.1"><link rel="stylesheet" href="v2.css?v=2.0.1"></head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"><meta name="theme-color" content="#06070b"><meta name="description" content="An unofficial Among Us browser fan game. Play The Skeld with bots or host a friend lobby."><title>Among Us • Browser Fan Game</title><link rel="icon" href="assets-crew-red.png"><link rel="stylesheet" href="styles.css?v=2.1.0"><link rel="stylesheet" href="v2.css?v=2.1.0"><link rel="stylesheet" href="v3.css?v=2.1.0"></head>
 <body>
  <canvas id="space" aria-hidden="true"></canvas>
- <main id="menu" class="screen">
-  <img class="logo" src="assets-logo.png" alt="Among Us">
-  <div class="fan-label">UNOFFICIAL BROWSER FAN GAME</div>
-  <div class="menu-crew" aria-hidden="true"><img src="assets-crew-red.png"><img src="assets-crew-blue.png"><img src="assets-crew-orange.png"><img src="assets-crew-purple.png"><img src="assets-crew-green.png"></div>
-  <button id="customize" class="identity"><img id="identity-crew" src="assets-crew-red.png" alt="Your crewmate"><span id="identity-name">Player</span><span class="edit-pencil">✎</span></button>
-  <div class="main-buttons"><button id="solo" class="au-button primary">PLAY WITH BOTS</button><button id="host" class="au-button">HOST ONLINE</button><button id="join" class="au-button">ENTER CODE</button></div>
-  <div class="menu-bottom"><button id="guide" class="round-button" aria-label="How to play">?</button><button id="sound" class="round-button" aria-label="Toggle sound">♫</button><button id="credits" class="small-link">Credits</button><span class="version">The Skeld · Modern roles · v2.0</span></div>
+ <main id="menu" class="screen ship-menu">
+  <div class="menu-status-strip"><span class="status-light" title="Local profile"></span><span id="menu-status-name"></span><button id="menu-friends" class="native-menu-friends"><span>FRIENDS</span></button></div>
+  <img class="menu-native-logo" src="assets-menu-logo.png" alt="Among Us">
+  <nav class="menu-control-panel" aria-label="Main menu">
+   <button id="menu-play" class="native-menu-button primary-menu"><canvas data-menu-icon="play"></canvas><span>PLAY</span></button>
+   <button id="customize" class="native-menu-button primary-menu"><canvas data-menu-icon="inventory"></canvas><span>INVENTORY</span><img id="identity-crew" class="hidden" alt="Your crewmate"><span id="identity-name" class="hidden"></span></button>
+   <button id="menu-shop" class="native-menu-button primary-menu"><canvas data-menu-icon="shop"></canvas><span>SHOP</span></button>
+   <div class="menu-rule"></div>
+   <button id="menu-news" class="native-menu-button secondary-menu"><canvas data-menu-icon="news"></canvas><span>NEWS</span></button>
+   <button id="menu-account" class="native-menu-button secondary-menu"><canvas data-menu-icon="account"></canvas><span>MY ACCOUNT</span></button>
+   <button id="menu-settings" class="native-menu-button secondary-menu"><canvas data-menu-icon="settings"></canvas><span>SETTINGS</span></button>
+   <button id="credits" class="native-menu-credits">CREDITS</button>
+  </nav>
+  <div class="menu-window"><canvas id="menu-space" aria-label="Crewmates drifting past the ship window"></canvas><div class="menu-window-shine"></div><div class="menu-window-frame"></div><button id="menu-spawn" aria-label="More floating crewmates">×</button>
+   <section id="play-menu" class="hidden" aria-label="Play"><button id="play-back" class="round-button" aria-label="Back to main menu">←</button><h1>PLAY</h1><button id="solo" disabled class="au-button primary">PLAY WITH BOTS</button><button id="host" disabled class="au-button">HOST ONLINE</button><button id="join" disabled class="au-button">ENTER CODE</button><div><button id="guide" class="round-button" aria-label="How to play">?</button><button id="sound" class="round-button" aria-label="Toggle sound">♫</button></div></section>
+  </div><span class="menu-build">Browser fan game · v2.1</span>
  </main>
  <section id="lobby" class="screen hidden">
   <canvas id="lobby-canvas" aria-label="Lobby with crewmates"></canvas>
@@ -30,11 +39,19 @@
   <div id="joystick"><i></i></div><div class="keyboard-hint">WASD to move · E to use · R to report · Tab for map</div>
  </section>
  <section id="meeting" class="screen hidden">
-  <div class="meeting-tablet"><header><h1 id="meeting-title">Who is The Impostor?</h1><span id="meeting-context"></span><button id="meeting-role-action" class="au-button small hidden">ROLE ABILITY · C</button></header><div class="meeting-content"><div class="voting-side"><div id="vote-grid"></div><button id="skip-vote" class="au-button small">SKIP VOTE</button><div id="vote-instruction">Discuss before voting.</div></div><div class="discussion-side"><div class="discussion-title">DISCUSSION <span id="living-count"></span></div><div id="meeting-messages" class="messages" aria-live="polite"></div><form id="meeting-chat-form"><input id="meeting-chat-input" maxlength="180" placeholder="Where was everyone?" aria-label="Meeting message" autocomplete="off"><button aria-label="Send meeting message">➤</button></form><div class="quick-chat"><button data-chat="Where was everyone?">Where?</button><button data-chat="I was doing tasks.">Tasks</button><button data-chat="Any actual evidence?">Evidence?</button><button data-chat="Skip. Not enough evidence.">Skip</button></div></div></div><footer><span id="vote-status"></span><b id="meeting-timer"></b></footer></div>
+  <div class="meeting-task-bar"><i id="meeting-task-progress"></i><span>TOTAL TASKS COMPLETED</span></div>
+  <div class="meeting-tablet"><div class="tablet-home" aria-hidden="true"></div>
+   <header><h1 id="meeting-title">Who is The Impostor?</h1><span id="meeting-context" class="sr-only"></span></header>
+   <div class="meeting-tools"><button id="meeting-chat-toggle" aria-label="Open meeting chat"><canvas data-menu-icon="chat-inactive"></canvas><i id="meeting-chat-badge" class="hidden"></i></button><button id="meeting-settings" aria-label="Meeting settings"><canvas data-menu-icon="settings-inactive"></canvas></button><button id="meeting-map" aria-label="Meeting map"><canvas data-menu-icon="map-inactive"></canvas></button></div>
+   <button id="meeting-role-action" class="au-button small hidden">ROLE ABILITY · C</button>
+   <div class="meeting-content"><div class="voting-side"><div id="vote-grid"></div><div class="skip-row"><button id="skip-vote">SKIP VOTE</button><div id="skip-confirm"></div><span id="skipped-voting" class="hidden">SKIPPED<br>VOTING</span><div id="skip-pips" class="vote-pips"></div></div><div id="vote-instruction" class="sr-only">Discuss before voting.</div></div>
+    <div class="discussion-side hidden" role="dialog" aria-label="Meeting chat"><div class="discussion-title">DISCUSSION <span id="living-count"></span><button id="meeting-chat-close" aria-label="Close meeting chat">×</button></div><div id="meeting-messages" class="messages" aria-live="polite"></div><form id="meeting-chat-form"><input id="meeting-chat-input" maxlength="180" placeholder="Type a message…" aria-label="Meeting message" autocomplete="off"><button aria-label="Send meeting message">➤</button></form><div class="quick-chat"><button data-chat="Where was everyone?">Where?</button><button data-chat="I was doing tasks.">Tasks</button><button data-chat="Any actual evidence?">Evidence?</button><button data-chat="Skip. Not enough evidence.">Skip</button></div></div>
+   </div><footer><span id="vote-status" class="sr-only"></span><b id="meeting-timer"></b></footer>
+  </div><span class="meeting-connection" id="meeting-connection"></span>
  </section>
  <div id="overlay" class="overlay hidden" role="dialog" aria-modal="true"><div id="modal" class="modal"></div></div>
  <div id="intro" class="cinematic hidden"></div><div id="banner" class="cinematic hidden"></div><canvas id="kill-cinematic" class="hidden" aria-label="Kill animation"></canvas>
  <div id="toast" role="status"></div>
- <script src="peerjs.min.js"></script><script type="module" src="game.js?v=2.0.1"></script>
+ <script src="peerjs.min.js"></script><script type="module" src="game.js?v=2.1.0"></script>
 </body></html>
 

@@ -15,3 +15,9 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+## Barlow fonts
+
+Barlow Regular, Bold, ExtraBold and Black are redistributed under the SIL Open Font License, Version 1.1. The upstream license is included in BARLOW-OFL.txt. Source: https://github.com/google/fonts/tree/main/ofl/barlow . The original game archive includes Barlow SDF atlases. Native Brook bitmap glyph masks are Among Us artwork; the prepared static labels use reconstructed spacing because original glyph metrics were unavailable.
+
+Additional original menu, tablet, nameplate, palette-mask and shader/noise sources are documented in REFERENCE_NOTES.md and the accompanying atlas metadata. Reference crops are labeled as such and are not claimed to be clean native bitmap exports.

@@ -1,12 +1,12 @@
-import {STATIONS,stationFor,tasksFor,TASK_MIN} from './task-data.js';
+import {STATIONS,stationFor,tasksFor,TASK_MIN,WIRE_PANELS} from './task-data.js?v=2.1.0';
 export {STATIONS,stationFor,tasksFor};
-import {isImp,IMPOSTOR_ROLES,ALL_ROLES,initializeRoles,becomeGhost,roleAction,tickRole} from './roles.js';
+import {isImp,IMPOSTOR_ROLES,ALL_ROLES,initializeRoles,becomeGhost,roleAction,tickRole} from './roles.js?v=2.1.0';
 export {isImp};
-import {beginConversation,hearMessage,tickConversation,openingStatement} from './conversation.js';
+import {beginConversation,hearMessage,tickConversation,openingStatement} from './conversation.js?v=2.1.0';
 // Original browser implementation. Among Us artwork and audio belong to Innersloth.
-export const COLORS=['red','blue','green','pink','orange','yellow','black','white','purple','brown'];
-export const HEX=['#c51111','#132ed1','#127f2d','#ed54ba','#ef7d0d','#f5f557','#3f474e','#d6e0f0','#6b2fbb','#71491e'];
-export const NAMES=['Bean','Luna','Toast','Nova','Pickle','Mochi','Echo','Goose','Orbit','Pixel','Waffles','Comet'];
+export const COLORS=['red','blue','green','pink','orange','yellow','black','white','purple','brown','cyan','lime','maroon','rose','banana','gray','tan','coral'];
+export const HEX=['#c51111','#132ed1','#127f2d','#ed54ba','#ef7d0d','#f5f557','#3f474e','#d6e0f0','#6b2fbb','#71491e','#44fff7','#5bfe4b','#6c2b3d','#ffd6ec','#ffffbe','#8397a7','#9f9989','#ec7578'];
+export const NAMES=['Bean','Luna','Toast','Nova','Pickle','Mochi','Echo','Goose','Orbit','Pixel','Waffles','Comet','Nimbus','Jelly'];
 export const ROOMS=[
  {name:'Cafeteria',x:3320,y:850,box:[2660,120,1370,1210]},
  {name:'Weapons',x:4520,y:740,box:[4250,270,590,680]},
@@ -45,13 +45,13 @@ export class Navigation {
   let result=[],anchor=a;for(let j=0;j<out.length;){let k=j;while(k+1<out.length&&k<j+20&&this.line(anchor,out[k+1]))k++;result.push(out[k]);anchor=out[k];j=k+1;}return result;
  }
 }
-export const DEFAULTS={players:10,impostors:2,tasks:5,speed:1,killCooldown:25,discussion:20,voting:35,vision:1,confirm:true,difficulty:'Normal',preferred:'Random',visual:true,modernRoles:true,acidDissolve:15};
+export const DEFAULTS={players:10,impostors:2,tasks:5,speed:1,killCooldown:25,discussion:20,voting:35,vision:1,confirm:true,difficulty:'Normal',preferred:'Random',visual:true,modernRoles:true,acidDissolve:15,commonTasks:1,anonymousVotes:false,taskBar:'Always',emergencyCooldown:15,emergencyMeetings:1};
 export class Game {
  constructor(nav,random=Math.random){this.nav=nav;this.random=random;this.settings={...DEFAULTS};this.serial=0;this.roomAt=roomAt;this.taskName=id=>STATIONS.find(t=>t.id===id)?.name;this.reset();}
  rand(a=0,b=1){return a+this.random()*(b-a);}
  pick(a){return a[Math.floor(this.random()*a.length)];}
  shuffle(a){let out=[...a];for(let i=out.length-1;i>0;i--){let j=Math.floor(this.random()*(i+1));[out[i],out[j]]=[out[j],out[i]];}return out;}
- reset(){this.s={phase:'menu',time:0,round:0,players:[],bodies:[],chat:[],events:[],sabotage:null,meeting:null,winner:null,doors:0,taskDone:0,taskTotal:1,elapsed:0,cases:[],conversation:null};}
+ reset(){this.s={phase:'menu',time:0,round:0,players:[],bodies:[],chat:[],events:[],sabotage:null,meeting:null,winner:null,doors:0,taskDone:0,taskShown:0,taskTotal:1,elapsed:0,emergencyReady:0,cases:[],conversation:null};}
  event(type,data={}){this.s.events.push({id:++this.serial,type,...data});if(this.s.events.length>20)this.s.events.shift();}
  player(id){return this.s.players.find(p=>p.id===id);}
  addHuman(id,name='Player',color=0,cosmetics={hat:-1,visor:-1,pet:-1}){
@@ -62,12 +62,12 @@ export class Game {
  fillBots(){
   const humans=this.s.players.filter(p=>!p.bot);let used=new Set(humans.map(p=>p.color));this.s.players=[...humans];
   for(let i=humans.length;i<this.settings.players;i++){let color=COLORS.findIndex((_,c)=>!used.has(c));if(color<0)break;used.add(color);
-   this.s.players.push({id:'bot'+i,cosmetics:{hat:this.random()<.7?Math.floor(this.rand(0,10)):-1,visor:-1,pet:this.random()<.22?0:-1},name:NAMES[(i-1+NAMES.length)%NAMES.length],color,bot:true,role:'Crewmate',alive:true,x:3300,y:880,face:1,moving:false,tasks:[],done:[],path:[],input:{x:0,y:0},cooldown:10,emergency:1,vent:-1,personality:this.pick(['careful','chatty','bold','quiet']),memory:[],suspicion:{},wait:0,think:0,target:null,goal:null,taskTime:0,accused:null});
+   this.s.players.push({id:'bot'+i,cosmetics:{hat:this.random()<.7?Math.floor(this.rand(0,10)):-1,visor:this.random()<.28?Math.floor(this.rand(0,6)):-1,nameplate:Math.floor(this.rand(0,8)),pet:this.random()<.22?0:-1},name:NAMES[(i-1+NAMES.length)%NAMES.length],color,bot:true,role:'Crewmate',alive:true,x:3300,y:880,face:1,moving:false,tasks:[],done:[],path:[],input:{x:0,y:0},cooldown:10,emergency:1,vent:-1,personality:this.pick(['careful','chatty','bold','quiet']),memory:[],suspicion:{},wait:0,think:0,target:null,goal:null,taskTime:0,accused:null});
   }
  }
  lobby(){
   this.s.phase='lobby';this.s.sabotage=null;this.s.bodies=[];this.s.chat=[];this.s.winner=null;this.s.cases=[];
-  for(let i=0;i<this.s.players.length;i++){let p=this.s.players[i];p.alive=true;p.role='Crewmate';p.team='crew';p.x=440+(i%5)*88;p.y=540+Math.floor(i/5)*100;p.path=[];p.input={x:0,y:0};p.vent=-1;p.lobbyTarget=null;p.lobbyWait=this.rand(1,6);p.lastSaid='';p.claims=[];}
+  for(let i=0;i<this.s.players.length;i++){let p=this.s.players[i];p.alive=true;p.role='Crewmate';p.team='crew';p.x=450+(i%5)*80;p.y=510+Math.floor(i/5)*60;p.path=[];p.input={x:0,y:0};p.vent=-1;p.lobbyTarget=null;p.lobbyWait=this.rand(1,6);p.lastSaid='';p.claims=[];}
   beginConversation(this);this.say(null,'Walk around with WASD / arrows. Use the laptop or Wardrobe to customize.');
  }
  say(p,text,channel='all',meta={}){let msg={id:++this.serial,player:p?.id||null,name:p?.name||'Ship',color:p?.color??-1,text:String(text).slice(0,360),time:this.s.time,dead:p?!p.alive:false,channel,...meta};this.s.chat.push(msg);if(this.s.chat.length>90)this.s.chat.shift();return msg;}
@@ -75,11 +75,12 @@ export class Game {
   if(nx>603&&nx<710&&ny<480)ny=480;p.moving=Math.hypot(nx-p.x,ny-p.y)>.1;if(Math.abs(dx)>.05)p.face=dx<0?-1:1;p.x=nx;p.y=ny;
  }
  start(){
-  if(this.s.players.length<4)return false;this.s.round++;this.s.phase='intro';this.s.intro=5;this.s.elapsed=0;this.s.winner=null;this.s.bodies=[];this.s.sabotage=null;this.s.meeting=null;this.s.chat=[];this.s.doors=0;this.s.taskDone=0;this.s.cases=[];beginConversation(this);
+  if(this.s.players.length<4)return false;this.s.round++;this.s.phase='intro';this.s.intro=5;this.s.elapsed=0;this.s.winner=null;this.s.bodies=[];this.s.sabotage=null;this.s.meeting=null;this.s.chat=[];this.s.doors=0;this.s.taskDone=0;this.s.taskShown=0;this.s.emergencyReady=this.s.time+this.settings.emergencyCooldown;this.s.cases=[];beginConversation(this);
   let selected=this.shuffle(this.s.players),preferred=this.settings.preferred,me=this.s.players.find(p=>!p.bot);
   if(preferred!=='Random'&&me){selected=selected.filter(p=>p!==me);if(IMPOSTOR_ROLES.includes(preferred))selected.unshift(me);else selected.push(me);}
   let imps=Math.min(this.settings.impostors,Math.floor((this.s.players.length-1)/3));
-  this.s.players.forEach((p,i)=>{p.alive=true;p.role=selected.slice(0,imps).includes(p)?'Impostor':'Crewmate';p.team=p.role==='Impostor'?'impostor':'crew';p.done=[];p.tasks=this.shuffle(STATIONS).slice(0,this.settings.tasks).map(t=>t.id);p.cooldown=12;p.sabCooldown=0;p.ventCooldown=0;p.emergency=1;p.vent=-1;p.path=[];p.input={x:0,y:0};p.memory=[];p.suspicion={};p.wait=0;p.target=null;p.taskTime=0;p.goal=null;p.think=this.rand(1,4);p.accused=null;p.claims=[];p.lastSaid='';p.alibiRoom=null;
+  const common=this.shuffle(STATIONS.filter(t=>t.category==='Common')).slice(0,Math.min(2,this.settings.commonTasks??1)),other=STATIONS.filter(t=>t.category!=='Common');
+  this.s.players.forEach((p,i)=>{p.taskElapsed={};p.wireRoute=this.shuffle(WIRE_PANELS).slice(0,3).sort((a,b)=>a.order-b.order);p.alive=true;p.role=selected.slice(0,imps).includes(p)?'Impostor':'Crewmate';p.team=p.role==='Impostor'?'impostor':'crew';p.done=[];p.tasks=[...common,...this.shuffle(other).slice(0,Math.max(0,this.settings.tasks-common.length))].map(t=>t.id);p.cooldown=12;p.sabCooldown=0;p.ventCooldown=0;p.emergency=this.settings.emergencyMeetings??1;p.vent=-1;p.path=[];p.input={x:0,y:0};p.memory=[];p.suspicion={};p.wait=0;p.target=null;p.taskTime=0;p.goal=null;p.think=this.rand(1,4);p.accused=null;p.claims=[];p.lastSaid='';p.alibiRoom=null;
    let pos=this.nav.point(this.nav.nearest({x:3315+Math.cos(i*6.28/this.s.players.length)*220,y:860+Math.sin(i*6.28/this.s.players.length)*190}));p.x=pos.x;p.y=pos.y;
   });
   initializeRoles(this,selected,preferred,me);
@@ -106,7 +107,7 @@ export class Game {
   if(action==='customize'&&this.s.phase==='lobby'){
    if(typeof data.name==='string')p.name=data.name.trim().slice(0,14)||p.name;
    if(Number.isInteger(data.color)&&data.color>=0&&data.color<COLORS.length){let holder=this.s.players.find(q=>q!==p&&q.color===data.color);if(!holder||holder.bot){if(holder)holder.color=p.color;p.color=data.color;}}
-   p.cosmetics={hat:Number.isInteger(data.hat)?Math.max(-1,Math.min(9,data.hat)):-1,visor:Number.isInteger(data.visor)?Math.max(-1,Math.min(5,data.visor)):-1,pet:data.pet===0?0:-1};return true;
+   p.cosmetics={hat:Number.isInteger(data.hat)?Math.max(-1,Math.min(9,data.hat)):-1,visor:Number.isInteger(data.visor)?Math.max(-1,Math.min(5,data.visor)):-1,pet:data.pet===0?0:-1,nameplate:Number.isInteger(data.nameplate)?Math.max(0,Math.min(7,data.nameplate)):0};return true;
   }
   if(this.s.phase==='lobby'){
    if(action==='input'){p.input={x:Math.max(-1,Math.min(1,Number(data.x)||0)),y:Math.max(-1,Math.min(1,Number(data.y)||0))};if(p.input.x||p.input.y)p.lobbyTarget=null;return true;}
@@ -119,25 +120,29 @@ export class Game {
   if(action==='input'){p.input={x:Math.max(-1,Math.min(1,Number(data.x)||0)),y:Math.max(-1,Math.min(1,Number(data.y)||0))};if(p.input.x||p.input.y)p.path=[];return true;}
   if(action==='kill'&&p.alive&&isImp(p)&&p.cooldown<=0&&!p.phantom&&!(p.transformUntil>this.s.time)){let q=this.nearestVictim(p);if(q){this.kill(p,q);return true;}}
   if(action==='report'&&p.alive){let b=this.nearestBody(p);if(b){this.meeting(p,b);return true;}}
-  if(action==='emergency'&&p.alive&&p.emergency>0&&!this.s.sabotage&&dist(p,{x:3315,y:800})<260){p.emergency--;this.meeting(p);return true;}
+  if(action==='emergency'&&p.alive&&p.emergency>0&&this.s.time>=(this.s.emergencyReady||0)&&!this.s.sabotage&&dist(p,{x:3315,y:800})<260){p.emergency--;this.meeting(p);return true;}
+  if(action==='taskFail'&&data.id==='sample'&&p.activeTask?.id==='sample'&&p.progress.sample===1){p.progress.sample=0;p.sampleReady=0;this.cancelTask(p);return true;}
   if(action==='task'){let t=stationFor(p,data.id);if(!t||dist(p,t)>220||!p.tasks.includes(t.id)||p.done.includes(t.id)||isImp(p))return false;
    // Task timing is checked by the host; task puzzles are rendered in the client.
    const min=TASK_MIN[t.type]||1;
    if(!p.activeTask||p.activeTask.id!==t.id||p.activeTask.stage!==t.stage||this.s.time-p.activeTask.time<min||t.readyAt>this.s.time)return false;
-   this.complete(p,t);p.activeTask=null;return true;
+   this.complete(p,t);p.taskElapsed??={};delete p.taskElapsed[t.id+':'+t.stage];p.activeTask=null;return true;
   }
-  if(action==='beginTask'){let t=this.nearestStation(p);if(t&&t.id===data.id&&!isImp(p)){p.activeTask={id:t.id,stage:t.stage,time:this.s.time};return true;}}
-  if(action==='sabotage'&&p.alive&&isImp(p)&&!this.s.sabotage&&this.s.elapsed>15&&(p.sabCooldown||0)<=0){
+  if(action==='cancelTask'){this.cancelTask(p);return true;}
+  if(action==='beginTask'){let t=this.nearestStation(p);if(t&&t.id===data.id&&!isImp(p)){this.cancelTask(p);p.activeTask={id:t.id,stage:t.stage,time:this.s.time-(p.taskElapsed?.[t.id+':'+t.stage]||0)};p.path=[];p.input={x:0,y:0};if(t.id==='ventclean'){const vent=this.nav.vents.findIndex(v=>dist(v,t)<160);for(const q of this.s.players.filter(q=>q.vent===vent)){this.action(q.id,'vent',{exit:true});}}return true;}}
+  if(action==='sabotage'&&isImp(p)&&!this.s.sabotage&&this.s.elapsed>15&&(p.sabCooldown||0)<=0){
    if(data.type==='doors'){this.s.doors=10;p.sabCooldown=25;this.event('doors');return true;}
    if(SYSTEMS[data.type]){this.s.sabotage={type:data.type,time:['reactor','oxygen'].includes(data.type)?45:999,fix:0,panels:[],started:this.s.time};p.sabCooldown=35;this.event('sabotage',{system:data.type});return true;}}
   if(action==='repair'&&p.alive&&this.s.sabotage){let s=this.s.sabotage,sys=SYSTEMS[s.type];if(dist(p,sys)<230||(s.type==='oxygen'&&dist(p,{x:4110,y:1650})<230)){s.fix++;if(s.type==='oxygen'){let panel=dist(p,sys)<230?'o2':'admin';if(!s.panels.includes(panel))s.panels.push(panel);if(s.panels.length<2)return true;}this.s.sabotage=null;this.event('repaired');return true;}}
   if(action==='vent'&&p.alive&&(isImp(p)||p.role==='Engineer')){
    if(p.vent>=0){let from=this.nav.vents[p.vent],index=data.exit? p.vent : Number.isInteger(data.index)?data.index:-1;
-    if(index>=0&&index<this.nav.vents.length&&(data.exit||this.ventLinks(p.vent).includes(index))){let v=this.nav.vents[index],q=this.nav.point(this.nav.nearest(v));p.x=q.x;p.y=q.y;p.vent=data.exit?-1:index;p.path=[];this.event('vent',{player:id});if(data.exit)p.ventCooldown=p.role==='Engineer'?20:0;return true;}}
-   else if((p.ventCooldown||0)<=0){let i=this.nav.vents.findIndex(v=>dist(p,v)<160);if(i>=0){for(const q of this.s.players.filter(q=>q.bot&&q.alive&&!isImp(q)&&q!==p&&this.canSee(q,p))){q.memory.push({type:'vent',who:p.id,time:this.s.time,room:roomAt(p)});q.suspicion[p.id]=(q.suspicion[p.id]||0)+3.5;}p.vent=i;p.ventTime=10;p.path=[];this.event('vent',{player:id});return true;}}
+    if(index>=0&&index<this.nav.vents.length&&(data.exit||this.ventLinks(p.vent).includes(index)&&!this.ventBlocked(index,p))){let v=this.nav.vents[index],q=this.nav.point(this.nav.nearest(v));p.x=q.x;p.y=q.y;p.vent=data.exit?-1:index;p.path=[];this.event('vent',{player:id});if(data.exit)p.ventCooldown=p.role==='Engineer'?20:0;return true;}}
+   else if((p.ventCooldown||0)<=0){let i=this.nav.vents.findIndex(v=>dist(p,v)<160);if(i>=0&&!this.ventBlocked(i,p)){for(const q of this.s.players.filter(q=>q.bot&&q.alive&&!isImp(q)&&q!==p&&this.canSee(q,p))){q.memory.push({type:'vent',who:p.id,time:this.s.time,room:roomAt(p)});q.suspicion[p.id]=(q.suspicion[p.id]||0)+3.5;}p.vent=i;p.ventTime=10;p.path=[];this.event('vent',{player:id});return true;}}
   }
   return false;
  }
+ cancelTask(p){if(!p.activeTask)return;p.taskElapsed??={};p.taskElapsed[p.activeTask.id+':'+p.activeTask.stage]=this.s.time-p.activeTask.time;p.activeTask=null;}
+ ventBlocked(index,p){const v=this.nav.vents[index];if(!v)return true;return this.s.players.some(q=>q.activeTask?.id==='ventclean'&&dist(stationFor(q,'ventclean'),v)<160)||p.role==='Engineer'&&p.tasks.includes('ventclean')&&!p.done.includes('ventclean')&&dist(stationFor(p,'ventclean'),v)<160;}
  ventLinks(index){const groups=[[0,1],[2,3],[4,8],[5,11],[6,10],[7,9],[12,13]];return groups.find(g=>g.includes(index))?.filter(i=>i!==index)||[];}
  complete(p,t){
   if(p.done.includes(t.id))return;const current=stationFor(p,t);p.progress??={};p.progress[t.id]=(p.progress[t.id]||0)+1;
@@ -161,8 +166,8 @@ export class Game {
   if(noisy){this.event('noise',{player:q.id,x:q.x,y:q.y});for(const w of this.s.players.filter(w=>w.bot&&w.alive&&!isImp(w))){w.goal='investigate';this.route(w,q);}}this.checkWin();
  }
  meeting(reporter,body=null){
-  this.s.phase='meeting';this.s.sabotage=null;this.s.doors=0;this.s.chat=[];this.s.meeting={reporter:reporter.id,body:body?.id||null,room:body?roomAt(body):'Cafeteria',timer:this.settings.discussion+this.settings.voting,discussion:this.settings.discussion,votes:{},talk:this.rand(1,2),stage:'discuss',turns:0,result:null};
-  for(const p of this.s.players){let job=stationFor(p,p.taskId||p.activeTask?.id);p.meetingAlibi={room:roomAt(p),task:job?.name,working:p.goal==='task'&&p.taskTime>0,to:p.path?.length?job?.room:null};p.path=[];p.input={x:0,y:0};p.activeTask=null;p.moving=false;p.vent=-1;p.spoken=false;p.accused=null;p.claims=[];p.alibiRoom=null;p.shifted=null;p.phantom=0;p.abilityTime=0;p.abilityCooldown=p.role==='Detective'?8:0;
+  this.s.taskShown=this.s.taskDone;this.s.phase='meeting';if(['reactor','oxygen'].includes(this.s.sabotage?.type))this.s.sabotage=null;this.s.doors=0;this.s.chat=[];this.s.meeting={started:this.s.time,reporter:reporter.id,body:body?.id||null,room:body?roomAt(body):'Cafeteria',timer:this.settings.discussion+this.settings.voting,discussion:this.settings.discussion,votes:{},talk:this.rand(1,2),stage:'discuss',turns:0,result:null};
+  for(const p of this.s.players){let job=stationFor(p,p.taskId||p.activeTask?.id);p.meetingAlibi={room:roomAt(p),task:job?.name,working:p.goal==='task'&&p.taskTime>0,to:p.path?.length?job?.room:null};p.path=[];p.input={x:0,y:0};this.cancelTask(p);p.moving=false;p.vent=-1;p.spoken=false;p.accused=null;p.claims=[];p.alibiRoom=null;p.shifted=null;p.phantom=0;p.abilityTime=0;p.abilityCooldown=p.role==='Detective'?8:0;
    if(p.bot&&p.alive&&body&&!isImp(p)){
     const recent=p.memory.filter(m=>m.type==='seen'&&m.room===roomAt(body)&&m.time>body.time-12&&m.time<body.time+6);
     for(const m of recent)if(m.who!==body.id)p.suspicion[m.who]=(p.suspicion[m.who]||0)+1.4;
@@ -172,15 +177,16 @@ export class Game {
  }
  hear(speaker,text){hearMessage(this,speaker,text);}
  botSpeak(p){const text=openingStatement(this,p);const message=this.say(p,text);hearMessage(this,p,text,message);}
- vote(p,target){if(!p.alive||!this.s.meeting||this.s.meeting.stage==='result'||this.s.meeting.timer>this.settings.voting||Object.hasOwn(this.s.meeting.votes,p.id))return false;
+ vote(p,target){if(!p.alive||!this.s.meeting||!['discuss','voting'].includes(this.s.meeting.stage)||this.s.meeting.timer>this.settings.voting||Object.hasOwn(this.s.meeting.votes,p.id))return false;
   if(target!=='skip'&&!this.player(target)?.alive)return false;this.s.meeting.votes[p.id]=target;this.event('vote',{player:p.id});return true;
  }
  resolveVote(){
-  let m=this.s.meeting,counts={skip:0};for(const p of this.s.players.filter(p=>p.alive)){let vote=m.votes[p.id]||'skip';counts[vote]=(counts[vote]||0)+1;}
-  let order=Object.entries(counts).sort((a,b)=>b[1]-a[1]);let eject=order[0]?.[0],tie=order.length>1&&order[0][1]===order[1][1];if(tie||eject==='skip')eject=null;
-  let overrule=m.overrule,judge=this.player(overrule?.judge),chosen=this.player(overrule?.target);if(judge?.alive&&chosen?.alive){eject=isImp(chosen)?chosen.id:judge.id;tie=false;}let ejected=this.player(eject),ejectedRole=ejected?.role;if(ejected){ejected.alive=false;becomeGhost(this,ejected);}
-  m.result={eject,tie,counts,role:ejectedRole,impostor:isImp(ejected),overrule:!!overrule};m.stage='result';m.timer=7;this.s.bodies=[];this.event('eject',{player:eject});
+  let m=this.s.meeting,counts={skip:0};for(const p of this.s.players.filter(p=>p.alive&&Object.hasOwn(m.votes,p.id))){let vote=m.votes[p.id];counts[vote]=(counts[vote]||0)+1;}
+  let order=Object.entries(counts).sort((a,b)=>b[1]-a[1]);let eject=order[0]?.[0],tie=Object.keys(m.votes).length===0||order.length>1&&order[0][1]===order[1][1];if(tie||eject==='skip')eject=null;
+  let overrule=m.overrule,judge=this.player(overrule?.judge),chosen=this.player(overrule?.target);if(judge?.alive&&chosen?.alive){eject=isImp(chosen)?chosen.id:judge.id;tie=false;}let ejected=this.player(eject),ejectedRole=ejected?.role;
+  m.result={eject,tie,counts,role:ejectedRole,impostor:isImp(ejected),overrule:!!overrule};m.stage='result';m.timer=10;this.s.bodies=[];
  }
+ beginEjection(){let m=this.s.meeting;if(!m||m.stage!=='result')return;m.stage='eject';let p=this.player(m.result.eject);if(p?.alive){p.alive=false;becomeGhost(this,p);}this.event('eject',{player:m.result.eject});}
  checkWin(){if(!['playing','intro'].includes(this.s.phase))return;let living=this.s.players.filter(p=>p.alive),imps=living.filter(isImp).length,crew=living.length-imps;
   if(imps===0)this.finish('Crewmates','All Impostors were ejected.');else if(imps>=crew)this.finish('Impostors','The Impostors took over the ship.');else if(this.s.taskDone>=this.s.taskTotal)this.finish('Crewmates','All tasks completed.');
  }
@@ -235,13 +241,13 @@ export class Game {
   if(this.s.phase==='intro'){this.s.intro-=dt;if(this.s.intro<=0)this.s.phase='playing';return;}
   if(this.s.phase==='meeting'){
    let m=this.s.meeting;m.timer-=dt;m.talk-=dt;for(const p of this.s.players)p.abilityCooldown=Math.max(0,(p.abilityCooldown||0)-dt);
-   if(m.stage==='result'){if(m.timer<=0){this.s.phase='playing';for(let i=0;i<this.s.players.length;i++){let p=this.s.players[i];let pos=this.nav.point(this.nav.nearest({x:3315+Math.cos(i*6.28/this.s.players.length)*220,y:860+Math.sin(i*6.28/this.s.players.length)*190}));p.x=pos.x;p.y=pos.y;p.cooldown=this.settings.killCooldown;p.path=[];p.goal=null;p.wait=this.rand(1,4);}this.s.meeting=null;this.checkWin();}return;}
+   if(['result','eject'].includes(m.stage)){if(m.stage==='result'&&m.timer<=5)this.beginEjection();if(m.timer<=0){this.s.emergencyReady=this.s.time+this.settings.emergencyCooldown;this.s.phase='playing';for(let i=0;i<this.s.players.length;i++){let p=this.s.players[i];let pos=this.nav.point(this.nav.nearest({x:3315+Math.cos(i*6.28/this.s.players.length)*220,y:860+Math.sin(i*6.28/this.s.players.length)*190}));p.x=pos.x;p.y=pos.y;p.cooldown=this.settings.killCooldown;p.path=[];p.goal=null;p.wait=this.rand(1,4);}this.s.meeting=null;this.checkWin();}return;}
    m.stage=m.timer>this.settings.voting?'discuss':'voting';
    tickConversation(this,dt);
    if(m.stage==='voting')for(const p of this.s.players.filter(p=>p.alive&&p.bot&&!Object.hasOwn(m.votes,p.id))){if(m.timer<this.settings.voting-this.rand(3,14)){
     let targets=this.s.players.filter(q=>q.alive&&q!==p&&(!isImp(p)||!isImp(q))),ranking=targets.map(q=>({p:q,s:p.suspicion[q.id]||0})).sort((a,b)=>b.s-a.s);
     let target=ranking[0]?.s>3?ranking[0].p.id:'skip';
-    if(isImp(p)){let counts={};for(const v of Object.values(m.votes))if(v!=='skip'&&!isImp(this.player(v)))counts[v]=(counts[v]||0)+1;target=Object.entries(counts).sort((a,b)=>b[1]-a[1])[0]?.[0]||p.accused||'skip';}
+    if(isImp(p)){let counts={};for(const claim of p.claims||[])if(claim.intent==='accuse'&&this.player(claim.target)?.alive&&!isImp(this.player(claim.target)))counts[claim.target]=(counts[claim.target]||0)+1;target=Object.entries(counts).sort((a,b)=>b[1]-a[1])[0]?.[0]||p.accused||'skip';}
     if(p.role==='Judge'&&p.done.length>=2&&!p.judgeUsed&&ranking[0]?.s>12)this.action(p.id,'overrule',{target:ranking[0].p.id});
     this.vote(p,target);
    }}
@@ -250,7 +256,7 @@ export class Game {
   if(this.s.phase!=='playing')return;
   this.s.bodies=this.s.bodies.filter(b=>!b.dissolveAt||b.dissolveAt>this.s.time);this.s.elapsed+=dt;this.s.doors=Math.max(0,this.s.doors-dt);
   if(this.s.sabotage){this.s.sabotage.time-=dt;if(this.s.sabotage.time<=0){this.finish('Impostors',this.s.sabotage.type==='oxygen'?'Oxygen was depleted.':'The reactor melted down.');return;}}
-  for(const p of this.s.players){tickRole(this,p,dt);p.cooldown=Math.max(0,p.cooldown-dt);p.sabCooldown=Math.max(0,(p.sabCooldown||0)-dt);p.ventCooldown=Math.max(0,(p.ventCooldown||0)-dt);
+  for(const p of this.s.players){if(p.activeTask&&(dist(p,stationFor(p,p.activeTask.id))>220||!p.alive&&p.activeTask.id==='ventclean'))this.cancelTask(p);tickRole(this,p,dt);p.cooldown=Math.max(0,p.cooldown-dt);p.sabCooldown=Math.max(0,(p.sabCooldown||0)-dt);p.ventCooldown=Math.max(0,(p.ventCooldown||0)-dt);
    if(p.bot)this.botTick(p,dt);else if(p.vent<0){if(p.input.x||p.input.y)this.move(p,p.input.x,p.input.y,dt);else this.follow(p,dt);}
    else if(p.role==='Engineer'){p.ventTime-=dt;if(p.ventTime<=0)this.action(p.id,'vent',{exit:true});}
    if(this.s.phase!=='playing')break;
@@ -258,9 +264,10 @@ export class Game {
  }
  snapshot(id){
   let viewer=this.player(id),s=this.s,own=p=>p.id===id;const typing=s.conversation?.typing;
-  return {...s,cases:undefined,conversation:{typing:typing&&(this.player(typing.player)?.alive||!viewer?.alive)?{player:typing.player}:null},settings:this.settings,players:s.players.map(p=>{
+  const tally=['result','eject'].includes(s.meeting?.stage),meeting=s.meeting?{...s.meeting,votes:Object.fromEntries(Object.entries(s.meeting.votes).map(([who,target])=>[who,who===id||tally&&!this.settings.anonymousVotes?target:'cast'])),ballots:tally?Object.entries(s.meeting.votes).map(([who,target])=>({target,color:this.settings.anonymousVotes?-1:this.player(who)?.color??-1})).sort((a,b)=>this.settings.anonymousVotes?a.target.localeCompare(b.target):0):[],result:s.meeting.result?{...s.meeting.result,...(!this.settings.confirm?{role:undefined,impostor:undefined}:{})}:null}:null;
+  return {...s,meeting,taskDone:s.phase==='ended'?s.taskDone:s.sabotage?.type==='comms'?null:this.settings.taskBar==='Never'?0:this.settings.taskBar==='Meetings'?s.taskShown:s.taskDone,cases:undefined,conversation:{typing:typing&&(this.player(typing.player)?.alive||!viewer?.alive)?{player:typing.player}:null},settings:this.settings,players:s.players.map(p=>{
    const reveal=own(p)||s.phase==='ended'||isImp(viewer)&&isImp(p),appearance=s.phase==='playing'&&p.shifted?p.shifted:p;
-   return {id:p.id,name:p.name,color:p.color,displayName:appearance.name,displayColor:appearance.color,cosmetics:appearance.cosmetics||{hat:-1,visor:-1,pet:-1},bot:p.bot,role:reveal?p.role:'Crewmate',team:reveal?p.team:'crew',alive:p.alive,x:p.x,y:p.y,face:p.face,moving:p.moving,invisible:p.phantom>0&&p.transformUntil<s.time,effect:p.transformUntil>s.time?{kind:p.transformKind,until:p.transformUntil}:null,inVent:p.vent>=0,vent:own(p)?p.vent:-1,phantom:own(p)?p.phantom:0,transforming:p.transformUntil>s.time,shifted:own(p)?!!p.shifted:false,abilityCooldown:own(p)?p.abilityCooldown:0,abilityTime:own(p)?p.abilityTime:0,battery:own(p)?p.battery:0,tracking:own(p)&&p.trackTime>0?this.player(p.tracking)?{id:p.tracking,x:this.player(p.tracking).x,y:this.player(p.tracking).y}:null:null,notes:own(p)?p.notes||[]:[],interrogations:own(p)?p.interrogations:0,judgeUsed:own(p)?p.judgeUsed:false,shield:own(p)||viewer?.role==='Guardian Angel'?p.shield:0,hidden:!viewer?false:!own(p)&&s.phase==='playing'&&(p.vent>=0||!p.alive&&viewer.alive||viewer.alive&&!this.canSee(viewer,p)),tasks:own(p)?p.tasks:[],done:own(p)?p.done:[],progress:own(p)?p.progress||{}:{},sampleReady:own(p)?p.sampleReady:0,cooldown:own(p)?p.cooldown:0,emergency:own(p)?p.emergency:0,sabCooldown:own(p)?p.sabCooldown:0,ventCooldown:own(p)?p.ventCooldown:0};
+   return {id:p.id,name:p.name,color:p.color,displayName:appearance.name,displayColor:appearance.color,cosmetics:appearance.cosmetics||{hat:-1,visor:-1,pet:-1},bot:p.bot,role:reveal?p.role:'Crewmate',team:reveal?p.team:'crew',alive:p.alive,x:p.x,y:p.y,face:p.face,moving:p.moving,invisible:p.phantom>0&&p.transformUntil<s.time,effect:p.transformUntil>s.time?{kind:p.transformKind,until:p.transformUntil}:null,inVent:p.vent>=0,vent:own(p)?p.vent:-1,phantom:own(p)?p.phantom:0,transforming:p.transformUntil>s.time,shifted:own(p)?!!p.shifted:false,abilityCooldown:own(p)?p.abilityCooldown:0,abilityTime:own(p)?p.abilityTime:0,battery:own(p)?p.battery:0,tracking:own(p)&&p.trackTime>0?this.player(p.tracking)?{id:p.tracking,x:this.player(p.tracking).x,y:this.player(p.tracking).y}:null:null,notes:own(p)?p.notes||[]:[],interrogations:own(p)?p.interrogations:0,judgeUsed:own(p)?p.judgeUsed:false,shield:own(p)||viewer?.role==='Guardian Angel'?p.shield:0,hidden:!viewer?false:!own(p)&&s.phase==='playing'&&(p.vent>=0||!p.alive&&viewer.alive||viewer.alive&&!this.canSee(viewer,p)),wireRoute:own(p)?p.wireRoute:undefined,tasks:own(p)?p.tasks:[],done:own(p)?p.done:[],progress:own(p)?p.progress||{}:{},sampleReady:own(p)?p.sampleReady:0,cooldown:own(p)?p.cooldown:0,emergency:own(p)?p.emergency:0,sabCooldown:own(p)?p.sabCooldown:0,ventCooldown:own(p)?p.ventCooldown:0};
   }),adminCounts:viewer&&dist(viewer,{x:3990,y:1740})<180?Object.fromEntries(ROOMS.map(r=>[r.name,s.players.filter(p=>p.alive&&p.vent<0&&roomAt(p)===r.name).length+s.bodies.filter(b=>roomAt(b)===r.name).length])):null,bodies:s.bodies.filter(b=>!viewer||!viewer.alive||dist(viewer,b)<850*this.settings.vision&&this.nav.line(viewer,b)).map(({killer,...b})=>b),chat:s.chat.filter(c=>!c.dead||!viewer?.alive),events:s.events.filter(e=>e.type==='kill'?e.player===id||e.killer===id:e.type==='notes'?e.player===id:e.type==='influence'?e.player===id||e.target===id:true).map(e=>e.type==='kill'?{id:e.id,type:e.type,player:e.player,killer:e.killer===id?id:null,killerColor:e.killerColor,victimColor:e.victimColor,killerHat:e.killerHat,victimHat:e.victimHat,style:e.style}:e)};
  }
 

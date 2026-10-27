@@ -1,7 +1,7 @@
 // A local, evidence-based conversation system: turn-taking, references, questions,
 // rebuttals and persistent claims. No API key or remote language service is used.
-import {isImp} from './roles.js';
-const colors=['red','blue','green','pink','orange','yellow','black','white','purple','brown'];
+import {isImp} from './roles.js?v=2.1.0';
+const colors=['red','blue','green','pink','orange','yellow','black','white','purple','brown','cyan','lime','maroon','rose','banana','gray','tan','coral'];
 const norm=t=>String(t).toLowerCase().replace(/[’']/g,'').replace(/[^a-z0-9?@\s]/g,' ').replace(/\s+/g,' ').trim();
 const last=(a,p)=>[...a].reverse().find(p);
 export function beginConversation(g){g.s.conversation={queue:[],typing:null,lastSpeech:g.s.time-3,replied:{},opening:[],humanTurns:0};}
@@ -82,6 +82,8 @@ export function makeReply(g,p,entry){
   if(isImp(p)){p.alibiRoom??=p.lastRoom||g.roomAt(p);text=parsed.kill?`I didn’t kill them. ${alibi(g,p)} Did you see the kill itself, or just someone with my color? Shapeshifter is on.`:parsed.vent?`A vent doesn’t prove a kill. ${alibi(g,p)} Who actually saw the body?`:`What did I do that was suspicious? ${alibi(g,p)}`;}
   else if(parsed.vent&&p.role==='Engineer')text='I’m Engineer. Yes, I used that vent. I can demonstrate it, but tell me if you actually saw a kill.';
   else text=(parsed.kill?'That wasn’t me. If you saw my color, a Shapeshifter could have copied it. ':'I’m crew. ')+alibi(g,p)+(parsed.room&&parsed.room!==(p.lastRoom||g.roomAt(p))?` I wasn’t in ${parsed.room}.`:' What exactly did you see?');
+ }else if(/who.*vot|vot.*for|your vote/.test(parsed.low)){const vote=g.s.meeting?.votes[p.id];text=vote===undefined?'I haven’t cast my vote yet. I’m still listening.':vote==='skip'?'I voted to skip. I don’t have enough direct evidence.':'I voted for '+g.player(vote)?.name+'. '+evidence(g,p,g.player(vote));
+ }else if(parsed.intent==='where'&&/\bbody\b/.test(parsed.low)){const m=g.s.meeting; text=m?.body?(p.id===m.reporter?'I found the body in '+m.room+'. '+(facts(g,p).witness?evidence(g,p,g.player(facts(g,p).witness.who)):'I reported as soon as I found it.'):(g.player(m.reporter)?.name||'The reporter')+' reported '+g.player(m.body)?.name+' in '+m.room+'. '+alibi(g,p)):'There wasn’t a body — this was an emergency meeting. '+alibi(g,p);
  }else if(parsed.intent==='where'||parsed.intent==='alibi'){
   let saw=last(p.memory||[],m=>m.who===speaker?.id&&m.type==='seen'&&(!parsed.room||m.room===parsed.room));
   text=parsed.intent==='alibi'&&saw?`I can back part of that up — I passed you in ${saw.room}. I didn’t stay with you the whole time.`:alibi(g,p);
@@ -119,7 +121,7 @@ export function openingStatement(g,p){
 }
 export function tickConversation(g,dt){
  let c=g.s.conversation;if(!c)return;const m=g.s.meeting;
- if(g.s.phase==='meeting'&&m?.stage==='result'){c.queue=[];c.typing=null;return;}
+ if(g.s.phase==='meeting'&&['result','eject'].includes(m?.stage)){c.queue=[];c.typing=null;return;}
  if(c.typing){
   if(g.s.time<c.typing.until)return;let t=c.typing,p=g.player(t.player);c.typing=null;if(!p||!p.alive&&!t.allowDead)return;
   if(t.root)c.replied[t.root+':'+p.id]=true;
