@@ -1,0 +1,14 @@
+{
+  "image": "assets-report-tape-reference.png",
+  "source": "https://among-us.fandom.com/wiki/File:Red%27s_body_is_reported.png",
+  "sourceRect": [
+    1405,
+    932,
+    373,
+    148
+  ],
+  "native": false,
+  "referenceCrop": true,
+  "repeat": "horizontal",
+  "note": "Only warning tape; no corpse, names, UI or other screenshot scene."
+}

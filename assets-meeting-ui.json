@@ -1,0 +1,633 @@
+{
+  "image": "assets-meeting-ui.png",
+  "width": 2048,
+  "height": 1272,
+  "frames": {
+    "phone_body": {
+      "x": 2,
+      "y": 2,
+      "w": 325,
+      "h": 322,
+      "sourceSprite": "UI_Phone_Body",
+      "sourceTexture": "MeetingHud.png",
+      "sourceRectUnity": {
+        "m_Height": 321.84778,
+        "m_Width": 325,
+        "m_X": 1,
+        "m_Y": 209.07613
+      },
+      "borderUnityLTRB": {
+        "m_W": 143.9239,
+        "m_X": 144,
+        "m_Y": 142.92387,
+        "m_Z": 144
+      },
+      "sourceUrl": "https://github.com/itsssskye/amongus-assets/blob/main/Assets/Sprite/UI_Phone_Body.json",
+      "sourceSize": [
+        325,
+        322
+      ],
+      "sourcePivot": {
+        "m_X": 0.5,
+        "m_Y": 0.49844643
+      },
+      "pixelsPerUnit": 100,
+      "native": true,
+      "rgbMask": true
+    },
+    "phone_button": {
+      "x": 331,
+      "y": 2,
+      "w": 93,
+      "h": 236,
+      "sourceSprite": "UI_Phone_Button",
+      "sourceTexture": "MeetingHud.png",
+      "sourceRectUnity": {
+        "m_Height": 235.98709,
+        "m_Width": 93,
+        "m_X": 894,
+        "m_Y": 223
+      },
+      "borderUnityLTRB": {
+        "m_W": 0,
+        "m_X": 0,
+        "m_Y": 0,
+        "m_Z": 0
+      },
+      "sourceUrl": "https://github.com/itsssskye/amongus-assets/blob/main/Assets/Sprite/UI_Phone_Button.json",
+      "sourceSize": [
+        93,
+        236
+      ],
+      "sourcePivot": {
+        "m_X": 0.49462366,
+        "m_Y": 0.50002736
+      },
+      "pixelsPerUnit": 100,
+      "native": true,
+      "rgbMask": true
+    },
+    "phone_glass": {
+      "x": 428,
+      "y": 2,
+      "w": 733,
+      "h": 508,
+      "sourceSprite": "baseGlass",
+      "sourceTexture": "MeetingHud.png",
+      "sourceRectUnity": {
+        "m_Height": 508,
+        "m_Width": 733,
+        "m_X": 1,
+        "m_Y": 533
+      },
+      "borderUnityLTRB": {
+        "m_W": 127,
+        "m_X": 183,
+        "m_Y": 127,
+        "m_Z": 183
+      },
+      "sourceUrl": "https://github.com/itsssskye/amongus-assets/blob/main/Assets/Sprite/baseGlass.json",
+      "sourceSize": [
+        733,
+        508
+      ],
+      "sourcePivot": {
+        "m_X": 0.5,
+        "m_Y": 0.5
+      },
+      "pixelsPerUnit": 100,
+      "native": true,
+      "rgbMask": false
+    },
+    "battery": {
+      "x": 1165,
+      "y": 2,
+      "w": 83,
+      "h": 51,
+      "sourceSprite": "UI_Icon_Battery",
+      "sourceTexture": "MeetingHud.png",
+      "sourceRectUnity": {
+        "m_Height": 51,
+        "m_Width": 83,
+        "m_X": 1,
+        "m_Y": 4
+      },
+      "borderUnityLTRB": {
+        "m_W": 0,
+        "m_X": 0,
+        "m_Y": 0,
+        "m_Z": 0
+      },
+      "sourceUrl": "https://github.com/itsssskye/amongus-assets/blob/main/Assets/Sprite/UI_Icon_Battery.json",
+      "sourceSize": [
+        83,
+        51
+      ],
+      "sourcePivot": {
+        "m_X": 0.5,
+        "m_Y": 0.5
+      },
+      "pixelsPerUnit": 100,
+      "native": true,
+      "rgbMask": false
+    },
+    "wifi": {
+      "x": 1252,
+      "y": 2,
+      "w": 53,
+      "h": 51,
+      "sourceSprite": "UI_Icon_Wifi",
+      "sourceTexture": "MeetingHud.png",
+      "sourceRectUnity": {
+        "m_Height": 51,
+        "m_Width": 53,
+        "m_X": 723,
+        "m_Y": 317
+      },
+      "borderUnityLTRB": {
+        "m_W": 0,
+        "m_X": 0,
+        "m_Y": 0,
+        "m_Z": 0
+      },
+      "sourceUrl": "https://github.com/itsssskye/amongus-assets/blob/main/Assets/Sprite/UI_Icon_Wifi.json",
+      "sourceSize": [
+        53,
+        51
+      ],
+      "sourcePivot": {
+        "m_X": 0.5,
+        "m_Y": 0.5
+      },
+      "pixelsPerUnit": 100,
+      "native": true,
+      "rgbMask": false
+    },
+    "confirm": {
+      "x": 1309,
+      "y": 2,
+      "w": 80,
+      "h": 80,
+      "sourceSprite": "UI_Button_No",
+      "sourceTexture": "MeetingHud.png",
+      "sourceRectUnity": {
+        "m_Height": 80,
+        "m_Width": 80,
+        "m_X": 734,
+        "m_Y": 141
+      },
+      "borderUnityLTRB": {
+        "m_W": 0,
+        "m_X": 0,
+        "m_Y": 0,
+        "m_Z": 0
+      },
+      "sourceUrl": "https://github.com/itsssskye/amongus-assets/blob/main/Assets/Sprite/UI_Button_No.json",
+      "sourceSize": [
+        80,
+        80
+      ],
+      "sourcePivot": {
+        "m_X": 0.5,
+        "m_Y": 0.5
+      },
+      "pixelsPerUnit": 100,
+      "native": true,
+      "rgbMask": false
+    },
+    "cancel": {
+      "x": 1393,
+      "y": 2,
+      "w": 80,
+      "h": 80,
+      "sourceSprite": "UI_Button_Yes",
+      "sourceTexture": "MeetingHud.png",
+      "sourceRectUnity": {
+        "m_Height": 80,
+        "m_Width": 80,
+        "m_X": 734,
+        "m_Y": 59
+      },
+      "borderUnityLTRB": {
+        "m_W": 0,
+        "m_X": 0,
+        "m_Y": 0,
+        "m_Z": 0
+      },
+      "sourceUrl": "https://github.com/itsssskye/amongus-assets/blob/main/Assets/Sprite/UI_Button_Yes.json",
+      "sourceSize": [
+        80,
+        80
+      ],
+      "sourcePivot": {
+        "m_X": 0.5,
+        "m_Y": 0.5
+      },
+      "pixelsPerUnit": 100,
+      "native": true,
+      "rgbMask": false
+    },
+    "skull_bubble": {
+      "x": 1477,
+      "y": 2,
+      "w": 114,
+      "h": 112,
+      "sourceSprite": "beforVoting_deadBodyBubble",
+      "sourceTexture": "MeetingHud.png",
+      "sourceRectUnity": {
+        "m_Height": 112,
+        "m_Width": 114,
+        "m_X": 778,
+        "m_Y": 347
+      },
+      "borderUnityLTRB": {
+        "m_W": 0,
+        "m_X": 0,
+        "m_Y": 0,
+        "m_Z": 0
+      },
+      "sourceUrl": "https://github.com/itsssskye/amongus-assets/blob/main/Assets/Sprite/beforVoting_deadBodyBubble.json",
+      "sourceSize": [
+        114,
+        112
+      ],
+      "sourcePivot": {
+        "m_X": 0.5,
+        "m_Y": 0.5
+      },
+      "pixelsPerUnit": 100,
+      "native": true,
+      "rgbMask": false
+    },
+    "reported_body": {
+      "x": 1595,
+      "y": 2,
+      "w": 212,
+      "h": 112,
+      "sourceSprite": "beforeVoting_deadBody",
+      "sourceTexture": "MeetingHud.png",
+      "sourceRectUnity": {
+        "m_Height": 112,
+        "m_Width": 212,
+        "m_X": 778,
+        "m_Y": 461
+      },
+      "borderUnityLTRB": {
+        "m_W": 0,
+        "m_X": 0,
+        "m_Y": 0,
+        "m_Z": 0
+      },
+      "sourceUrl": "https://github.com/itsssskye/amongus-assets/blob/main/Assets/Sprite/beforeVoting_deadBody.json",
+      "sourceSize": [
+        212,
+        112
+      ],
+      "sourcePivot": {
+        "m_X": 0.5,
+        "m_Y": 0.5
+      },
+      "pixelsPerUnit": 100,
+      "native": true,
+      "rgbMask": true
+    },
+    "chat_base": {
+      "x": 2,
+      "y": 514,
+      "w": 700,
+      "h": 496,
+      "sourceSprite": "chatBase",
+      "sourceTexture": "VotingScreen.png",
+      "sourceRectUnity": {
+        "m_Height": 496,
+        "m_Width": 700,
+        "m_X": 1,
+        "m_Y": 235
+      },
+      "borderUnityLTRB": {
+        "m_W": 0,
+        "m_X": 0,
+        "m_Y": 0,
+        "m_Z": 0
+      },
+      "sourceUrl": "https://github.com/itsssskye/amongus-assets/blob/main/Assets/Sprite/chatBase.json",
+      "sourceSize": [
+        700,
+        496
+      ],
+      "sourcePivot": {
+        "m_X": 0.5,
+        "m_Y": 0.5
+      },
+      "pixelsPerUnit": 100,
+      "native": true,
+      "rgbMask": false
+    },
+    "chat_bar": {
+      "x": 706,
+      "y": 514,
+      "w": 606,
+      "h": 54,
+      "sourceSprite": "chatBar",
+      "sourceTexture": "VotingScreen.png",
+      "sourceRectUnity": {
+        "m_Height": 54,
+        "m_Width": 606,
+        "m_X": 1,
+        "m_Y": 179
+      },
+      "borderUnityLTRB": {
+        "m_W": 14,
+        "m_X": 152,
+        "m_Y": 13,
+        "m_Z": 151
+      },
+      "sourceUrl": "https://github.com/itsssskye/amongus-assets/blob/main/Assets/Sprite/chatBar.json",
+      "sourceSize": [
+        606,
+        54
+      ],
+      "sourcePivot": {
+        "m_X": 0.5,
+        "m_Y": 0.5
+      },
+      "pixelsPerUnit": 100,
+      "native": true,
+      "rgbMask": false
+    },
+    "chat_bubble": {
+      "x": 1316,
+      "y": 514,
+      "w": 552,
+      "h": 62,
+      "sourceSprite": "chatTextBubble",
+      "sourceTexture": "VotingScreen.png",
+      "sourceRectUnity": {
+        "m_Height": 62,
+        "m_Width": 552,
+        "m_X": 1,
+        "m_Y": 115
+      },
+      "borderUnityLTRB": {
+        "m_W": 16,
+        "m_X": 138,
+        "m_Y": 15,
+        "m_Z": 138
+      },
+      "sourceUrl": "https://github.com/itsssskye/amongus-assets/blob/main/Assets/Sprite/chatTextBubble.json",
+      "sourceSize": [
+        552,
+        62
+      ],
+      "sourcePivot": {
+        "m_X": 0.5,
+        "m_Y": 0.5
+      },
+      "pixelsPerUnit": 100,
+      "native": true,
+      "rgbMask": false
+    },
+    "vote_card": {
+      "x": 2,
+      "y": 1014,
+      "w": 348,
+      "h": 63,
+      "sourceSprite": "votePlayerBase",
+      "sourceTexture": "VotingScreen.png",
+      "sourceRectUnity": {
+        "m_Height": 63,
+        "m_Width": 348,
+        "m_X": 1,
+        "m_Y": 50
+      },
+      "borderUnityLTRB": {
+        "m_W": 0,
+        "m_X": 0,
+        "m_Y": 0,
+        "m_Z": 0
+      },
+      "sourceUrl": "https://github.com/itsssskye/amongus-assets/blob/main/Assets/Sprite/votePlayerBase.json",
+      "sourceSize": [
+        348,
+        63
+      ],
+      "sourcePivot": {
+        "m_X": 0.5,
+        "m_Y": 0.5
+      },
+      "pixelsPerUnit": 100,
+      "native": true,
+      "rgbMask": false
+    },
+    "vote_pip": {
+      "x": 354,
+      "y": 1014,
+      "w": 30,
+      "h": 25,
+      "sourceSprite": "playerVoteResults",
+      "sourceTexture": "VotingScreen.png",
+      "sourceRectUnity": {
+        "m_Height": 25,
+        "m_Width": 30,
+        "m_X": 715,
+        "m_Y": 443
+      },
+      "borderUnityLTRB": {
+        "m_W": 0,
+        "m_X": 0,
+        "m_Y": 0,
+        "m_Z": 0
+      },
+      "sourceUrl": "https://github.com/itsssskye/amongus-assets/blob/main/Assets/Sprite/playerVoteResults.json",
+      "sourceSize": [
+        30,
+        25
+      ],
+      "sourcePivot": {
+        "m_X": 0.5,
+        "m_Y": 0.5
+      },
+      "pixelsPerUnit": 100,
+      "native": true,
+      "rgbMask": true
+    },
+    "dead_cross": {
+      "x": 388,
+      "y": 1014,
+      "w": 66,
+      "h": 60,
+      "sourceSprite": "deadX_border",
+      "sourceTexture": "VotingScreen.png",
+      "sourceRectUnity": {
+        "m_Height": 59.923878,
+        "m_Width": 65.948685,
+        "m_X": 658,
+        "m_Y": 613.0761
+      },
+      "borderUnityLTRB": {
+        "m_W": 0,
+        "m_X": 0,
+        "m_Y": 0,
+        "m_Z": 0
+      },
+      "sourceUrl": "https://github.com/itsssskye/amongus-assets/blob/main/Assets/Sprite/deadX_border.json",
+      "sourceSize": [
+        66,
+        60
+      ],
+      "sourcePivot": {
+        "m_X": 0.4928074,
+        "m_Y": 0.5077089
+      },
+      "pixelsPerUnit": 100,
+      "native": true,
+      "rgbMask": false
+    },
+    "reporter": {
+      "x": 458,
+      "y": 1014,
+      "w": 36,
+      "h": 36,
+      "sourceSprite": "voteReported",
+      "sourceTexture": "MeetingIcons.png",
+      "sourceRectUnity": {
+        "m_Height": 36,
+        "m_Width": 36,
+        "m_X": 1,
+        "m_Y": 1
+      },
+      "borderUnityLTRB": {
+        "m_W": 0,
+        "m_X": 0,
+        "m_Y": 0,
+        "m_Z": 0
+      },
+      "sourceUrl": "https://github.com/itsssskye/amongus-assets/blob/main/Assets/Sprite/voteReported.json",
+      "sourceSize": [
+        36,
+        36
+      ],
+      "sourcePivot": {
+        "m_X": 0.5,
+        "m_Y": 0.5
+      },
+      "pixelsPerUnit": 100,
+      "native": true,
+      "rgbMask": false
+    },
+    "thumb_down": {
+      "x": 498,
+      "y": 1014,
+      "w": 53,
+      "h": 72,
+      "sourceSprite": "thumbdown",
+      "sourceTexture": "MeetingIcons.png",
+      "sourceRectUnity": {
+        "m_Height": 72,
+        "m_Width": 53,
+        "m_X": 1,
+        "m_Y": 39
+      },
+      "borderUnityLTRB": {
+        "m_W": 0,
+        "m_X": 0,
+        "m_Y": 0,
+        "m_Z": 0
+      },
+      "sourceUrl": "https://github.com/itsssskye/amongus-assets/blob/main/Assets/Sprite/thumbdown.json",
+      "sourceSize": [
+        53,
+        72
+      ],
+      "sourcePivot": {
+        "m_X": 0.5,
+        "m_Y": 0.5
+      },
+      "pixelsPerUnit": 100,
+      "native": true,
+      "rgbMask": true
+    },
+    "skip": {
+      "x": 555,
+      "y": 1014,
+      "w": 154,
+      "h": 37,
+      "sourceFile": "Skip vote.png",
+      "sourceUrl": "https://static.wikia.nocookie.net/among-us-wiki/images/7/72/Skip_vote.png/revision/latest?cb=20210726133913",
+      "sourceRevision": "2021-07-26T13:39:13Z",
+      "sourceSize": [
+        154,
+        37
+      ],
+      "native": true,
+      "rgbMask": false,
+      "note": "Wiki page labels it raw/interface asset; copied losslessly. Revision is upload date, not game version."
+    },
+    "voted_badge": {
+      "x": 713,
+      "y": 1014,
+      "w": 36,
+      "h": 35,
+      "sourceFile": "Voted.png",
+      "sourceUrl": "https://static.wikia.nocookie.net/among-us-wiki/images/a/a6/Voted.png/revision/latest?cb=20210709160833",
+      "sourceRevision": "2021-07-09T16:08:33Z",
+      "sourceSize": [
+        36,
+        35
+      ],
+      "native": true,
+      "rgbMask": false,
+      "note": "Wiki page labels it raw/interface asset; copied losslessly. Revision is upload date, not game version."
+    },
+    "chat_arrow": {
+      "x": 753,
+      "y": 1014,
+      "w": 43,
+      "h": 42,
+      "sourceFile": "Chat arrow.png",
+      "sourceUrl": "https://static.wikia.nocookie.net/among-us-wiki/images/a/a8/Chat_arrow.png/revision/latest?cb=20210212130314",
+      "sourceRevision": "2021-02-12T13:03:14Z",
+      "sourceSize": [
+        43,
+        42
+      ],
+      "native": true,
+      "rgbMask": false,
+      "note": "Wiki page labels it raw/interface asset; copied losslessly. Revision is upload date, not game version."
+    },
+    "chat_unread": {
+      "x": 800,
+      "y": 1014,
+      "w": 62,
+      "h": 59,
+      "sourceFile": "Chat red dot.png",
+      "sourceUrl": "https://static.wikia.nocookie.net/among-us-wiki/images/a/a2/Chat_red_dot.png/revision/latest?cb=20210615234204",
+      "sourceRevision": "2021-06-15T23:42:04Z",
+      "sourceSize": [
+        62,
+        59
+      ],
+      "native": true,
+      "rgbMask": false,
+      "note": "Wiki page labels it raw/interface asset; copied losslessly. Revision is upload date, not game version."
+    },
+    "free_chat_button": {
+      "x": 866,
+      "y": 1014,
+      "w": 256,
+      "h": 256,
+      "sourceFile": "Free Chat icon.png",
+      "sourceUrl": "https://static.wikia.nocookie.net/among-us-wiki/images/0/05/Free_Chat_icon.png/revision/latest?cb=20230430010429",
+      "sourceRevision": "2023-04-30T01:04:29Z",
+      "sourceSize": [
+        256,
+        256
+      ],
+      "native": true,
+      "rgbMask": false,
+      "note": "Wiki page labels it raw/interface asset; copied losslessly. Revision is upload date, not game version."
+    }
+  },
+  "sourceRevision": "17fd05308dac23f89a82c3e92b433da603cc7267",
+  "note": "Mesh masked original sprites, no names, screenshots, invented frames or scaling. UIPhone glass uses baseGlass; older unused UI_Phone_Glass layout does not match this texture."
+}

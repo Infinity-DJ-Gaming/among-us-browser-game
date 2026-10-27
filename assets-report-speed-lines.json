@@ -1,0 +1,32 @@
+{
+  "noiseImage": "assets-report-speed-noise.png",
+  "noiseSize": [256, 256],
+  "nativeNoise": true,
+  "nativeShaderAlgorithm": true,
+  "shaderSource": "https://github.com/itsssskye/amongus-assets/blob/main/Assets/Shader/Unlit_SpeedLines.json",
+  "prefabSource": "https://github.com/itsssskye/amongus-assets/blob/main/Assets/PrefabHierarchyObject/ReportBodyAnimation.glb",
+  "shaderDecodedExactFragment": "../raw/original-speed-lines-fragment.metal.txt",
+  "sampling": "Repeat noise texture; original sampler filter not exported. Use linear filtering to match smooth streaks.",
+  "uniforms": ["_Time.x = elapsedSeconds / 20", "_Speed", "_BaseColor", "_LineColor", "_LineColor2", "_BackgroundColor", "_AdditiveGradient"],
+  "algorithm": [
+    "Use normalized UVs u,v across the fullscreen plane.",
+    "t = (elapsedSeconds / 20) * speed;",
+    "noiseU = (4*v - u) * 0.125 + t; noiseV = 8*v + t;",
+    "n = repeatedNoise.sample(noiseU, noiseV).red;",
+    "g = pow(sin(v * 3.1415), 3);",
+    "line = baseColor + (lineColor - baseColor) * n*n*1.5;",
+    "highlight = max(n-0.5, 0) * 2 * lineColor2;",
+    "inner = clamp(line*g + highlight, 0, 1);",
+    "rgb = backgroundColor + (inner-backgroundColor)*g + additiveGradient*v;",
+    "alpha = 1;"
+  ],
+  "shaderDefaults": {
+    "baseColor": [1,0,0],
+    "lineColor": [0,0,1],
+    "lineColor2": [0,0,1],
+    "backgroundColor": [0,0,0],
+    "additiveGradient": [0,0,0],
+    "speed": -10
+  },
+  "important": "Shader defaults are NOT final report material values. Exact report material settings were not exported. The modern reference uses red/black streaks and pale red highlights, so use reference-matched material parameters and disclose those as estimated. Fullscreen coverage and horizontal moving streak construction are verified original behavior. Do not substitute the older killBG flame slash."
+}

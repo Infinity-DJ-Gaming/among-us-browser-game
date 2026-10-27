@@ -1,0 +1,195 @@
+{
+  "font": "Brook",
+  "source": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/Texture2D/Brook%20SDF%20Atlas.png",
+  "nativeGlyphShapes": true,
+  "nativeFontMetrics": false,
+  "limitation": "TMP FontAsset glyph metrics are not included in this public archive. Letter advances/spacing were reconstructed from native glyph bounds; glyph shapes are original, not synthesized.",
+  "glyphSourceBoxes": {
+    "A": [
+      199,
+      421,
+      210,
+      447
+    ],
+    "C": [
+      270,
+      375,
+      278,
+      402
+    ],
+    "D": [
+      224,
+      160,
+      233,
+      187
+    ],
+    "E": [
+      280,
+      117,
+      288,
+      144
+    ],
+    "F": [
+      407,
+      138,
+      415,
+      164
+    ],
+    "G": [
+      250,
+      111,
+      258,
+      138
+    ],
+    "H": [
+      409,
+      187,
+      416,
+      213
+    ],
+    "I": [
+      455,
+      47,
+      456,
+      68
+    ],
+    "L": [
+      306,
+      69,
+      314,
+      95
+    ],
+    "M": [
+      372,
+      80,
+      383,
+      106
+    ],
+    "N": [
+      405,
+      87,
+      415,
+      112
+    ],
+    "O": [
+      195,
+      209,
+      205,
+      236
+    ],
+    "P": [
+      309,
+      122,
+      317,
+      149
+    ],
+    "R": [
+      276,
+      62,
+      284,
+      89
+    ],
+    "S": [
+      288,
+      14,
+      296,
+      40
+    ],
+    "T": [
+      422,
+      39,
+      432,
+      64
+    ],
+    "U": [
+      11,
+      87,
+      20,
+      113
+    ],
+    "V": [
+      358,
+      283,
+      367,
+      309
+    ],
+    "W": [
+      335,
+      75,
+      351,
+      101
+    ],
+    "Y": [
+      393,
+      379,
+      403,
+      405
+    ]
+  },
+  "labels": {
+    "play": {
+      "file": "assets-menu-label-play.png",
+      "text": "PLAY",
+      "width": 189,
+      "height": 111,
+      "recommendedCssHeight": 50,
+      "transparent": true
+    },
+    "inventory": {
+      "file": "assets-menu-label-inventory.png",
+      "text": "INVENTORY",
+      "width": 381,
+      "height": 111,
+      "recommendedCssHeight": 50,
+      "transparent": true
+    },
+    "shop": {
+      "file": "assets-menu-label-shop.png",
+      "text": "SHOP",
+      "width": 177,
+      "height": 111,
+      "recommendedCssHeight": 50,
+      "transparent": true
+    },
+    "news": {
+      "file": "assets-menu-label-news.png",
+      "text": "NEWS",
+      "width": 204,
+      "height": 111,
+      "recommendedCssHeight": 35,
+      "transparent": true
+    },
+    "my-account": {
+      "file": "assets-menu-label-my-account.png",
+      "text": "MY ACCOUNT",
+      "width": 453,
+      "height": 111,
+      "recommendedCssHeight": 35,
+      "transparent": true
+    },
+    "settings": {
+      "file": "assets-menu-label-settings.png",
+      "text": "SETTINGS",
+      "width": 327,
+      "height": 111,
+      "recommendedCssHeight": 35,
+      "transparent": true
+    },
+    "credits": {
+      "file": "assets-menu-label-credits.png",
+      "text": "CREDITS",
+      "width": 279,
+      "height": 111,
+      "recommendedCssHeight": 35,
+      "transparent": true
+    },
+    "friends": {
+      "file": "assets-menu-label-friends.png",
+      "text": "FRIENDS",
+      "width": 279,
+      "height": 111,
+      "recommendedCssHeight": 35,
+      "transparent": true
+    }
+  }
+}

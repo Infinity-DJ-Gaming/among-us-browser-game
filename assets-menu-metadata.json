@@ -1,0 +1,433 @@
+{
+  "source": "https://github.com/itsssskye/amongus-assets",
+  "layers": {
+    "ship-bg": {
+      "file": "assets-menu-ship-bg.png",
+      "width": 1280,
+      "height": 720,
+      "sourceSprite": "IMAGE-ShipBG",
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "ship-window-frame": {
+      "file": "assets-menu-ship-window-frame.png",
+      "width": 977,
+      "height": 631,
+      "sourceSprite": "IMAGE-ShipWindowFrame",
+      "border": [
+        158,
+        245,
+        158,
+        245
+      ]
+    },
+    "window-shine": {
+      "file": "assets-menu-window-shine.png",
+      "width": 149,
+      "height": 675,
+      "sourceSprite": "IMAGE-WindowShine",
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "left-panel": {
+      "file": "assets-menu-left-panel.png",
+      "width": 420,
+      "height": 508,
+      "sourceSprite": "IMAGE-LeftPanel",
+      "border": [
+        127,
+        105,
+        128,
+        105
+      ]
+    },
+    "button-normal": {
+      "file": "assets-menu-button-normal.png",
+      "width": 69,
+      "height": 63,
+      "sourceSprite": "IMAGE-ButtonInactive",
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "button-pressed": {
+      "file": "assets-menu-button-pressed.png",
+      "width": 69,
+      "height": 58,
+      "sourceSprite": "IMAGE-ButtonPressed",
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "button-podium": {
+      "file": "assets-menu-button-podium.png",
+      "width": 122,
+      "height": 115,
+      "sourceSprite": "IMAGE-ButtonPodium",
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "button-shine": {
+      "file": "assets-menu-button-shine.png",
+      "width": 182,
+      "height": 82,
+      "sourceSprite": "BUTTON-CTAShine",
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "button-active-shine": {
+      "file": "assets-menu-button-active-shine.png",
+      "width": 177,
+      "height": 72,
+      "sourceSprite": "BUTTON-CTAActiveShine",
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "logo": {
+      "file": "assets-menu-logo.png",
+      "width": 673,
+      "height": 175,
+      "sourceSprite": "LOGO-AU",
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "friends-header-gradient": {
+      "file": "assets-menu-friends-header-gradient.png",
+      "width": 244,
+      "height": 103,
+      "sourceSprite": "IMAGE-HeaderGradient",
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "friends-tab": {
+      "file": "assets-menu-friends-tab.png",
+      "width": 51,
+      "height": 46,
+      "sourceSprite": "IMAGE-MenuTab",
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "icons": {
+    "play": {
+      "frame": 0,
+      "sourceSprite": "ICON-PLAY",
+      "sourceSize": [
+        131,
+        110
+      ],
+      "frameX": 0,
+      "frameY": 0
+    },
+    "play-alternate": {
+      "frame": 1,
+      "sourceSprite": "ICON-PLAYb",
+      "sourceSize": [
+        146,
+        126
+      ],
+      "frameX": 128,
+      "frameY": 0
+    },
+    "inventory": {
+      "frame": 2,
+      "sourceSprite": "ICON-INVENTORY",
+      "sourceSize": [
+        77,
+        85
+      ],
+      "frameX": 256,
+      "frameY": 0
+    },
+    "shop": {
+      "frame": 3,
+      "sourceSprite": "ICON-SHOP",
+      "sourceSize": [
+        108,
+        112
+      ],
+      "frameX": 384,
+      "frameY": 0
+    },
+    "news": {
+      "frame": 4,
+      "sourceSprite": "ICON-NEWS",
+      "sourceSize": [
+        88,
+        95
+      ],
+      "frameX": 512,
+      "frameY": 0
+    },
+    "settings": {
+      "frame": 5,
+      "sourceSprite": "ICON-SETTINGS",
+      "sourceSize": [
+        107,
+        100
+      ],
+      "frameX": 640,
+      "frameY": 0
+    },
+    "account": {
+      "frame": 6,
+      "sourceSprite": "ICON-ACCOUNT",
+      "sourceSize": [
+        110,
+        100
+      ],
+      "frameX": 768,
+      "frameY": 0
+    },
+    "friends": {
+      "frame": 7,
+      "sourceSprite": "ICON-FriendList",
+      "sourceSize": [
+        251,
+        214
+      ],
+      "frameX": 896,
+      "frameY": 0
+    },
+    "friends-inactive": {
+      "frame": 8,
+      "sourceSprite": "ICON-FriendListInactive",
+      "sourceSize": [
+        220,
+        184
+      ],
+      "frameX": 0,
+      "frameY": 128
+    },
+    "friend": {
+      "frame": 9,
+      "sourceSprite": "ICON-Friend",
+      "sourceSize": [
+        88,
+        77
+      ],
+      "frameX": 128,
+      "frameY": 128
+    },
+    "add-friend": {
+      "frame": 10,
+      "sourceSprite": "ICON-AddFriend",
+      "sourceSize": [
+        171,
+        147
+      ],
+      "frameX": 256,
+      "frameY": 128
+    },
+    "recent-players": {
+      "frame": 11,
+      "sourceSprite": "ICON-RecentPlayers",
+      "sourceSize": [
+        267,
+        230
+      ],
+      "frameX": 384,
+      "frameY": 128
+    },
+    "blocked-players": {
+      "frame": 12,
+      "sourceSprite": "ICON-BlockedPlayers",
+      "sourceSize": [
+        234,
+        206
+      ],
+      "frameX": 512,
+      "frameY": 128
+    },
+    "chat-active": {
+      "frame": 13,
+      "sourceSprite": "BUTTON-ChatActive",
+      "sourceSize": [
+        102,
+        92
+      ],
+      "frameX": 640,
+      "frameY": 128
+    },
+    "chat-inactive": {
+      "frame": 14,
+      "sourceSprite": "BUTTON-ChatInactive",
+      "sourceSize": [
+        102,
+        92
+      ],
+      "frameX": 768,
+      "frameY": 128
+    },
+    "chat-selected": {
+      "frame": 15,
+      "sourceSprite": "BUTTON-ChatSelected",
+      "sourceSize": [
+        102,
+        92
+      ],
+      "frameX": 896,
+      "frameY": 128
+    },
+    "map-active": {
+      "frame": 16,
+      "sourceSprite": "BUTTON-MapActive",
+      "sourceSize": [
+        102,
+        92
+      ],
+      "frameX": 0,
+      "frameY": 256
+    },
+    "map-inactive": {
+      "frame": 17,
+      "sourceSprite": "BUTTON-MapInactive",
+      "sourceSize": [
+        102,
+        92
+      ],
+      "frameX": 128,
+      "frameY": 256
+    },
+    "map-selected": {
+      "frame": 18,
+      "sourceSprite": "BUTTON-MapSelected",
+      "sourceSize": [
+        102,
+        92
+      ],
+      "frameX": 256,
+      "frameY": 256
+    },
+    "settings-active": {
+      "frame": 19,
+      "sourceSprite": "BUTTON-SettingsActive",
+      "sourceSize": [
+        102,
+        92
+      ],
+      "frameX": 384,
+      "frameY": 256
+    },
+    "settings-inactive": {
+      "frame": 20,
+      "sourceSprite": "BUTTON-SettingsInactive",
+      "sourceSize": [
+        102,
+        92
+      ],
+      "frameX": 512,
+      "frameY": 256
+    },
+    "settings-selected": {
+      "frame": 21,
+      "sourceSprite": "BUTTON-SettingsSelected",
+      "sourceSize": [
+        102,
+        92
+      ],
+      "frameX": 640,
+      "frameY": 256
+    },
+    "friends-active": {
+      "frame": 22,
+      "sourceSprite": "BUTTON-FListActive",
+      "sourceSize": [
+        102,
+        92
+      ],
+      "frameX": 768,
+      "frameY": 256
+    },
+    "friends-panel-inactive": {
+      "frame": 23,
+      "sourceSprite": "BUTTON-FListInactive",
+      "sourceSize": [
+        102,
+        92
+      ],
+      "frameX": 896,
+      "frameY": 256
+    },
+    "friends-selected": {
+      "frame": 24,
+      "sourceSprite": "BUTTON-FListSelected",
+      "sourceSize": [
+        102,
+        92
+      ],
+      "frameX": 0,
+      "frameY": 384
+    },
+    "exit": {
+      "frame": 25,
+      "sourceSprite": "BUTTON-ExitStandard",
+      "sourceSize": [
+        98,
+        98
+      ],
+      "frameX": 128,
+      "frameY": 384
+    },
+    "exit-hover": {
+      "frame": 26,
+      "sourceSprite": "BUTTON-ExitHover",
+      "sourceSize": [
+        98,
+        98
+      ],
+      "frameX": 256,
+      "frameY": 384
+    }
+  },
+  "notes": [
+    "Original UI artwork extracted from native sprite UV coordinates and polygon alpha meshes.",
+    "Menu can layer a star field behind the transparent ship-window-frame, on top of the opaque ship-bg.",
+    "Use layer CSS border-image-slice from border values for native nine-slice panel corners. Border values are in source pixels: top,right,bottom,left."
+  ],
+  "iconAtlas": {
+    "file": "assets-menu-icons.png",
+    "cellWidth": 128,
+    "cellHeight": 128,
+    "columns": 8,
+    "count": 27
+  }
+}

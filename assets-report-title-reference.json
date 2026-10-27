@@ -1,0 +1,13 @@
+{
+  "image": "assets-report-title-reference.png",
+  "source": "https://among-us.fandom.com/wiki/File:Red%27s_body_is_reported.png",
+  "sourceRect": [
+    0,
+    269,
+    1920,
+    180
+  ],
+  "native": false,
+  "referenceCrop": true,
+  "note": "Only invariant original DEAD BODY REPORTED lettering on white, extracted from wiki screenshot. No player, UI names or screenshot scene baked in. Original game constructs Text(TMP)+TextBg, so recreate text if dynamic localization is needed."
+}

@@ -1,0 +1,124 @@
+{
+  "image": "assets-nameplates.png",
+  "width": 348,
+  "height": 672,
+  "frames": {
+    "default": {
+      "name": "Plain",
+      "x": 0,
+      "y": 0,
+      "w": 348,
+      "h": 63,
+      "sourceSprite": "votePlayerBase",
+      "sourceTexture": "VotingScreen.png",
+      "native": true
+    },
+    "pizza": {
+      "name": "Pizza",
+      "x": 0,
+      "y": 84,
+      "w": 273,
+      "h": 67,
+      "sourceTexture": "Plates.png",
+      "sourceRect": [
+        1,
+        0,
+        273,
+        67
+      ],
+      "native": true
+    },
+    "ham": {
+      "name": "Ham",
+      "x": 0,
+      "y": 168,
+      "w": 273,
+      "h": 67,
+      "sourceTexture": "Plates.png",
+      "sourceRect": [
+        276,
+        0,
+        273,
+        67
+      ],
+      "native": true
+    },
+    "citrus": {
+      "name": "Citrus",
+      "x": 0,
+      "y": 252,
+      "w": 273,
+      "h": 67,
+      "sourceTexture": "Plates.png",
+      "sourceRect": [
+        551,
+        0,
+        273,
+        67
+      ],
+      "native": true
+    },
+    "fried_egg": {
+      "name": "Fried Egg",
+      "x": 0,
+      "y": 336,
+      "w": 273,
+      "h": 67,
+      "sourceTexture": "Plates.png",
+      "sourceRect": [
+        826,
+        0,
+        273,
+        67
+      ],
+      "native": true
+    },
+    "toast": {
+      "name": "Toast",
+      "x": 0,
+      "y": 420,
+      "w": 273,
+      "h": 67,
+      "sourceTexture": "Plates.png",
+      "sourceRect": [
+        1101,
+        0,
+        273,
+        67
+      ],
+      "native": true
+    },
+    "empty_plate": {
+      "name": "Empty Plate",
+      "x": 0,
+      "y": 504,
+      "w": 273,
+      "h": 67,
+      "sourceTexture": "Plates.png",
+      "sourceRect": [
+        1376,
+        0,
+        273,
+        67
+      ],
+      "native": true
+    },
+    "forest": {
+      "name": "Forest",
+      "x": 0,
+      "y": 588,
+      "w": 270,
+      "h": 66,
+      "sourceTexture": "nameplates.png",
+      "sourceRect": [
+        1,
+        145,
+        270,
+        66
+      ],
+      "native": true
+    }
+  },
+  "source": "https://github.com/itsssskye/amongus-assets/tree/main/Assets/Texture2D",
+  "note": "Native texture crops, named for visible imagery. Display as full-card background; preserve source colors. Plain white plate is default. No player names baked into any image."
+}

@@ -1,0 +1,115 @@
+{
+  "colors": [
+    "red",
+    "blue",
+    "green",
+    "pink",
+    "orange",
+    "yellow",
+    "black",
+    "white",
+    "purple",
+    "brown",
+    "cyan",
+    "lime",
+    "maroon",
+    "rose",
+    "banana",
+    "gray",
+    "tan",
+    "coral"
+  ],
+  "added": [
+    "cyan",
+    "lime",
+    "maroon",
+    "rose",
+    "banana",
+    "gray",
+    "tan",
+    "coral"
+  ],
+  "palettes": {
+    "cyan": {
+      "main": "#44FFF7",
+      "shadow": "#24A9BF"
+    },
+    "lime": {
+      "main": "#5BFE4B",
+      "shadow": "#15A742"
+    },
+    "maroon": {
+      "main": "#6C2B3D",
+      "shadow": "#410F1A"
+    },
+    "rose": {
+      "main": "#FFD6EC",
+      "shadow": "#DE92B3"
+    },
+    "banana": {
+      "main": "#FFFFBE",
+      "shadow": "#D2BC89"
+    },
+    "gray": {
+      "main": "#8397A7",
+      "shadow": "#465664"
+    },
+    "tan": {
+      "main": "#9F9989",
+      "shadow": "#51413E"
+    },
+    "coral": {
+      "main": "#EC7578",
+      "shadow": "#B44362"
+    }
+  },
+  "source": "https://among-us.fandom.com/wiki/Module:Common/colors",
+  "sourceRaw": "work/meeting-assets-v3/wiki-colors-data.json",
+  "paletteNote": "These eight pairs are verified current wiki display palette values, not an independently verified C# Palette.PlayerColors array. Existing first ten artwork variants are preserved unchanged for backwards compatibility. Update runtime HEX/shadow arrays to these exact values for new-color consistency.",
+  "walk": {
+    "cellWidth": 96,
+    "cellHeight": 112,
+    "frames": 13,
+    "idleFrame": 0,
+    "walkStart": 1,
+    "walkCount": 12,
+    "recommendedFPS": 24
+  },
+  "report": {
+    "image": "assets-reported-colors.png",
+    "cellWidth": 341,
+    "cellHeight": 276,
+    "columns": 18,
+    "frames": 18,
+    "colorOrder": [
+      "red",
+      "blue",
+      "green",
+      "pink",
+      "orange",
+      "yellow",
+      "black",
+      "white",
+      "purple",
+      "brown",
+      "cyan",
+      "lime",
+      "maroon",
+      "rose",
+      "banana",
+      "gray",
+      "tan",
+      "coral"
+    ],
+    "preservesFirst10": true
+  },
+  "dead": {
+    "sourceSprite": "Dead0042",
+    "sourceTexture": "https://raw.githubusercontent.com/itsssskye/amongus-assets/main/Assets/Texture2D/Dead.png",
+    "size": [
+      100,
+      78
+    ],
+    "note": "Native corpse pose, mesh-masked to remove packed neighbors. Plain and idle images both use modern96x112 idle."
+  }
+}
