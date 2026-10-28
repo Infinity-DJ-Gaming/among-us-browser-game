@@ -1,9 +1,10 @@
-import {SKELD,mapById,mapRoomAt} from './maps.js?v=3.1.0';
-import {STATIONS,stationFor,tasksFor,TASK_MIN,WIRE_PANELS} from './task-data.js?v=3.1.0';
+import {lobbySpawn,lobbyLanding,lobbyMove,lobbyRoute,lobbyPointAllowed,LOBBY_TIMEOUT_SECONDS,LOBBY_QUICK_CHAT,MEETING_QUICK_CHAT} from './lobby.js?v=3.2.0';
+import {SKELD,mapById,mapRoomAt} from './maps.js?v=3.2.0';
+import {STATIONS,stationFor,tasksFor,TASK_MIN,WIRE_PANELS} from './task-data.js?v=3.2.0';
 export {STATIONS,stationFor,tasksFor};
-import {isImp,IMPOSTOR_ROLES,ALL_ROLES,initializeRoles,becomeGhost,roleAction,tickRole} from './roles.js?v=3.1.0';
+import {isImp,IMPOSTOR_ROLES,ALL_ROLES,initializeRoles,becomeGhost,roleAction,tickRole} from './roles.js?v=3.2.0';
 export {isImp};
-import {beginConversation,hearMessage,tickConversation,openingStatement} from './conversation.js?v=3.1.0';
+import {beginConversation,hearMessage,tickConversation,openingStatement} from './conversation.js?v=3.2.0';
 // Original browser implementation. Among Us artwork and audio belong to Innersloth.
 export const COLORS=['red','blue','green','pink','orange','yellow','black','white','purple','brown','cyan','lime','maroon','rose','banana','gray','tan','coral'];
 export const HEX=['#c51111','#132ed1','#127f2d','#ed54ba','#ef7d0d','#f5f557','#3f474e','#d6e0f0','#6b2fbb','#71491e','#44fff7','#5bfe4b','#6c2b3d','#ffd6ec','#ffffbe','#8397a7','#9f9989','#ec7578'];
@@ -57,7 +58,7 @@ export class Game {
  rand(a=0,b=1){return a+this.random()*(b-a);}
  pick(a){return a[Math.floor(this.random()*a.length)];}
  shuffle(a){let out=[...a];for(let i=out.length-1;i>0;i--){let j=Math.floor(this.random()*(i+1));[out[i],out[j]]=[out[j],out[i]];}return out;}
- reset(){this.s={mapId:this.map?.id||'skeld',matchId:null,phase:'menu',time:0,round:0,players:[],bodies:[],chat:[],events:[],sabotage:null,meeting:null,winner:null,doors:0,closedDoors:{},doorCooldowns:{},decontamination:{},taskDone:0,taskShown:0,taskTotal:1,elapsed:0,emergencyReady:0,cases:[],conversation:null};}
+ reset(){this.lobbyCache=new Map();this.s={mapId:this.map?.id||'skeld',matchId:null,phase:'menu',time:0,round:0,players:[],bodies:[],chat:[],events:[],sabotage:null,meeting:null,winner:null,doors:0,closedDoors:{},doorCooldowns:{},decontamination:{},taskDone:0,taskShown:0,taskTotal:1,elapsed:0,emergencyReady:0,cases:[],conversation:null};}
  event(type,data={}){const p=data.player?this.player(data.player):null;this.s.events.push({id:++this.serial,type,...(p?{x:p.x,y:p.y}:{}),...data});if(this.s.events.length>20)this.s.events.shift();}
  player(id){return this.s.players.find(p=>p.id===id);}
  uniqueName(name,id){const base=String(name).trim().slice(0,14)||'Player';let value=base,n=1;while(this.s.players.some(p=>p.id!==id&&!p.bot&&p.name===value))value=base.slice(0,10)+' ('+(n++)+')';return value;}
@@ -73,14 +74,17 @@ export class Game {
   }
  }
  lobby(){
-  this.s.phase='lobby';this.s.countdown=0;this.s.sabotage=null;this.s.bodies=[];this.s.chat=[];this.s.winner=null;this.s.cases=[];
-  for(let i=0;i<this.s.players.length;i++){let p=this.s.players[i];p.alive=true;p.role='Crewmate';p.team='crew';p.x=450+(i%5)*80;p.y=510+Math.floor(i/5)*60;p.path=[];p.input={x:0,y:0};p.vent=-1;p.lobbyTarget=null;p.lobbyWait=this.rand(1,6);p.lastSaid='';p.claims=[];}
-  beginConversation(this);this.say(null,'Walk around with WASD / arrows. Use the laptop or Wardrobe to customize.');
+  const returning=this.s.phase==='lobby',old=returning?this.lobbyCache:new Map();this.s.phase='lobby';this.s.countdown=0;this.s.sabotage=null;this.s.bodies=[];this.s.chat=[];this.s.winner=null;this.s.cases=[];
+  if(!returning){this.s.lobbyExpiresAt=this.s.time+LOBBY_TIMEOUT_SECONDS;this.s.lobbyTimeoutWarned=false;}
+  const used=new Set(this.s.players.filter(p=>old.has(p.id)).map(p=>old.get(p.id).lobbySeat));let next=0;
+  for(let i=0;i<this.s.players.length;i++){const p=this.s.players[i],prior=old.get(p.id);p.alive=true;p.role='Crewmate';p.team='crew';p.path=[];p.input={x:0,y:0};p.vent=-1;p.lastSaid='';p.claims=[];
+   if(prior){p.x=prior.x;p.y=prior.y;p.lobbySeat=prior.lobbySeat;p.lobbySpawn=prior.lobbySpawn;p.spawnSounded=prior.spawnSounded;p.lobbyTarget=prior.lobbyTarget;p.lobbyRoute=prior.lobbyRoute;p.lobbyWait=prior.lobbyWait;}
+   else{while(used.has(next))next++;p.lobbySeat=next;used.add(next);p.lobbySpawn=lobbySpawn(next,this.s.time,p.bot?i*.12:0);Object.assign(p,lobbyLanding(p.lobbySpawn));p.spawnSounded=false;p.lobbyTarget=null;p.lobbyRoute=[];p.lobbyWait=this.rand(1,6);}
+  }
+  this.lobbyCache=new Map(this.s.players.map(p=>[p.id,p]));beginConversation(this);this.say(null,'Walk around with WASD / arrows. Use the laptop to edit settings or Wardrobe to customize.');
  }
- say(p,text,channel='all',meta={}){let msg={id:++this.serial,player:p?.id||null,name:p?.name||'Ship',color:p?.color??-1,text:String(text).slice(0,360),time:this.s.time,dead:p?!p.alive:false,channel,...meta};this.s.chat.push(msg);if(this.s.chat.length>90)this.s.chat.shift();return msg;}
- moveLobby(p,dx,dy,dt){let len=Math.hypot(dx,dy);if(!len){p.moving=false;return;}let nx=Math.max(355,Math.min(875,p.x+dx/len*210*this.settings.speed*dt)),ny=Math.max(450,Math.min(675,p.y+dy/len*210*this.settings.speed*dt));
-  if(nx>603&&nx<710&&ny<480)ny=480;p.moving=Math.hypot(nx-p.x,ny-p.y)>.1;if(Math.abs(dx)>.05)p.face=dx<0?-1:1;p.x=nx;p.y=ny;
- }
+ say(p,text,channel='all',meta={}){let msg={id:++this.serial,player:p?.id||null,name:p?.name||'Ship',color:p?.color??-1,cosmetics:p?{...p.cosmetics}:null,text:String(text).slice(0,360),time:this.s.time,dead:p?!p.alive:false,channel,...meta};this.s.chat.push(msg);if(this.s.chat.length>90)this.s.chat.shift();return msg;}
+ moveLobby(p,dx,dy,dt){const before={x:p.x,y:p.y},point=lobbyMove(p,dx,dy,210*this.settings.speed*dt);Object.assign(p,point);p.moving=Math.hypot(point.x-before.x,point.y-before.y)>.1;if(Math.abs(dx)>.05)p.face=dx<0?-1:1;}
  start(){
   if(this.s.players.length<4)return false;this.s.round++;this.s.matchId=globalThis.crypto?.randomUUID?.()||Date.now().toString(36)+'-'+this.rand().toString(36);this.s.phase='intro';this.s.intro=9;this.s.elapsed=0;this.s.winner=null;this.s.bodies=[];this.s.sabotage=null;this.s.meeting=null;this.s.chat=[];this.s.doors=0;this.s.closedDoors={};this.s.decontamination={};this.s.taskDone=0;this.s.taskShown=0;this.s.emergencyReady=this.s.time+this.settings.emergencyCooldown;this.s.cases=[];beginConversation(this);
   let selected=this.shuffle(this.s.players),preferred=this.settings.preferred,me=this.s.players.find(p=>!p.bot);
@@ -113,15 +117,15 @@ export class Game {
  route(p,target){p.path=this.nav.path(p,target);p.target={x:target.x,y:target.y};}
  action(id,action,data={}){
   let p=this.player(id);if(!p)return false;
-  if(action==='chat'){let text=String(data.text||'').trim().slice(0,180);if(!text||this.s.time-(p.lastChat??-5)<.7||!['lobby','meeting'].includes(this.s.phase))return false;p.lastChat=this.s.time;this.say(p,text);this.hear(p,text);return true;}
+  if(action==='chat'){let text=String(data.text||'').trim().slice(0,this.s.phase==='lobby'?100:180);if(this.settings.chatType==='Quick Chat'&&!p.bot&&!(this.s.phase==='lobby'?LOBBY_QUICK_CHAT:MEETING_QUICK_CHAT).includes(text))return false;if(!text||this.s.time-(p.lastChat??-5)<.7||!['lobby','meeting'].includes(this.s.phase))return false;p.lastChat=this.s.time;this.say(p,text);this.hear(p,text);return true;}
   if(action==='customize'&&this.s.phase==='lobby'){
    if(typeof data.name==='string')p.name=this.uniqueName(data.name||p.name,p.id);
    if(Number.isInteger(data.color)&&data.color>=0&&data.color<COLORS.length){let holder=this.s.players.find(q=>q!==p&&q.color===data.color);if(!holder||holder.bot){if(holder)holder.color=p.color;p.color=data.color;}}
    const cosmetic=(key,max,fallback=-1)=>typeof data[key]==='string'?data[key].slice(0,96):Number.isInteger(data[key])?Math.max(-1,Math.min(max,data[key])):fallback;p.cosmetics={hat:cosmetic('hat',9),skin:cosmetic('skin',-1),visor:cosmetic('visor',5),pet:cosmetic('pet',0),nameplate:cosmetic('nameplate',7,0)};return true;
   }
   if(this.s.phase==='lobby'){
-   if(action==='input'){p.input={x:Math.max(-1,Math.min(1,Number(data.x)||0)),y:Math.max(-1,Math.min(1,Number(data.y)||0))};if(p.input.x||p.input.y)p.lobbyTarget=null;return true;}
-   if(action==='walk'&&Number.isFinite(data.x)&&Number.isFinite(data.y)){p.lobbyTarget={x:Math.max(355,Math.min(875,data.x)),y:Math.max(450,Math.min(675,data.y))};return true;}
+   if(action==='input'){p.input={x:Math.max(-1,Math.min(1,Number(data.x)||0)),y:Math.max(-1,Math.min(1,Number(data.y)||0))};if(p.input.x||p.input.y){p.lobbyTarget=null;p.lobbyRoute=[];}return true;}
+   if(action==='walk'&&Number.isFinite(data.x)&&Number.isFinite(data.y)){p.lobbyRoute=lobbyRoute(p,data);p.lobbyTarget=p.lobbyRoute.at(-1)||null;return true;}
   }
   if(this.s.phase==='meeting'&&action==='vote')return this.vote(p,data.target);
   const ability=roleAction(this,p,action,data);if(ability!==null)return ability;
@@ -250,7 +254,11 @@ export class Game {
   dt=Math.min(dt,.1);this.s.time+=dt;
   if(this.s.phase==='lobby'){
    if(this.s.countdown>0){this.s.countdown-=dt;if(this.s.countdown<=0){this.start();return;}}
-   for(const p of this.s.players){if(p.bot){p.lobbyWait-=dt;if(!p.lobbyTarget&&p.lobbyWait<=0){p.lobbyTarget={x:this.rand(380,850),y:this.rand(480,660)};p.lobbyWait=this.rand(3,9);}}if(p.input?.x||p.input?.y)this.moveLobby(p,p.input.x,p.input.y,dt);else if(p.lobbyTarget){let d=dist(p,p.lobbyTarget);if(d<8){p.lobbyTarget=null;p.moving=false;}else this.moveLobby(p,p.lobbyTarget.x-p.x,p.lobbyTarget.y-p.y,dt);}else p.moving=false;}
+   if(this.s.time>=this.s.lobbyExpiresAt){this.event('lobbyClosed');this.s.phase='menu';return;}if(!this.s.lobbyTimeoutWarned&&this.s.lobbyExpiresAt-this.s.time<=60){this.s.lobbyTimeoutWarned=true;this.event('lobbyTimeout');}
+   for(const p of this.s.players){if(!p.spawnSounded&&this.s.time>=p.lobbySpawn?.at){p.spawnSounded=true;this.event('lobbySpawn',{player:p.id,x:p.x,y:p.y});}if(p.lobbySpawn&&this.s.time<p.lobbySpawn.until){p.moving=false;continue;}
+    if(p.bot){p.lobbyWait-=dt;if(!p.lobbyTarget&&p.lobbyWait<=0){let target;for(let i=0;i<30;i++){target={x:this.rand(380,850),y:this.rand(360,870)};if(lobbyPointAllowed(target.x,target.y))break;}p.lobbyRoute=lobbyRoute(p,target);p.lobbyTarget=p.lobbyRoute.at(-1);p.lobbyWait=this.rand(3,9);}}
+    if(p.input?.x||p.input?.y)this.moveLobby(p,p.input.x,p.input.y,dt);else if(p.lobbyTarget){const target=p.lobbyRoute?.[0]||p.lobbyTarget,d=dist(p,target);if(d<8){p.lobbyRoute?.shift();if(!p.lobbyRoute?.length)p.lobbyTarget=null;p.moving=false;}else this.moveLobby(p,target.x-p.x,target.y-p.y,Math.min(dt,d/(210*this.settings.speed)));}else p.moving=false;}
+
    tickConversation(this,dt);return;
   }
   if(this.s.phase==='intro'){this.s.intro-=dt;if(this.s.intro<=0)this.s.phase='playing';return;}
@@ -285,7 +293,7 @@ export class Game {
   const tally=['result','eject'].includes(s.meeting?.stage),meeting=s.meeting?{...s.meeting,votes:Object.fromEntries(Object.entries(s.meeting.votes).map(([who,target])=>[who,who===id||tally&&!this.settings.anonymousVotes?target:'cast'])),ballots:tally?Object.entries(s.meeting.votes).map(([who,target])=>({target,color:this.settings.anonymousVotes?-1:this.player(who)?.color??-1})).sort((a,b)=>this.settings.anonymousVotes?a.target.localeCompare(b.target):0):[],result:s.meeting.result?{...s.meeting.result,...(!this.settings.confirm?{role:undefined,impostor:undefined}:{})}:null}:null;
   return {...s,meeting,taskDone:s.phase==='ended'?s.taskDone:s.sabotage?.type==='comms'?null:this.settings.taskBar==='Never'?0:this.settings.taskBar==='Meetings'?s.taskShown:s.taskDone,cases:undefined,conversation:{typing:typing&&(this.player(typing.player)?.alive||!viewer?.alive)?{player:typing.player}:null},settings:this.settings,players:s.players.map(p=>{
    const reveal=own(p)||s.phase==='ended'||isImp(viewer)&&isImp(p),appearance=s.phase==='playing'&&p.shifted?p.shifted:p;
-   return {id:p.id,mapId:this.map.id,originalRole:reveal?p.originalRole:undefined,metrics:own(p)?{...p.metrics}:undefined,name:p.name,color:p.color,displayName:appearance.name,displayColor:appearance.color,cosmetics:appearance.cosmetics||{hat:-1,visor:-1,pet:-1},bot:p.bot,role:reveal?p.role:'Crewmate',team:reveal?p.team:'crew',alive:p.alive,x:p.x,y:p.y,face:p.face,moving:p.moving,invisible:p.phantom>0&&p.transformUntil<s.time,effect:p.transformUntil>s.time?{kind:p.transformKind,until:p.transformUntil}:null,inVent:p.vent>=0,vent:own(p)?p.vent:-1,phantom:own(p)?p.phantom:0,transforming:p.transformUntil>s.time,shifted:own(p)?!!p.shifted:false,abilityCooldown:own(p)?p.abilityCooldown:0,abilityTime:own(p)?p.abilityTime:0,battery:own(p)?p.battery:0,tracking:own(p)&&p.trackTime>0?this.player(p.tracking)?{id:p.tracking,x:this.player(p.tracking).x,y:this.player(p.tracking).y}:null:null,notes:own(p)?p.notes||[]:[],interrogations:own(p)?p.interrogations:0,judgeUsed:own(p)?p.judgeUsed:false,shield:own(p)||viewer?.role==='Guardian Angel'?p.shield:0,hidden:!viewer?false:!own(p)&&s.phase==='playing'&&(p.vent>=0||!p.alive&&viewer.alive||viewer.alive&&!this.canRender(viewer,p)),deconUntil:p.deconUntil||0,waterDone:own(p)?p.waterDone:undefined,taskVariants:own(p)?p.taskVariants:undefined,keySlot:own(p)?p.keySlot:undefined,wifiReady:own(p)?p.wifiReady:undefined,wireRoute:own(p)?p.wireRoute:undefined,tasks:own(p)?p.tasks:[],done:own(p)?p.done:[],progress:own(p)?p.progress||{}:{},sampleReady:own(p)?p.sampleReady:0,cooldown:own(p)?p.cooldown:0,emergency:own(p)?p.emergency:0,sabCooldown:own(p)?p.sabCooldown:0,ventCooldown:own(p)?p.ventCooldown:0};
+   return {id:p.id,mapId:this.map.id,lobbySeat:p.lobbySeat,lobbySpawn:p.lobbySpawn,originalRole:reveal?p.originalRole:undefined,metrics:own(p)?{...p.metrics}:undefined,name:p.name,color:p.color,displayName:appearance.name,displayColor:appearance.color,cosmetics:appearance.cosmetics||{hat:-1,visor:-1,pet:-1},bot:p.bot,role:reveal?p.role:'Crewmate',team:reveal?p.team:'crew',alive:p.alive,x:p.x,y:p.y,face:p.face,moving:p.moving,invisible:p.phantom>0&&p.transformUntil<s.time,effect:p.transformUntil>s.time?{kind:p.transformKind,until:p.transformUntil}:null,inVent:p.vent>=0,vent:own(p)?p.vent:-1,phantom:own(p)?p.phantom:0,transforming:p.transformUntil>s.time,shifted:own(p)?!!p.shifted:false,abilityCooldown:own(p)?p.abilityCooldown:0,abilityTime:own(p)?p.abilityTime:0,battery:own(p)?p.battery:0,tracking:own(p)&&p.trackTime>0?this.player(p.tracking)?{id:p.tracking,x:this.player(p.tracking).x,y:this.player(p.tracking).y}:null:null,notes:own(p)?p.notes||[]:[],interrogations:own(p)?p.interrogations:0,judgeUsed:own(p)?p.judgeUsed:false,shield:own(p)||viewer?.role==='Guardian Angel'?p.shield:0,hidden:!viewer?false:!own(p)&&s.phase==='playing'&&(p.vent>=0||!p.alive&&viewer.alive||viewer.alive&&!this.canRender(viewer,p)),deconUntil:p.deconUntil||0,waterDone:own(p)?p.waterDone:undefined,taskVariants:own(p)?p.taskVariants:undefined,keySlot:own(p)?p.keySlot:undefined,wifiReady:own(p)?p.wifiReady:undefined,wireRoute:own(p)?p.wireRoute:undefined,tasks:own(p)?p.tasks:[],done:own(p)?p.done:[],progress:own(p)?p.progress||{}:{},sampleReady:own(p)?p.sampleReady:0,cooldown:own(p)?p.cooldown:0,emergency:own(p)?p.emergency:0,sabCooldown:own(p)?p.sabCooldown:0,ventCooldown:own(p)?p.ventCooldown:0};
   }),adminCounts:viewer&&dist(viewer,this.map.admin)<180?Object.fromEntries(this.map.rooms.map(r=>[r.name,s.players.filter(p=>p.alive&&p.vent<0&&this.roomAt(p)===r.name).length+s.bodies.filter(b=>this.roomAt(b)===r.name).length])):null,bodies:s.bodies.filter(b=>!viewer||!viewer.alive||dist(viewer,b)<850*this.settings.vision&&this.nav.line(viewer,b)).map(({killer,...b})=>b),chat:s.chat.filter(c=>!c.dead||!viewer?.alive),events:s.events.filter(e=>e.type==='kill'?e.player===id||e.killer===id:e.type==='notes'?e.player===id:e.type==='influence'?e.player===id||e.target===id:true).map(e=>e.type==='kill'?{id:e.id,type:e.type,player:e.player,killer:e.killer===id?id:null,killerColor:e.killerColor,victimColor:e.victimColor,killerHat:e.killerHat,victimHat:e.victimHat,style:e.style}:e)};
  }
 

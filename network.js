@@ -16,7 +16,7 @@ export class Room {
      humanId='human-'+conn.peer;this.connections.set(humanId,conn);const positions=new Map(this.game.s.players.filter(p=>!p.bot).map(p=>[p.id,{x:p.x,y:p.y}]));this.game.addHuman(humanId,data.name,data.color,data.cosmetics);this.game.lobby();for(const [id,pos]of positions)Object.assign(this.game.player(id),pos);this.game.say(null,`${this.game.player(humanId).name} joined the room.`);conn.send({type:'welcome',id:humanId,code:this.code});this.broadcast();
     }else if(data.type==='action'&&humanId){this.game.action(humanId,data.action,data.data||{});}
    });
-   conn.on('close',()=>{if(!humanId)return;this.connections.delete(humanId);let p=this.game.player(humanId);if(p){if(this.game.s.phase==='lobby'){this.game.s.players=this.game.s.players.filter(p=>p.id!==humanId);this.game.fillBots();this.game.lobby();}else{p.bot=true;p.input={x:0,y:0};p.think=0;p.wait=1;p.memory=[];p.suspicion={};p.goal=null;}}this.game.say(null,`${p?.name||'A player'} disconnected. A bot has taken over.`);});
+   conn.on('close',()=>{if(!humanId)return;this.connections.delete(humanId);let p=this.game.player(humanId);if(p){if(this.game.s.phase==='lobby'){this.game.s.players=this.game.s.players.filter(p=>p.id!==humanId);this.game.fillBots();this.game.lobby();}else{p.bot=true;p.input={x:0,y:0};p.think=0;p.wait=1;p.memory=[];p.suspicion={};p.goal=null;}}this.game.event('lobbyLeave',{player:humanId});this.game.say(null,`${p?.name||'A player'} disconnected. A bot has taken over.`);});
   });this.peer.on('error',e=>this.onStatus('Room connection: '+e.type+'. You can still play with bots.'));
  }
  join(code,name,color,cosmetics){
@@ -25,7 +25,7 @@ export class Room {
   this.peer=new Peer();let welcomed=false;
   this.peer.on('open',()=>{let conn=this.peer.connect('among-web-'+this.code,{reliable:true});this.server=conn;
    conn.on('open',()=>conn.send({type:'hello',name,color,cosmetics}));
-   conn.on('data',data=>{if(data.type==='welcome'){welcomed=true;this.id=data.id;this.onStatus('Connected to '+this.code);}if(data.type==='state')this.onState(data.state);if(data.type==='error'){this.onStatus(data.text);this.close();}});
+   conn.on('data',data=>{if(data.type==='welcome'){welcomed=true;this.id=data.id;this.onStatus('Connected to '+this.code);}if(data.type==='state')this.onState(data.state);if(data.type==='error'){this.onStatus(data.text);this.close();this.onState(null,data.text);}});
    conn.on('close',()=>{if(this.mode==='client'){this.onStatus('The host disconnected. Return to the menu to play another match.');this.onState(null);}});
   });this.peer.on('error',e=>this.onStatus('Could not connect ('+e.type+'). Check the code and that the host is still in the lobby.'));
   setTimeout(()=>{if(this.mode==='client'&&!welcomed)this.onStatus('Still connecting. Some networks block peer-to-peer connections; try another network or play with bots.');},12000);

@@ -1,14 +1,14 @@
-# Among Us — browser fan game v3.1
+# Among Us — browser fan game v3.2
 
 Play: https://infinity-dj-gaming.github.io/among-us-browser-game/
 
-A static, unofficial fan browser implementation with original Among Us artwork and 314 original audio clips. Run `node serve.mjs` and open http://127.0.0.1:8123. No build or API key is needed for bot games.
+A static, unofficial fan browser implementation with original Among Us artwork and original audio recordings. Run `node serve.mjs` and open http://127.0.0.1:8123. No build or API key is needed for bot games.
 
 ## Playing
 
 Play offers Local, Online, How to Play, Practice and a bot-match option. Create Game selects The Skeld or Polus, 4–15 players and 1–3 Impostors. The host starts a five-second countdown. Bots fill empty seats. Practice uses stationary dummies and grants no match rewards. Local browser rooms use an internet room code; automatic LAN discovery belongs to the official game.
 
-WASD/arrows: move; E/Space: use; Q: kill; R: report; V: vent; F: sabotage; C: role ability; Tab/M: map; Esc: close/pause. Task panels have pointer controls and keyboard alternatives. Walk in the lobby and use the laptop/Wardrobe to customize.
+WASD/arrows: move; E/Space: use; Q: kill; R: report; V: vent; F: sabotage; C: role ability; Tab/M: map; Esc: close/pause. Task panels have pointer controls and keyboard alternatives. Walk in the lobby and use the laptop to edit game settings, or Wardrobe to customize.
 
 Online uses PeerJS/WebRTC. Create a private room and share its six-character code, or switch PRIVATE to PUBLIC for the community Find Game list. Select a region and filter by map/Impostor count. The directory is an ephemeral connected-browser service: hosts re-advertise after a directory keeper leaves. It is separate from official matchmaking. Keep the host tab open and active. No TURN relay is bundled, so some networks cannot connect. The host can kick/ban connected players; disconnected players become bots. Browser-local identity is not competitive anti-cheat.
 
@@ -45,7 +45,7 @@ Archives: https://github.com/itsssskye/amongus-assets , https://github.com/AI070
 
 ## Checks
 
-Run `npm test` (`node --test tests.mjs tests-v2.mjs tests-v4.mjs tests-v5.mjs`). The suite covers roles, tasks, maps, partial visibility, audio falloff, Lights, Polus systems, progression/ownership/path rules, privacy and complete seeded matches. The accompanying validation report records browser checks. Temporary QA pages are excluded from releases.
+Run `npm test` (`node --test tests.mjs tests-v2.mjs tests-v4.mjs tests-v5.mjs tests-v6.mjs`). The suite covers roles, tasks, maps, partial visibility, audio falloff, Lights, Polus systems, progression/ownership/path rules, privacy and complete seeded matches. The accompanying validation report records browser checks. Temporary QA pages are excluded from releases.
 
 
 ## v3.1 map, reveal and accounts
@@ -55,3 +55,14 @@ The installed Xbox game supplied the original Skeld/Polus personal-map silhouett
 The nine-second intro has separate Shhh, faction lineup/count, and individual role phases. Role audio plays once on the individual-role transition. Every crewmate appears in the crew lineup; an Impostor sees their team. The local player stands at the front. Victory/Defeat shows the winning team, including native translucent ghosts, followed by Continue and the earned-rewards view. Play uses the full Local/Online card artwork and original labels. The HUD uses an outlined compact task list, vertical Tasks tab, completed-stage counts and segmented task bar.
 
 My Account supports real Firebase email/password sign-up, sign-in, sign-out, display-name changes, verification emails and password-recovery emails. The production project is `among-us-browser-game`, with Email/Password enabled and `infinity-dj-gaming.github.io` authorized. Firebase uses session persistence and does not store raw passwords in this game's local storage. Guests can keep playing when Firebase is unavailable. These are accounts for this fan game, separate from official Among Us accounts. Wallets, cosmetics and statistics remain browser-local; Firebase cloud progression is not implemented. See FIREBASE_SETUP.md.
+
+
+## v3.2 native lobby, creation and chat
+
+Local and Online keep the same full artwork shown on the initial Play cards. The full-screen Create Game route uses the original map artwork, map icons, Brook labels, capacity-dependent crewmates, General/Chat tabs, capacity, Impostor count, skill tag and region. Only the implemented Skeld/Polus maps and Classic mode are enabled.
+
+The dropship uses the installed original background, separate crates/laptop/Wardrobe station, right-side map/code/capacity/privacy panel, host controls and native action art. Joining runs the original 55-frame chair materialization/jump sequence at 24 fps before movement unlocks. Ten physical seats wrap for players eleven through fifteen. Existing players retain their positions when someone joins. Bots and click-to-walk route around the floor props. Keyboard and touch movement work in the lobby. Idle rooms warn at sixty seconds remaining and close after ten minutes.
+
+Lobby chat now follows the supplied original reference: translucent gray panel, wide white rows, color/cosmetic portraits, outlined sender names, input, 100-character counter and Send state. Native controls switch between Free Chat and Quick Chat; Quick Chat rooms reject arbitrary human text on the host. Player controls support local mute/unmute, plus host kick/ban for connected humans. Replies and typing cues remain connected to the evidence-based dialogue system. The native Play Again and Quit art is used after rewards.
+
+All seven user-supplied recordings are packaged unchanged: Spawn_in_lobby, Player_kick, Lobby_theme, Lobby_options_update, Lobby_timeout, Lobby_code_copy and The_Skeld_ambience. Spawn/leave/settings/timeout/code copy use their matching action. Lobby theme and the supplied atmosphere loop simultaneously on separate music/effects buses, and stop on leaving the lobby. They respect audio preferences. No official matchmaking, moderation/report service or crossplay is claimed.

@@ -1,6 +1,6 @@
 // A local, evidence-based conversation system: turn-taking, references, questions,
 // rebuttals and persistent claims. No API key or remote language service is used.
-import {isImp} from './roles.js?v=3.1.0';
+import {isImp} from './roles.js?v=3.2.0';
 const colors=['red','blue','green','pink','orange','yellow','black','white','purple','brown','cyan','lime','maroon','rose','banana','gray','tan','coral'];
 const norm=t=>String(t).toLowerCase().replace(/[’']/g,'').replace(/[^a-z0-9?@\s]/g,' ').replace(/\s+/g,' ').trim();
 const last=(a,p)=>[...a].reverse().find(p);
@@ -77,7 +77,7 @@ function evidence(g,p,target){let f=facts(g,p),id=target?.id;
 export function makeReply(g,p,entry){
  const source=entry.source,speaker=g.player(source.player),parsed=entry.parsed,f=facts(g,p),address=(!speaker?.bot||entry.depth<=1)&&speaker?'@'+speaker.name+', ':'',target=g.player(parsed.targets[0]);let text;
  if(g.s.phase==='lobby'){
-  text=/how|move|control/.test(parsed.low)?'WASD or arrows to walk. E opens the wardrobe in this lobby. In a match, E uses consoles, R reports and Q kills if youre imp':/hat|color|cosmetic/.test(parsed.low)?'the laptop opens the wardrobe. pick whatever you like':/role|viper|shape|engineer/.test(parsed.low)?'roles are random unless you pick a practice role in settings':parsed.intent==='greeting'?g.pick(['hey! ready when you are','yep im ready, gl everyone','hi :) lets go','ready! just choosing a hat']):'got you. im ready to start whenever you are';
+  text=/how|move|control/.test(parsed.low)?'WASD or arrows to walk. Laptop for settings; Wardrobe for cosmetics.':/hat|color|cosmetic/.test(parsed.low)?'the Wardrobe button or the small crate with a hat opens cosmetics':/role|viper|shape|engineer/.test(parsed.low)?'roles are random unless you pick a practice role in settings':parsed.intent==='greeting'?g.pick(['hey! ready when you are','yep im ready, gl everyone','hi :) lets go','ready! just choosing a hat']):'got you. im ready to start whenever you are';
  }else if(parsed.intent==='accuse'&&parsed.targets.includes(p.id)){
   if(isImp(p)){p.alibiRoom??=p.lastRoom||g.roomAt(p);text=parsed.kill?`I didn’t kill them. ${alibi(g,p)} Did you see the kill itself, or just someone with my color? Shapeshifter is on.`:parsed.vent?`A vent doesn’t prove a kill. ${alibi(g,p)} Who actually saw the body?`:`What did I do that was suspicious? ${alibi(g,p)}`;}
   else if(parsed.vent&&p.role==='Engineer')text='I’m Engineer. Yes, I used that vent. I can demonstrate it, but tell me if you actually saw a kill.';

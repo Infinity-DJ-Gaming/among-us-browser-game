@@ -1,3 +1,4 @@
+const LOBBY_FILES={lobbySpawn:'assets-lobby-spawn.ogg',lobbyLeave:'assets-lobby-leave.ogg',lobbyOptions:'assets-lobby-options.wav',lobbyTimeout:'assets-lobby-timeout.wav',lobbyCopy:'assets-lobby-copy.wav'};
 const ALIASES={medScan:'scan',phantom:'phantomIn',click:'button',complete:'taskComplete',roundstart:'roundStart',vent:'ventOpen',kill:'killKnife',alarm:'alarmCritical',chat:'notification',tab:'button',select:'button',cosmeticEquip:'button',shopOpen:'panelOpen',purchase:'stardustPurchase',deny:'notificationError',cubeActivate:'button',equip:'button',roleGuardianAngel:'roleCrewmate',roleInfluencer:'roleCrewmate'};
 // World distances use the same pixel coordinates as player/map positions.
 export function spatialVolume(source,listener,{maxDistance=900,referenceDistance=140,occluded=false,occlusion=.35}={}){
@@ -18,7 +19,7 @@ export class SoundBank {
   await Promise.all([base(),extra()]);
  }
  async decode(){if(!this.context||!this.bytes)return;if(this.decodePromise)return this.decodePromise;
-  this.decodePromise=(async()=>{this.buffer??=await this.context.decodeAudioData(this.bytes.slice(0));const files={...this.meta.external,acidKill1:{file:'assets-sfx-acid1.ogg'},acidKill2:{file:'assets-sfx-acid2.ogg'}};
+  this.decodePromise=(async()=>{this.buffer??=await this.context.decodeAudioData(this.bytes.slice(0));const files={...this.meta.external,...Object.fromEntries(Object.entries(LOBBY_FILES).map(([k,file])=>[k,{file}])),acidKill1:{file:'assets-sfx-acid1.ogg'},acidKill2:{file:'assets-sfx-acid2.ogg'}};
    await Promise.all(Object.entries(files).map(async([key,v])=>{try{if(!this.external[key])this.external[key]=await this.context.decodeAudioData(await fetch(v.file).then(r=>r.arrayBuffer()));}catch{}}));
   })().catch(e=>{this.decodePromise=null;console.warn('Original audio decode failed',e.message);});return this.decodePromise;
  }
@@ -26,9 +27,9 @@ export class SoundBank {
   this.bankPromises[bank]=(async()=>{const bytes=this.bankBytes[bank]||await fetch(this.extra.banks[bank].file).then(r=>r.arrayBuffer());const decoded=await this.context.decodeAudioData(bytes.slice(0));this.bankBuffers[bank]=decoded;delete this.bankBytes[bank];return decoded;})().catch(e=>{delete this.bankPromises[bank];console.warn('Audio bank unavailable: '+bank,e.message);return null;});return this.bankPromises[bank];
  }
  unlock(){if(!this.context){const AC=globalThis.AudioContext||globalThis.webkitAudioContext;if(AC)this.context=new AC();}this.context?.resume().catch(()=>{});this.decode().catch(()=>{});this.getBank('actions').catch(()=>{});}
- has(key){key=ALIASES[key]||key;return !!(this.meta?.clips[key]||this.extra?.clips[key]||this.meta?.external[key]||['acidKill1','acidKill2'].includes(key));}
+ has(key){key=ALIASES[key]||key;return !!(this.meta?.clips[key]||this.extra?.clips[key]||this.meta?.external[key]||['acidKill1','acidKill2'].includes(key)||LOBBY_FILES[key]);}
  play(key,volume=.6,options={}){
-  if(!this.enabled()||!this.context)return null;key=ALIASES[key]||key;const expanded=this.extra?.clips[key],external=this.external[key],clip=expanded|| (external?{start:0,duration:external.duration}:this.meta?.clips[key]);if(!clip)return null;
+  if(!this.enabled()||!this.context)return null;key=ALIASES[key]||key;const expanded=LOBBY_FILES[key]?null:this.extra?.clips[key],external=this.external[key],clip=expanded||(LOBBY_FILES[key]?{start:0,duration:external?.duration||3600}:external?{start:0,duration:external.duration}:this.meta?.clips[key]);if(!clip)return null;
   let stopped=false,source=null,gain=null,panner=null;const stop=()=>{if(stopped)return;stopped=true;this.active.delete(stop);try{source?.stop();source?.disconnect();gain?.disconnect();panner?.disconnect();}catch{}};this.active.add(stop);
   const begin=buffer=>{if(stopped||!buffer||!this.enabled()){stop();return;}source=this.context.createBufferSource();gain=this.context.createGain();source.buffer=buffer;
    stop.refresh=()=>{gain.gain.value=Math.max(0,volume)*(options.bus==='music'?this.musicVolume:this.volume);};stop.refresh();source.connect(gain);
@@ -36,13 +37,13 @@ export class SoundBank {
    source.onended=()=>{if(!options.loop)stop();};const start=Math.max(0,clip.start),duration=Math.min(clip.duration,buffer.duration-start);if(duration<=0){stop();return;}
    if(options.loop){source.loop=true;source.loopStart=start;source.loopEnd=start+duration;source.start(0,start);}else source.start(0,start,duration);
   };
-  const buffer=expanded?this.bankBuffers[expanded.bank]:external||this.buffer;if(buffer)begin(buffer);else if(expanded)this.getBank(expanded.bank).then(begin);else this.decode().then(()=>begin(this.external[key]||this.buffer));return stop;
+  const buffer=expanded?this.bankBuffers[expanded.bank]:LOBBY_FILES[key]?external:external||this.buffer;if(buffer)begin(buffer);else if(expanded)this.getBank(expanded.bank).then(begin);else this.decode().then(()=>begin(LOBBY_FILES[key]?this.external[key]:this.external[key]||this.buffer));return stop;
  }
  playAt(key,source,listener,options={}){
   const {volume=.6,line,...settings}=options;let occluded=!!settings.occluded;if(typeof line==='function')occluded=!line(listener,source);const attenuation=spatialVolume(source,listener,{...settings,occluded});if(attenuation<=0)return null;
   const pan=settings.pan===false?0:Math.max(-1,Math.min(1,(source.x-listener.x)/(settings.maxDistance||900)*1.3));return this.play(key,volume*attenuation,{...settings,pan});
  }
- setLoop(channel,key,volume=.2,options={}){const previous=this.loops.get(channel);if(previous?.key===key&&previous.volume===volume&&previous.bus===options.bus)return;previous?.stop();this.loops.delete(channel);if(!key||!this.enabled())return;const stop=this.play(key,volume,{...options,loop:true});if(stop)this.loops.set(channel,{key,volume,bus:options.bus,stop});}
+ setLoop(channel,key,volume=.2,options={}){const previous=this.loops.get(channel);if(previous?.key===key&&previous.volume===volume&&previous.bus===options.bus)return;previous?.stop();this.loops.delete(channel);if(!key||!this.enabled())return;if(key==='lobbyMusic'&&channel==='music'||key==='lobbyAtmosphere'&&channel==='atmosphere'){const el=new Audio(key==='lobbyMusic'?'assets-lobby-music.mp3':'assets-lobby-atmosphere.ogg');el.dataset.gameAudio=key;document.body.append(el);el.loop=true;const stop=()=>{el.pause();el.removeAttribute('src');el.load();el.remove();this.active.delete(stop);};stop.refresh=()=>{el.volume=Math.max(0,Math.min(1,volume*(options.bus==='music'?this.musicVolume:this.volume)));};stop.refresh();this.active.add(stop);el.play().catch(()=>{});this.loops.set(channel,{key,volume,bus:options.bus,stop});return;}const stop=this.play(key,volume,{...options,loop:true});if(stop)this.loops.set(channel,{key,volume,bus:options.bus,stop});}
  setMusic(scene,volume=.35){const key=scene==='menu'?'menuMusic':scene==='lobby'?'lobbyMusic':null;this.setLoop('music',key,volume,{bus:'music'});}
  setAmbience(map,room,volume=.15){const polus=String(map).toLowerCase()==='polus';let key;
   if(polus)key=({'Boiler Room':'ambPolusBoiler',Communications:'ambPolusComms',Decontamination:'ambPolusDecontam',Electrical:'ambPolusElectrical',Laboratory:'ambPolusLab',MedBay:'ambPolusLab',O2:'ambPolusO2',Security:'ambSecurity','Specimen Room':'ambPolusSpecimen',Dropship:'ambPolusOutside',Outside:'ambPolusOutside','Seismic Stabilizers':'ambPolusSeismic'})[room]||'ambPolusOutside';

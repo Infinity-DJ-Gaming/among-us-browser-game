@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"><meta name="theme-color" content="#06070b"><meta name="description" content="An unofficial Among Us browser fan game. Play The Skeld with bots or host a friend lobby."><title>Among Us • Browser Fan Game</title><link rel="icon" href="assets-crew-red.png"><link rel="stylesheet" href="styles.css?v=3.1.0"><link rel="stylesheet" href="v2.css?v=3.1.0"><link rel="stylesheet" href="v3.css?v=3.1.0"><link rel="stylesheet" href="v4.css?v=3.1.0"><link rel="stylesheet" href="v5.css?v=3.1.0">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"><meta name="theme-color" content="#06070b"><meta name="description" content="An unofficial Among Us browser fan game. Play The Skeld with bots or host a friend lobby."><title>Among Us • Browser Fan Game</title><link rel="icon" href="assets-crew-red.png"><link rel="stylesheet" href="styles.css?v=3.2.0"><link rel="stylesheet" href="v2.css?v=3.2.0"><link rel="stylesheet" href="v3.css?v=3.2.0"><link rel="stylesheet" href="v4.css?v=3.2.0"><link rel="stylesheet" href="v5.css?v=3.2.0"><link rel="stylesheet" href="v6.css?v=3.2.0"><link rel="stylesheet" href="lobby-chat.css?v=3.2.0">
 </head>
 <body>
  <canvas id="space" aria-hidden="true"></canvas>
@@ -19,12 +19,12 @@
   </nav>
   <div class="menu-window"><span id="loading-ship" role="status">Loading game assets…</span><canvas id="menu-space" aria-label="Crewmates drifting past the ship window"></canvas><div class="menu-window-shine"></div><div class="menu-window-frame"></div><button id="menu-spawn" aria-label="More floating crewmates">×</button>
    <section id="play-menu" class="hidden" aria-label="Play"><button id="play-back" class="round-button" aria-label="Back to main menu">←</button><h1>PLAY</h1><button id="solo" disabled class="au-button primary">PLAY WITH BOTS</button><button id="host" disabled class="au-button">HOST ONLINE</button><button id="join" disabled class="au-button">ENTER CODE</button><div><button id="guide" class="round-button" aria-label="How to play">?</button><button id="sound" class="round-button" aria-label="Toggle sound">♫</button></div></section>
-  </div><span class="menu-build">Browser fan game · v3.1</span>
+  </div><span class="menu-build">Browser fan game · v3.2</span>
  </main>
  <section id="lobby" class="screen hidden">
   <canvas id="lobby-canvas" aria-label="Lobby with crewmates"></canvas>
   <header class="lobby-header"><button class="round-button back-menu" aria-label="Back to menu">←</button><span>THE SKELD</span><div class="lobby-tools"><button id="lobby-wardrobe" class="au-button small">WARDROBE</button><button id="lobby-help" class="round-button" aria-label="How to play">?</button></div></header>
-  <div class="lobby-walk-hint">WASD / arrows to walk · E or laptop for wardrobe</div><aside id="settings-panel" class="game-settings"><h2>Game Settings</h2><div id="settings-fields"></div><small id="settings-note">Bots fill empty player slots.</small></aside>
+  <div class="lobby-walk-hint">WASD / arrows to walk · E or laptop for settings · Wardrobe to customize</div><aside id="settings-panel" class="game-settings"><h2>Game Settings</h2><div id="settings-fields"></div><small id="settings-note">Bots fill empty player slots.</small></aside>
   <aside class="crew-list"><h2>Players <span id="crew-count">10/10</span></h2><div id="roster"></div></aside>
   <div class="lobby-footer"><div class="room-info"><span id="room-label">BOT LOBBY</span><button id="room-privacy" class="au-button small hidden">PRIVATE</button><button id="room-code" title="Copy room code">OFFLINE</button><small id="network-status">No connection needed</small></div><button id="start" class="start-button">START <span>▶</span></button><button id="lobby-chat-toggle" class="au-button small">CHAT <span id="chat-dot">●</span></button></div>
   <div id="lobby-chat" class="chat-panel hidden"><div class="chat-top">Lobby chat<button id="lobby-chat-close" aria-label="Close chat">×</button></div><div id="lobby-messages" class="messages"></div><form id="lobby-chat-form"><input id="lobby-chat-input" maxlength="180" placeholder="Say something…" autocomplete="off" aria-label="Lobby message"><button aria-label="Send lobby message">➤</button></form></div>
@@ -53,6 +53,6 @@
  <div id="overlay" class="overlay hidden" role="dialog" aria-modal="true"><div id="modal" class="modal"></div></div>
  <div id="intro" class="cinematic hidden"></div><div id="banner" class="cinematic hidden"></div><canvas id="kill-cinematic" class="hidden" aria-label="Kill animation"></canvas>
  <div id="toast" role="status"></div>
- <script src="peerjs.min.js"></script><script type="module" src="game.js?v=3.1.0"></script>
+ <script src="peerjs.min.js"></script><script type="module" src="game.js?v=3.2.0"></script>
 </body></html>
 
