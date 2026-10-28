@@ -1,4 +1,4 @@
-# Among Us — browser fan game v3.3
+# Among Us — browser fan game v3.4
 
 Play: https://infinity-dj-gaming.github.io/among-us-browser-game/
 
@@ -31,7 +31,7 @@ Completed matches award Beans, XP and Pods for the one active Cosmicube. Tasks, 
 
 MIRA Cosmicube is free (37 items); Polus costs 3,000 Beans (48 items); Snack costs 2,500 Beans (30 items). Their original node positions, Pod costs and connected paths are included. Activate/deactivate one cube, earn its unique Pods and unlock adjacent nodes. Completed cubes cannot be activated. Stars and bundle covers are displayed as official-game offers; this fan game has no payment flow, premium wallet or official account connection.
 
-Original footsteps vary by floor material. Room ambience changes with location; menu/lobby music uses a separate volume control. Shapeshift, Phantom, switches, Polus doors and decontamination sounds use world distance, occlusion attenuation and stereo direction, with a hard audible cutoff. Noisemaker remains a global role alert. Transformation sprites use the same source-to-world scale as the native crewmate. Actor pixels are softly clipped by the visibility mask, preserving the lit portion of a partly shadowed player.
+Original footsteps vary by floor material. Room ambience changes with location; menu/lobby music uses a separate volume control. Shapeshift, Phantom, switches, Polus doors and decontamination sounds use world distance, line-of-sight filtering and stereo direction, with a hard audible cutoff. Noisemaker remains a global role alert. Transformation sprites use the same source-to-world scale as the native crewmate. Actor pixels are softly clipped by the visibility mask, preserving the lit portion of a partly shadowed player.
 
 ## Fidelity and sources
 
@@ -75,3 +75,16 @@ Meetings and lobbies share the same native chat component: translucent panel, or
 Polus now retains the installed game's original Ground, Cliff and LavaOrange mesh vertex colors, including the purple terrain, paths, snow patches, ground markings and lava bands. The prior imported mesh had lost all colors, and the renderer substituted three flat fills. The new baked map uses the original installed mesh data instead; native room/prop art stays registered at the existing world coordinates. `assets-polus-ground.json` records the three native mesh IDs/counts.
 
 Navigation is rebuilt from 72 active, non-trigger native Polus collider paths, with original transforms/offsets. Shadow-only and dynamic door colliders are excluded from the static mask. A 16-pixel browser foot radius and 16-pixel navigation cells preserve the narrow drill-yard access and actual entrances. The flood fill retains the playable connected floor; roofs, cliffs, lava and obstacles remain blocked. This is native geometry rasterized for the browser, not the Unity physics engine. All twelve door approaches, both specimen tunnels and all station variants are checked. Manual and automatic movement use small collision-checked steps; automatic movement no longer snaps through a nearby closed door. Ghost movement remains unrestricted by walls.
+
+
+## v3.4 contextual conversations and disguise perception
+
+Chat parses actor, victim, room and addressee separately. Colors and full player names work with common room slang, kill/vent/fake-task accusations, personal alibis, body-location questions, proof requests, clears, skips, role claims, corrections and follow-up pronouns. Bots use short authored phrases, sometimes caps/slang/emojis, with typing gaps. They deny accusations with consistent alibis, challenge contradictory claims, ask named players to vouch, distinguish rumors from witnessed evidence, and can counteraccuse. Replies are bounded and repeated lines suppressed. This is local rule-based game AI; arbitrary language understanding is not claimed.
+
+Each bot knows only its own observations and public statements. Witnessed scans can counter rumors; venting alone allows the Engineer possibility. Repeated or relayed accusations do not become multiple independent witnesses. The report banner/chat no longer announces the hidden room automatically. A reporter answers where; other players can state where they were. Crowded sightings preserve discrete kill/transform evidence. Votes use firsthand evidence and bounded suspicion, with skips on weak information.
+
+Unseen Shapeshifter kills, vents and sightings use the copied identity. Bots that see the current transformation/unshift can identify the real shifter; seeing two copies creates ambiguity. Knowledge of an older transformation cannot expose a later unseen disguise. Shapeshift and unshift immobilize humans and bots for the animation, including direct movement, queued path movement and killing. Held input resumes after completion.
+
+Other players' transformation events are delivered only to observers who could see the actor when the event happened. Distance falloff and a hard line-of-sight audio gate apply at playback; walls, reduced vision and invisibility mute hidden actions. Entering sight later does not replay an unheard transformation. The local actor hears their own effect. Noisemaker alerts retain their global role behavior. Lobby music/atmosphere are unchanged.
+
+Validation: 102 deterministic checks across tests.mjs, tests-v2.mjs and tests-v4.mjs through tests-v8.mjs. Run with `node --test tests.mjs tests-v2.mjs tests-v4.mjs tests-v5.mjs tests-v6.mjs tests-v7.mjs tests-v8.mjs`.

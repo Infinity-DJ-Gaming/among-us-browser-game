@@ -96,3 +96,8 @@ Read-only source: the user's installed `Among Us_Data/StreamingAssets/aa/Win10/S
 The PolusShip hierarchy supplied original transforms and Edge/Polygon/Box/CircleCollider2D paths. Only enabled, active, non-trigger collider layers 0/9/12 are rasterized; layers 10/11 are shadow data, and temporary decontamination-door colliders are excluded from the static mask. Original geometry is padded by the browser's 16-pixel foot radius and rasterized to a connected 16-pixel grid. This is a browser navigation approximation derived from native outlines, with no hand-carved passages. Runtime doors and decontamination keep their separate state logic. `assets-polus-collision.json` records the original paths/IDs for inspection. The installed game and its executable/configuration were not modified.
 
 Meeting chat reuses the same original assets and component as the lobby, with a larger viewport layout. Native artwork/audio remain Innersloth property; no new rights are claimed.
+
+
+### v3.4 authored bot dialogue and observation model
+
+The user supplied the conversational tone/examples and requested actor/victim/place parsing, names/colors, contextual denials, evidence and disguise blame. chat-language.js and dialogue.js are new locally authored modules, with no remote AI service or copied third-party dialogue corpus. perception.js maps visible actors to their current copied appearance unless the observer witnessed the current disguise token. Existing installed art/audio are reused without further extraction. No new third-party assets or license claims are introduced. Fixed listener lists for transformation events are host-only and stripped from snapshots; later movement cannot reveal earlier hidden sound events.

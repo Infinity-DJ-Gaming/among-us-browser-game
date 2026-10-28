@@ -1,10 +1,10 @@
 {
   "name": "among-us-browser",
-  "version": "3.3.0",
+  "version": "3.4.0",
   "private": true,
   "type": "module",
   "scripts": {
     "start": "node serve.mjs",
-    "test": "node --test tests.mjs tests-v2.mjs tests-v4.mjs tests-v5.mjs tests-v6.mjs tests-v7.mjs"
+    "test": "node --test tests.mjs tests-v2.mjs tests-v4.mjs tests-v5.mjs tests-v6.mjs tests-v7.mjs tests-v8.mjs"
   }
 }

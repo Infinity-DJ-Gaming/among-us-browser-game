@@ -1,3 +1,4 @@
+import {recordShiftWitnesses,isShifting} from './perception.js?v=3.4.0';
 export const IMPOSTOR_ROLES=['Impostor','Shapeshifter','Phantom','Viper'];
 export const CREW_ROLES=['Crewmate','Engineer','Scientist','Tracker','Noisemaker','Detective','Judge'];
 export const GHOST_ROLES=['Guardian Angel','Influencer'];
@@ -22,7 +23,7 @@ export function initializeRoles(g,selected,preferred,me){
  if(g.settings.modernRoles!==false){g.shuffle(crew).slice(0,6).forEach((p,i)=>p.role=CREW_ROLES[i+1]);g.shuffle(selected.filter(isImp)).forEach((p,i)=>p.role=IMPOSTOR_ROLES[1+i%3]);}
  else{if(crew[0])crew[0].role='Engineer';if(crew[1])crew[1].role='Scientist';}
  if(preferred!=='Random'&&me){me.role=GHOST_ROLES.includes(preferred)?'Crewmate':preferred;me.team=IMPOSTOR_ROLES.includes(me.role)?'impostor':'crew';}
- for(const p of selected){p.team=isImp(p)?'impostor':'crew';p.originalRole=p.role;p.abilityCooldown=0;p.abilityTime=0;p.shifted=null;p.phantom=0;p.shield=0;p.tracking=null;p.trackTime=0;p.battery=12;p.progress={};p.notes=[];p.interrogations=3;p.overrule=null;p.judgeUsed=false;p.sampleReady=0;p.messagesSent=0;}
+ for(const p of selected){p.team=isImp(p)?'impostor':'crew';p.originalRole=p.role;p.abilityCooldown=0;p.abilityTime=0;p.shifted=null;p.disguiseToken=0;p.phantom=0;p.shield=0;p.tracking=null;p.trackTime=0;p.battery=12;p.progress={};p.notes=[];p.interrogations=3;p.overrule=null;p.judgeUsed=false;p.sampleReady=0;p.messagesSent=0;}
  if(me&&GHOST_ROLES.includes(preferred)){me.alive=false;me.role=preferred;}
 }
 export function becomeGhost(g,p){
@@ -42,14 +43,14 @@ export function roleAction(g,p,action,data){
   let target=g.player(data.target),m=g.s.meeting;if(p.role!=='Detective'||!p.alive||phase!=='meeting'||!m?.body||p.interrogations<=0||p.abilityCooldown>0||!target)return false;
   const death=g.s.cases.find(c=>c.victim===m.body),location=death?.locations[target.id]||'Unknown';p.interrogations--;p.metrics.interrogated=(p.metrics.interrogated||0)+1;if(p.interrogations===0)p.metrics.notesFilled=(p.metrics.notesFilled||0)+1;p.abilityCooldown=4;p.notes.push({victim:m.body,target:target.id,location});g.event('notes',{player:p.id,target:target.id,location,victim:m.body});return true;
  }
- if(action!=='ability')return null;
+ if(isShifting(p,g.s.time))return action==='input'||action==='walk'?null:false;if(action!=='ability')return null;
  if(!['playing','meeting'].includes(phase)||p.abilityCooldown>0||g.s.sabotage?.type==='comms'&&['Guardian Angel','Scientist','Tracker'].includes(p.role))return false;
  let target=g.player(data.target);
  if(p.role==='Shapeshifter'&&p.alive&&phase==='playing'&&p.vent<0){
-  if(p.shifted){p.shifted=null;p.abilityTime=0;p.abilityCooldown=25;p.transformUntil=g.s.time+1.5;p.transformKind='Shapeshift';g.event('unshift',{player:p.id});return true;}
+  if(p.shifted){recordShiftWitnesses(g,p,p.shifted,true);p.shifted=null;p.moving=false;p.abilityTime=0;p.abilityCooldown=25;p.transformUntil=g.s.time+1.5;p.transformKind='Shapeshift';g.event('unshift',{player:p.id});return true;}
   if(!target?.alive||target===p||isImp(target))return false;
-  const visible=g.s.players.filter(q=>q.bot&&q.alive&&q!==p&&g.canSee(q,p));for(const q of visible){q.memory.push({type:'shift',who:p.id,as:target.id,room:g.roomAt(p),time:g.s.time});q.suspicion[p.id]=12;}
-  p.shifted={id:target.id,name:target.name,color:target.color,cosmetics:{...target.cosmetics}};p.abilityTime=20;p.transformUntil=g.s.time+1.5;p.transformKind='Shapeshift';g.event('shift',{player:p.id,color:target.color});return true;
+  p.disguiseToken=(p.disguiseToken||0)+1;recordShiftWitnesses(g,p,target);
+  p.moving=false;p.shifted={id:target.id,name:target.name,color:target.color,cosmetics:{...target.cosmetics}};p.abilityTime=20;p.transformUntil=g.s.time+1.5;p.transformKind='Shapeshift';g.event('shift',{player:p.id,color:target.color});return true;
  }
  if(p.role==='Phantom'&&p.alive&&phase==='playing'&&p.vent<0){p.phantom=p.phantom>0?0:10;p.transformUntil=g.s.time+1.5;p.transformKind=p.phantom?'Phantom_vanish_charge':'Phantom_vanish_poof';if(!p.phantom)p.abilityCooldown=25;g.event('phantom',{player:p.id,vanish:p.phantom>0});return true;}
  if(p.role==='Tracker'&&p.alive&&phase==='playing'&&target?.alive&&target!==p){p.tracking=target.id;p.trackTime=15;p.abilityCooldown=35;g.event('track',{player:p.id});return true;}
@@ -62,7 +63,7 @@ export function roleAction(g,p,action,data){
 export function tickRole(g,p,dt){
  p.abilityCooldown=Math.max(0,(p.abilityCooldown||0)-dt);p.shield=Math.max(0,(p.shield||0)-dt);
  if(p.vitalsOpen){p.battery=Math.max(0,p.battery-dt);if(!p.battery||g.s.sabotage?.type==='comms')p.vitalsOpen=false;}
- if(p.shifted){p.abilityTime-=dt;if(p.abilityTime<=0){p.shifted=null;p.abilityCooldown=25;p.transformUntil=g.s.time+1.5;p.transformKind='Shapeshift';g.event('unshift',{player:p.id});}}
+ if(p.shifted){p.abilityTime-=dt;if(p.abilityTime<=0){recordShiftWitnesses(g,p,p.shifted,true);p.shifted=null;p.moving=false;p.abilityCooldown=25;p.transformUntil=g.s.time+1.5;p.transformKind='Shapeshift';g.event('unshift',{player:p.id});}}
  if(p.phantom>0){p.phantom-=dt;if(p.phantom<=0){p.phantom=0;p.abilityCooldown=25;p.transformUntil=g.s.time+1.5;p.transformKind='Phantom_vanish_poof';g.event('phantom',{player:p.id,vanish:p.phantom>0});}}
  p.trackTime=Math.max(0,(p.trackTime||0)-dt);if(!p.trackTime)p.tracking=null;
  if(!p.bot||p.abilityCooldown>0||g.s.phase!=='playing')return;

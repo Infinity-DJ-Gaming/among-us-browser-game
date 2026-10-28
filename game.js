@@ -1,26 +1,26 @@
-import {createNativeChat} from './native-chat.js?v=3.3.0';
-import {createLobbyUI} from './lobby-ui.js?v=3.3.0';
-import {LOBBY_PROPS} from './lobby.js?v=3.3.0';
-import {createAccounts} from './accounts.js?v=3.3.0';
-import {createPersonalMap} from './personal-map.js?v=3.3.0';
-import {Reveal} from './reveal.js?v=3.3.0';
-import {nearestTaskBeforeFacility} from './interactions.js?v=3.3.0';
-import {preloadDoors,doorUI} from './doors.js?v=3.3.0';
-import {maskVisibleLayer} from './visibility.js?v=3.3.0';
-import {preloadPolusArt,polusTaskUI} from './polus-tasks.js?v=3.3.0';
-import {MAPS,SKELD,mapById,mapRoomAt} from './maps.js?v=3.3.0';
-import {Progression} from './progression.js?v=3.3.0';
-import {createInventory} from './inventory.js?v=3.3.0';
-import {preloadLights,lightsUI} from './lights.js?v=3.3.0';
-import {LobbyDirectory} from './directory.js?v=3.3.0';
-import {createFrontEnd} from './menu.js?v=3.3.0';
-import {Game,Navigation,COLORS,HEX,DEFAULTS,STATIONS,dist,isImp,escape} from './world.js?v=3.3.0';
-import {Room} from './network.js?v=3.3.0';
-import {taskUI,preloadTaskArt} from './task-panels.js?v=3.3.0';
-import {stationFor,tasksFor,TASK_MIN} from './task-data.js?v=3.3.0';
-import {ALL_ROLES,ROLE_INFO} from './roles.js?v=3.3.0';
-import {SoundBank} from './audio.js?v=3.3.0';
-import {Visuals} from './visuals.js?v=3.3.0';
+import {createNativeChat} from './native-chat.js?v=3.4.0';
+import {createLobbyUI} from './lobby-ui.js?v=3.4.0';
+import {LOBBY_PROPS} from './lobby.js?v=3.4.0';
+import {createAccounts} from './accounts.js?v=3.4.0';
+import {createPersonalMap} from './personal-map.js?v=3.4.0';
+import {Reveal} from './reveal.js?v=3.4.0';
+import {nearestTaskBeforeFacility} from './interactions.js?v=3.4.0';
+import {preloadDoors,doorUI} from './doors.js?v=3.4.0';
+import {maskVisibleLayer} from './visibility.js?v=3.4.0';
+import {preloadPolusArt,polusTaskUI} from './polus-tasks.js?v=3.4.0';
+import {MAPS,SKELD,mapById,mapRoomAt} from './maps.js?v=3.4.0';
+import {Progression} from './progression.js?v=3.4.0';
+import {createInventory} from './inventory.js?v=3.4.0';
+import {preloadLights,lightsUI} from './lights.js?v=3.4.0';
+import {LobbyDirectory} from './directory.js?v=3.4.0';
+import {createFrontEnd} from './menu.js?v=3.4.0';
+import {Game,Navigation,COLORS,HEX,DEFAULTS,STATIONS,dist,isImp,escape} from './world.js?v=3.4.0';
+import {Room} from './network.js?v=3.4.0';
+import {taskUI,preloadTaskArt} from './task-panels.js?v=3.4.0';
+import {stationFor,tasksFor,TASK_MIN} from './task-data.js?v=3.4.0';
+import {ALL_ROLES,ROLE_INFO} from './roles.js?v=3.4.0';
+import {SoundBank} from './audio.js?v=3.4.0';
+import {Visuals} from './visuals.js?v=3.4.0';
 const visuals=new Visuals();const accounts=createAccounts();let personalMap,lobbyUI,meetingChat;const reveal=new Reveal((...args)=>drawCrew(...args),(...args)=>sound(...args),p=>Math.min(-108,...['hat','visor','skin'].map(type=>{const it=visuals.catalogItem(type,p.cosmetics?.[type]);return (it?.animation?.draw||it?.draw)?.[1]||0;})));let inventoryUI,progression;let activeMap=SKELD,ROOMS=SKELD.rooms,SYSTEMS=SKELD.systems;const navCache={};const roomAt=p=>mapRoomAt(activeMap,p);let region=localStorage.getItem('au-region')||'North America',directory=null,publicRooms=[],privacy='PRIVATE';
 function selectMap(id){activeMap=mapById(id);nav=navCache[activeMap.id]||nav;ROOMS=activeMap.rooms;SYSTEMS=activeMap.systems;game?.setMap(activeMap.id,nav);visionCache.time=-999;$('#lobby .lobby-header>span').textContent=activeMap.name.toUpperCase();$('#game').setAttribute('aria-label',activeMap.name+'. Move with WASD or arrows. E to use, R to report, Q to kill.');}
 
@@ -36,7 +36,7 @@ const audio={};let audioReady=false;const soundBank=new SoundBank(()=>!muted&&au
 function sound(name,volume=.65,options={}){if(muted||!audioReady)return;const aliases={click:'button',complete:'taskComplete',roundstart:'roundStart',vent:'ventOpen',kill:'killKnife'};if(name!=='ambience'){let stop=soundBank.play(aliases[name]||name,volume,options);if(stop)return stop;}if(!['roundstart','kill','report','meeting','complete','click','alarm','vent','ambience','vote','victory','defeat','footstep'].includes(name))return null;let a=audio[name];if(!a){a=new Audio(asset(name+'.wav'));audio[name]=a;}if(name==='ambience'){soundBank.setAmbience(activeMap.id,roomAt(me()||activeMap.spawn),.14);return;}let b=a.cloneNode();b.volume=volume;b.play().catch(()=>{});}
 function enableAudio(){audioReady=true;soundBank.unlock();}
 function stopAmbience(){audio.ambience?.pause();soundBank.stopScene();}
-function spatialSound(key,event,volume=.6,maxDistance=900){if(muted||!audioReady)return;const actor=state.players.find(p=>p.id===event.player),source=Number.isFinite(event.x)?event:actor;if(source)soundBank.playAt(key,source,me(),{volume,maxDistance,referenceDistance:120,line:(a,b)=>nav.line(a,b)});}
+function spatialSound(key,event,volume=.6,maxDistance=900){if(muted||!audioReady)return;const actor=state.players.find(p=>p.id===event.player),source=Number.isFinite(event.x)?event:actor;if(actor&&actor.id!==room.id&&(actor.hidden||actor.inVent))return;if(source)soundBank.playAt(key,source,me(),{volume,maxDistance,referenceDistance:120,requireLineOfSight:true,line:(a,b)=>nav.line(a,actor||b)});}
 document.addEventListener('pointerdown',enableAudio,{once:true});document.addEventListener('keydown',enableAudio,{once:true});
 let nav,game,room,state,images={},remoteState=null,phase='',lastEvent=0,modalCleanup=null,modalType='',taskId=null,showTasks=true,paused=false,selectedVote=null,meetingSignature='',chatSignature='',rosterSignature='',lastHud=0,lastNet=0,endingRound=-1,lastInput='',cam={x:3300,y:850,zoom:.65},pointer={x:0,y:0},keys=new Set(),joy={x:0,y:0},lastFoot=0,alarmAt=0,noiseTarget=null,frontEnd=null,reportEvent=null,meetingRead=0;const puzzleProgress=new Map();
 function updateProfile(){profile.name=profile.name.trim().slice(0,14)||'Player';profile.color=Math.max(0,Math.min(COLORS.length-1,profile.color|0));$('#identity-name').textContent=profile.name;$('#identity-crew').src=sprite(profile.color);store('au-profile',profile);}
@@ -182,7 +182,7 @@ function renderLobby(t){let sig=state.players.map(p=>p.id+p.name+p.color+JSON.st
 function castSelectedVote(){if(!selectedVote)return;room.action('vote',{target:selectedVote});selectedVote=null;meetingSignature='';sound('click');}
 function voteButtons(target){return `<div class="vote-confirm"><button class="vote-accept" data-confirm="${target}" aria-label="Confirm vote for ${target==='skip'?'Skip':escape(state.players.find(p=>p.id===target)?.name||'player')}"><img src="assets-meeting-confirm.png" alt=""></button><button class="vote-cancel" aria-label="Cancel vote"><img src="assets-meeting-cancel.png" alt=""></button></div>`;}
 function renderMeeting(){let p=me(),m=state.meeting;if(!m||!p)return;const result=['result','eject'].includes(m.stage),voting=m.stage==='voting',voted=Object.hasOwn(m.votes,p.id),chatOpen=!$('.discussion-side').classList.contains('hidden');
- $('#meeting-context').textContent=m.body?`${state.players.find(q=>q.id===m.reporter)?.name} reported a body in ${m.room}`:`${state.players.find(q=>q.id===m.reporter)?.name} called an emergency meeting`;$('#living-count').textContent=state.players.filter(q=>q.alive).length+' alive';$('#meeting-title').textContent=result?'Voting Results':'Who is The Impostor?';$('.meeting-tablet').classList.toggle('is-result',result);$('.meeting-tablet').style.setProperty('--tablet-color',HEX[p.color]);$('#meeting-task-progress').style.width=(state.taskDone??0)/state.taskTotal*100+'%';$('.meeting-task-bar').style.visibility=state.taskDone===null?'hidden':'visible';$('#meeting-connection').textContent=room.mode==='solo'?'LOCAL GAME':'ONLINE ROOM '+(room.code||'');
+ $('#meeting-context').textContent=m.body?`${state.players.find(q=>q.id===m.reporter)?.name} reported a body`:`${state.players.find(q=>q.id===m.reporter)?.name} called an emergency meeting`;$('#living-count').textContent=state.players.filter(q=>q.alive).length+' alive';$('#meeting-title').textContent=result?'Voting Results':'Who is The Impostor?';$('.meeting-tablet').classList.toggle('is-result',result);$('.meeting-tablet').style.setProperty('--tablet-color',HEX[p.color]);$('#meeting-task-progress').style.width=(state.taskDone??0)/state.taskTotal*100+'%';$('.meeting-task-bar').style.visibility=state.taskDone===null?'hidden':'visible';$('#meeting-connection').textContent=room.mode==='solo'?'LOCAL GAME':'ONLINE ROOM '+(room.code||'');
  const skin=$('#tablet-skin');visuals.tablet(skin,p.color);visuals.tabletButton($('#tablet-button-skin'),p.color);
  let sig=state.players.map(q=>q.id+q.alive+JSON.stringify(q.cosmetics)).join(',')+JSON.stringify(m.votes)+m.stage+selectedVote;
  if(sig!==meetingSignature){meetingSignature=sig;$('#vote-grid').innerHTML=state.players.map(q=>`<div class="vote-slot"><button class="vote-card ${!q.alive?'dead':''} ${selectedVote===q.id?'selected':''} ${isImp(p)&&isImp(q)?'imp-name':''}" data-player="${q.id}" aria-label="Vote for ${escape(q.name)}" ${!q.alive||!p.alive||!voting||voted?'disabled':''}><canvas class="vote-portrait" width="150" height="140" aria-label="${COLORS[q.color]} crewmate"></canvas><span class="vote-name">${escape(q.name)}</span>${q.id===m.reporter?'<i class="megaphone"><img src="assets-meeting-reporter.png" alt="Reporter"></i>':''}${!result&&Object.hasOwn(m.votes,q.id)?'<span class="voted-stamp"><img src="assets-meeting-voted-badge.png" alt="I VOTED"></span>':''}${!q.alive?'<img class="dead-cross" src="assets-meeting-dead-cross.png" alt="Dead">':''}<div class="vote-pips" aria-label="Votes for ${escape(q.name)}"></div></button>${selectedVote===q.id&&voting&&!voted?voteButtons(q.id):''}</div>`).join('');

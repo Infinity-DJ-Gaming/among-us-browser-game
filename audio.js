@@ -1,9 +1,9 @@
 const LOBBY_FILES={lobbySpawn:'assets-lobby-spawn.ogg',lobbyLeave:'assets-lobby-leave.ogg',lobbyOptions:'assets-lobby-options.wav',lobbyTimeout:'assets-lobby-timeout.wav',lobbyCopy:'assets-lobby-copy.wav'};
 const ALIASES={medScan:'scan',phantom:'phantomIn',click:'button',complete:'taskComplete',roundstart:'roundStart',vent:'ventOpen',kill:'killKnife',alarm:'alarmCritical',chat:'notification',tab:'button',select:'button',cosmeticEquip:'button',shopOpen:'panelOpen',purchase:'stardustPurchase',deny:'notificationError',cubeActivate:'button',equip:'button',roleGuardianAngel:'roleCrewmate',roleInfluencer:'roleCrewmate'};
 // World distances use the same pixel coordinates as player/map positions.
-export function spatialVolume(source,listener,{maxDistance=900,referenceDistance=140,occluded=false,occlusion=.35}={}){
+export function spatialVolume(source,listener,{maxDistance=900,referenceDistance=140,occluded=false,occlusion=.35,requireLineOfSight=false}={}){
  if(!source||!listener||![source.x,source.y,listener.x,listener.y].every(Number.isFinite))return 0;
- const distance=Math.hypot(source.x-listener.x,source.y-listener.y);if(distance>=maxDistance)return 0;
+ const distance=Math.hypot(source.x-listener.x,source.y-listener.y);if(distance>=maxDistance||requireLineOfSight&&occluded)return 0;
  const ramp=Math.max(0,Math.min(1,(distance-referenceDistance)/Math.max(1,maxDistance-referenceDistance)));
  return (1-ramp)**2*(occluded?Math.max(0,Math.min(1,occlusion)):1);
 }
