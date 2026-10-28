@@ -77,7 +77,7 @@ export class Game {
   const returning=this.s.phase==='lobby',old=returning?this.lobbyCache:new Map();this.s.phase='lobby';this.s.countdown=0;this.s.sabotage=null;this.s.bodies=[];this.s.chat=[];this.s.winner=null;this.s.cases=[];
   if(!returning){this.s.lobbyExpiresAt=this.s.time+LOBBY_TIMEOUT_SECONDS;this.s.lobbyTimeoutWarned=false;}
   const used=new Set(this.s.players.filter(p=>old.has(p.id)).map(p=>old.get(p.id).lobbySeat));let next=0;
-  for(let i=0;i<this.s.players.length;i++){const p=this.s.players[i],prior=old.get(p.id);p.alive=true;p.role='Crewmate';p.team='crew';p.path=[];p.input={x:0,y:0};p.vent=-1;p.lastSaid='';p.claims=[];
+  for(let i=0;i<this.s.players.length;i++){const p=this.s.players[i],prior=old.get(p.id);p.alive=true;p.role='Crewmate';p.originalRole='Crewmate';p.team='crew';p.shifted=null;p.phantom=0;p.transformUntil=0;p.abilityTime=0;p.shield=0;p.tracking=null;p.trackTime=0;p.path=[];p.input={x:0,y:0};p.vent=-1;p.lastSaid='';p.claims=[];
    if(prior){p.x=prior.x;p.y=prior.y;p.lobbySeat=prior.lobbySeat;p.lobbySpawn=prior.lobbySpawn;p.spawnSounded=prior.spawnSounded;p.lobbyTarget=prior.lobbyTarget;p.lobbyRoute=prior.lobbyRoute;p.lobbyWait=prior.lobbyWait;}
    else{while(used.has(next))next++;p.lobbySeat=next;used.add(next);p.lobbySpawn=lobbySpawn(next,this.s.time,p.bot?i*.12:0);Object.assign(p,lobbyLanding(p.lobbySpawn));p.spawnSounded=false;p.lobbyTarget=null;p.lobbyRoute=[];p.lobbyWait=this.rand(1,6);}
   }
