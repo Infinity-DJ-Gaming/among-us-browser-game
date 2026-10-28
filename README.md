@@ -1,4 +1,4 @@
-# Among Us — browser fan game v3.2
+# Among Us — browser fan game v3.3
 
 Play: https://infinity-dj-gaming.github.io/among-us-browser-game/
 
@@ -45,7 +45,7 @@ Archives: https://github.com/itsssskye/amongus-assets , https://github.com/AI070
 
 ## Checks
 
-Run `npm test` (`node --test tests.mjs tests-v2.mjs tests-v4.mjs tests-v5.mjs tests-v6.mjs`). The suite covers roles, tasks, maps, partial visibility, audio falloff, Lights, Polus systems, progression/ownership/path rules, privacy and complete seeded matches. The accompanying validation report records browser checks. Temporary QA pages are excluded from releases.
+Run `npm test` (`node --test tests.mjs tests-v2.mjs tests-v4.mjs tests-v5.mjs tests-v6.mjs tests-v7.mjs`). The suite covers roles, tasks, maps, partial visibility, audio falloff, Lights, Polus systems, progression/ownership/path rules, privacy and complete seeded matches. The accompanying validation report records browser checks. Temporary QA pages are excluded from releases.
 
 
 ## v3.1 map, reveal and accounts
@@ -66,3 +66,12 @@ The dropship uses the installed original background, separate crates/laptop/Ward
 Lobby chat now follows the supplied original reference: translucent gray panel, wide white rows, color/cosmetic portraits, outlined sender names, input, 100-character counter and Send state. Native controls switch between Free Chat and Quick Chat; Quick Chat rooms reject arbitrary human text on the host. Player controls support local mute/unmute, plus host kick/ban for connected humans. Replies and typing cues remain connected to the evidence-based dialogue system. The native Play Again and Quit art is used after rewards.
 
 All seven user-supplied recordings are packaged unchanged: Spawn_in_lobby, Player_kick, Lobby_theme, Lobby_options_update, Lobby_timeout, Lobby_code_copy and The_Skeld_ambience. Spawn/leave/settings/timeout/code copy use their matching action. Lobby theme and the supplied atmosphere loop simultaneously on separate music/effects buses, and stop on leaving the lobby. They respect audio preferences. No official matchmaking, moderation/report service or crossplay is claimed.
+
+
+## v3.3 meeting chat and Polus fidelity
+
+Meetings and lobbies share the same native chat component: translucent panel, original white message art, cosmetic portraits, outlined sender names, reply references, typing, 100-character input/counter, Free/Quick Chat and player controls. The meeting panel spans 78% of the viewport width, with larger rows/text. Ghost messages remain private to ghosts in authoritative snapshots. Opening/closing chat still returns to normal discussion/voting.
+
+Polus now retains the installed game's original Ground, Cliff and LavaOrange mesh vertex colors, including the purple terrain, paths, snow patches, ground markings and lava bands. The prior imported mesh had lost all colors, and the renderer substituted three flat fills. The new baked map uses the original installed mesh data instead; native room/prop art stays registered at the existing world coordinates. `assets-polus-ground.json` records the three native mesh IDs/counts.
+
+Navigation is rebuilt from 72 active, non-trigger native Polus collider paths, with original transforms/offsets. Shadow-only and dynamic door colliders are excluded from the static mask. A 16-pixel browser foot radius and 16-pixel navigation cells preserve the narrow drill-yard access and actual entrances. The flood fill retains the playable connected floor; roofs, cliffs, lava and obstacles remain blocked. This is native geometry rasterized for the browser, not the Unity physics engine. All twelve door approaches, both specimen tunnels and all station variants are checked. Manual and automatic movement use small collision-checked steps; automatic movement no longer snaps through a nearby closed door. Ghost movement remains unrestricted by walls.

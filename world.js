@@ -1,10 +1,10 @@
-import {lobbySpawn,lobbyLanding,lobbyMove,lobbyRoute,lobbyPointAllowed,LOBBY_TIMEOUT_SECONDS,LOBBY_QUICK_CHAT,MEETING_QUICK_CHAT} from './lobby.js?v=3.2.0';
-import {SKELD,mapById,mapRoomAt} from './maps.js?v=3.2.0';
-import {STATIONS,stationFor,tasksFor,TASK_MIN,WIRE_PANELS} from './task-data.js?v=3.2.0';
+import {lobbySpawn,lobbyLanding,lobbyMove,lobbyRoute,lobbyPointAllowed,LOBBY_TIMEOUT_SECONDS,LOBBY_QUICK_CHAT,MEETING_QUICK_CHAT} from './lobby.js?v=3.3.0';
+import {SKELD,mapById,mapRoomAt} from './maps.js?v=3.3.0';
+import {STATIONS,stationFor,tasksFor,TASK_MIN,WIRE_PANELS} from './task-data.js?v=3.3.0';
 export {STATIONS,stationFor,tasksFor};
-import {isImp,IMPOSTOR_ROLES,ALL_ROLES,initializeRoles,becomeGhost,roleAction,tickRole} from './roles.js?v=3.2.0';
+import {isImp,IMPOSTOR_ROLES,ALL_ROLES,initializeRoles,becomeGhost,roleAction,tickRole} from './roles.js?v=3.3.0';
 export {isImp};
-import {beginConversation,hearMessage,tickConversation,openingStatement} from './conversation.js?v=3.2.0';
+import {beginConversation,hearMessage,tickConversation,openingStatement} from './conversation.js?v=3.3.0';
 // Original browser implementation. Among Us artwork and audio belong to Innersloth.
 export const COLORS=['red','blue','green','pink','orange','yellow','black','white','purple','brown','cyan','lime','maroon','rose','banana','gray','tan','coral'];
 export const HEX=['#c51111','#132ed1','#127f2d','#ed54ba','#ef7d0d','#f5f557','#3f474e','#d6e0f0','#6b2fbb','#71491e','#44fff7','#5bfe4b','#6c2b3d','#ffd6ec','#ffffbe','#8397a7','#9f9989','#ec7578'];
@@ -110,14 +110,14 @@ export class Game {
   if(this.s.doors>0&&p.alive&&this.map.id==='skeld'){const cross=(p.y<1510&&p.y+dy>=1510)||(p.y>=1510&&p.y+dy<1510);if(cross&&p.x>3240&&p.x<3450)dy=0;}
   let ox=p.x,oy=p.y;
   if(!p.alive){p.x=Math.max(16,Math.min(this.nav.width-16,p.x+dx));p.y=Math.max(16,Math.min(this.nav.height-16,p.y+dy));}
-  else {if(this.nav.walkable(p.x+dx,p.y)&&!this.blockedDoor(p.x+dx,p.y))p.x+=dx;if(this.nav.walkable(p.x,p.y+dy)&&!this.blockedDoor(p.x,p.y+dy))p.y+=dy;}
+  else {const steps=Math.max(1,Math.ceil(Math.hypot(dx,dy)/Math.min(12,this.nav.cell/2)));for(let i=0;i<steps;i++){const sx=dx/steps,sy=dy/steps;if(this.nav.line(p,{x:p.x+sx,y:p.y})&&!this.blockedDoor(p.x+sx,p.y))p.x+=sx;if(this.nav.line(p,{x:p.x,y:p.y+sy})&&!this.blockedDoor(p.x,p.y+sy))p.y+=sy;}}
   p.moving=Math.hypot(p.x-ox,p.y-oy)>0.1;if(Math.abs(dx)>.1)p.face=dx<0?-1:1;
  }
- follow(p,dt){if(!p.path?.length){p.moving=false;return true;}let next=p.path[0];if(dist(p,next)<Math.max(1,340*this.settings.speed*dt)){p.x=next.x;p.y=next.y;p.path.shift();if(!p.path.length){p.moving=false;return true;}next=p.path[0];}const before={x:p.x,y:p.y};this.move(p,next.x-p.x,next.y-p.y,dt);p.stuck=dist(p,before)<.05?(p.stuck||0)+dt:0;if(p.stuck>.7){const center=this.nav.point(this.nav.nearest(p)),target=p.target||p.path.at(-1);p.path=[center,...this.nav.path(center,target)];p.stuck=0;}return false;}
+ follow(p,dt){if(!p.path?.length){p.moving=false;return true;}const next=p.path[0],before={x:p.x,y:p.y};this.move(p,next.x-p.x,next.y-p.y,Math.min(dt,dist(p,next)/(340*this.settings.speed)));if(dist(p,next)<.5){p.x=next.x;p.y=next.y;p.path.shift();if(!p.path.length){p.moving=false;return true;}}p.stuck=dist(p,before)<.05?(p.stuck||0)+dt:0;if(p.stuck>.7){const center=this.nav.point(this.nav.nearest(p)),target=p.target||p.path.at(-1);p.path=[center,...this.nav.path(center,target)];p.stuck=0;}return false;}
  route(p,target){p.path=this.nav.path(p,target);p.target={x:target.x,y:target.y};}
  action(id,action,data={}){
   let p=this.player(id);if(!p)return false;
-  if(action==='chat'){let text=String(data.text||'').trim().slice(0,this.s.phase==='lobby'?100:180);if(this.settings.chatType==='Quick Chat'&&!p.bot&&!(this.s.phase==='lobby'?LOBBY_QUICK_CHAT:MEETING_QUICK_CHAT).includes(text))return false;if(!text||this.s.time-(p.lastChat??-5)<.7||!['lobby','meeting'].includes(this.s.phase))return false;p.lastChat=this.s.time;this.say(p,text);this.hear(p,text);return true;}
+  if(action==='chat'){let text=String(data.text||'').trim().slice(0,100);if(this.settings.chatType==='Quick Chat'&&!p.bot&&!(this.s.phase==='lobby'?LOBBY_QUICK_CHAT:MEETING_QUICK_CHAT).includes(text))return false;if(!text||this.s.time-(p.lastChat??-5)<.7||!['lobby','meeting'].includes(this.s.phase))return false;p.lastChat=this.s.time;this.say(p,text);this.hear(p,text);return true;}
   if(action==='customize'&&this.s.phase==='lobby'){
    if(typeof data.name==='string')p.name=this.uniqueName(data.name||p.name,p.id);
    if(Number.isInteger(data.color)&&data.color>=0&&data.color<COLORS.length){let holder=this.s.players.find(q=>q!==p&&q.color===data.color);if(!holder||holder.bot){if(holder)holder.color=p.color;p.color=data.color;}}
