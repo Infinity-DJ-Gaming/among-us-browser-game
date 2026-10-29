@@ -1,0 +1,3 @@
+let data,image;
+export async function loadWorldPickups(){data=await fetch('assets-world-pickups.json').then(r=>r.json());image=await new Promise((ok,no)=>{const i=new Image();i.onload=()=>ok(i);i.onerror=no;i.src=data.image;});}
+export function drawWorldPickups(ctx,map,player){if(!image||map.id!=='airship'||!player?.tasks?.includes('towels')||player.done.includes('towels'))return;const steps=player.taskVariants?.towels?.steps||map.stations.find(t=>t.id==='towels').steps.slice(0,8),picked=new Set(player.pickupDone?.towels||[]),visible=new Set(steps.slice(0,8).filter((_,i)=>!picked.has(i)).map(s=>s.pickupIndex));for(const p of data.towels)if(visible.has(p.index))ctx.drawImage(image,...data.frames[p.frame].rect,...p.box);}

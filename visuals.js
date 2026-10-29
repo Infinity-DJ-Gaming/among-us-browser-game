@@ -1,5 +1,5 @@
-import {NativeEffects} from './native-effects.js?v=3.5.0';
-import {reportBackground} from './report-effect.js?v=3.5.0';
+import {NativeEffects} from './native-effects.js?v=3.6.0';
+import {reportBackground} from './report-effect.js?v=3.6.0';
 const colors=['#c51111','#132ed1','#127f2d','#ed54ba','#ef7d0d','#f5f557','#3f474e','#d6e0f0','#6b2fbb','#71491e','#44fff7','#5bfe4b','#6c2b3d','#ffd6ec','#ffffbe','#8397a7','#9f9989','#ec7578'],shadows=['#7a0838','#09158e','#0a4d2e','#aa2c85','#b43d18','#c38822','#1e1f26','#8395be','#3b177c','#513326','#24a9bf','#15a742','#410f1a','#de92b3','#d2bc89','#465664','#51413e','#b44362'];
 const rgb=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
 const load=url=>new Promise((ok,no)=>{let im=new Image();im.onload=()=>ok(im);im.onerror=no;im.src=url;});

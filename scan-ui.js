@@ -1,4 +1,4 @@
-import {SCAN_SECONDS} from './visual-tasks.js?v=3.5.0';
+import {SCAN_SECONDS} from './visual-tasks.js?v=3.6.0';
 export function createScanUI({getState,getPlayer,action,fx,sound,onClose}){const root=document.createElement('section');root.className='scan-ui hidden';root.setAttribute('aria-label','Submit Scan');root.innerHTML='<button aria-label="Close scan" class="scan-close">×</button><canvas class="scan-top" width="1008" height="358"></canvas><canvas class="scan-bottom" width="1008" height="308"></canvas><output class="sr-only" aria-live="polite"></output>';document.body.append(root);let active=false,stop=null,letters=0,openedAt=0;
  root.querySelector('button').onclick=close;
  function close(){if(!active)return;active=false;root.classList.add('hidden');stop?.();stop=null;action('cancelTask');onClose?.();}

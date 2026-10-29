@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {Game,Navigation} from './world.js';
 import {MAPS} from './maps.js';
-import {stationFor} from './task-data.js?v=3.5.0';
+import {stationFor} from './task-data.js?v=3.6.0';
 import {beginTransit,tickTransit} from './transit.js';
 import {beginScan,tickScan,visualTask} from './visual-tasks.js';
 import {EJECTION_SECONDS,polusHand,ejectionText,typedEjection} from './ejection.js';
@@ -42,7 +42,7 @@ test('native scan layers, stab tracks, original kill background and cosmetics st
 
 test('Airship autonomous bots traverse only native floors or explicit transports over a sustained simulation',()=>{const g=game('airship');g.settings.testBots=true;for(const p of g.s.players){p.team='crew';p.role='Crewmate';p.tasks=['idcode','photos','towels'];}advance(g,160);assert.ok(g.s.players.some(p=>p.metrics.tasks>0));for(const p of g.s.players)assert.ok(p.transit||g.nav.walkable(p.x,p.y),p.id+' left native floor');});
 
-test('Airship return tasks retain their separate physical consoles and fourteen towels plus basket',()=>{const m=MAPS.airship,get=id=>m.stations.find(t=>t.id===id);assert.equal(get('towels').steps.length,15);assert.equal(get('towels').steps.at(-1).type,'towels-return');for(const id of ['fans','pistols','rifles']){assert.equal(get(id).steps.length,2);assert.notEqual(get(id).steps[0].x,get(id).steps[1].x);}assert.equal(get('records').steps.length,5);assert.equal(m.cameras.length,6);assert.ok(m.vitals);});
+test('Airship return tasks retain fourteen candidate towel positions and four alternating record trips',()=>{const m=MAPS.airship,get=id=>m.stations.find(t=>t.id===id);assert.equal(get('towels').steps.length,15);assert.equal(get('towels').steps.at(-1).type,'towels-return');for(const id of ['fans','pistols','rifles']){assert.equal(get(id).steps.length,2);assert.notEqual(get(id).steps[0].x,get(id).steps[1].x);}assert.equal(get('records').steps.length,8);assert.equal(m.cameras.length,6);assert.ok(m.vitals);});
 
 test('a meeting interrupts transport and scanner state before players respawn',()=>{const g=game('airship'),p=g.player('you'),l=g.nav.links.find(l=>l.kind==='ladder');Object.assign(p,g.nav.point(l.from));beginTransit(g,p,l);assert.ok(p.transit);g.meeting(g.player('bot1'));assert.equal(p.transit,null);const h=game('mira'),[q]=task(h,'scan');h.action(q.id,'beginTask',{id:'scan'});tickScan(h,q);h.meeting(h.player('bot1'));assert.equal(q.activeTask,null);assert.equal(visualTask(h,q),null);});
 

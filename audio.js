@@ -15,7 +15,7 @@ export class SoundBank {
  set musicVolume(value){this._musicVolume=Math.max(0,Math.min(1,Number(value)||0));for(const stop of this.active||[])stop.refresh?.();}
  async prepare(){
   const base=async()=>{try{const [meta,bytes]=await Promise.all([fetch('assets-sfx.json').then(r=>r.json()),fetch('assets-sfx.wav').then(r=>r.arrayBuffer())]);this.meta=meta;this.bytes=bytes;if(this.context)await this.decode();}catch(e){console.warn('Original SFX pack unavailable',e.message);}};
-  const extra=async()=>{try{this.extra=await fetch('assets-audio-v4.json').then(r=>r.json());this.bankBytes.actions=await fetch(this.extra.banks.actions.file).then(r=>r.arrayBuffer());if(this.context)await this.getBank('actions');}catch(e){console.warn('Expanded original audio pack unavailable',e.message);}};
+  const extra=async()=>{try{this.extra=await fetch('assets-audio-v4.json?v=3.6.0').then(r=>r.json());this.bankBytes.actions=await fetch(this.extra.banks.actions.file).then(r=>r.arrayBuffer());if(this.context)await this.getBank('actions');}catch(e){console.warn('Expanded original audio pack unavailable',e.message);}};
   await Promise.all([base(),extra()]);
  }
  async decode(){if(!this.context||!this.bytes)return;if(this.decodePromise)return this.decodePromise;

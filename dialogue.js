@@ -1,5 +1,5 @@
-import {isImp} from './roles.js?v=3.5.0';
-import {parseMessage,normalize} from './chat-language.js?v=3.5.0';
+import {isImp} from './roles.js?v=3.6.0';
+import {parseMessage,normalize} from './chat-language.js?v=3.6.0';
 const COLORS=['red','blue','green','pink','orange','yellow','black','white','purple','brown','cyan','lime','maroon','rose','banana','gray','tan','coral'];
 const latest=(a,p)=>[...(a||[])].reverse().find(p);
 const shortRooms={Electrical:'elec',MedBay:'medbay',Navigation:'nav',Cafeteria:'caf',Communications:'comms',Laboratory:'lab','Specimen Room':'specimen','Upper Engine':'upper engine','Lower Engine':'lower engine'};

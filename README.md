@@ -1,6 +1,6 @@
-# Among Us — browser fan game v3.5
+# Among Us — browser fan game v3.6
 
-Latest update: MIRA HQ, the Airship, live scans, map ejections and a permanent [Test Lab](https://infinity-dj-gaming.github.io/among-us-browser-game/?test=1). See [V3_5_NOTES.md](V3_5_NOTES.md) for features, sources and remaining fidelity limits. The version history below describes earlier releases.
+Latest update: direct native-art task controls, drag-only wires, bottle/nozzle docking, eye-level vision on all four maps, button-operated decontamination and a larger live scan. See [V3_6_NOTES.md](V3_6_NOTES.md) for changes, references and limits. The permanent [Test Lab](https://infinity-dj-gaming.github.io/among-us-browser-game/?test=1) includes every task stage and decontamination previews. The history below describes earlier releases.
 
 Play: https://infinity-dj-gaming.github.io/among-us-browser-game/
 
@@ -47,7 +47,7 @@ Archives: https://github.com/itsssskye/amongus-assets , https://github.com/AI070
 
 ## Checks
 
-Run `npm test` (`node --test tests.mjs tests-v2.mjs tests-v4.mjs tests-v5.mjs tests-v6.mjs tests-v7.mjs`). The suite covers roles, tasks, maps, partial visibility, audio falloff, Lights, Polus systems, progression/ownership/path rules, privacy and complete seeded matches. The accompanying validation report records browser checks. Temporary QA pages are excluded from releases.
+Run `npm test` (`node --test tests*.mjs`). The suite covers roles, tasks, maps, partial visibility, audio falloff, Lights, Polus systems, progression/ownership/path rules, privacy and complete seeded matches. The accompanying validation report records browser checks. Temporary QA pages are excluded from releases.
 
 
 ## v3.1 map, reveal and accounts
@@ -89,4 +89,4 @@ Unseen Shapeshifter kills, vents and sightings use the copied identity. Bots tha
 
 Other players' transformation events are delivered only to observers who could see the actor when the event happened. Distance falloff and a hard line-of-sight audio gate apply at playback; walls, reduced vision and invisibility mute hidden actions. Entering sight later does not replay an unheard transformation. The local actor hears their own effect. Noisemaker alerts retain their global role behavior. Lobby music/atmosphere are unchanged.
 
-Validation: 102 deterministic checks across tests.mjs, tests-v2.mjs and tests-v4.mjs through tests-v8.mjs. Run with `node --test tests.mjs tests-v2.mjs tests-v4.mjs tests-v5.mjs tests-v6.mjs tests-v7.mjs tests-v8.mjs`.
+Validation: 102 deterministic checks across tests.mjs, tests-v2.mjs and tests-v4.mjs through tests-v8.mjs. Run with `node --test tests*.mjs tests-v8.mjs`.
