@@ -1,0 +1,14 @@
+import {SCAN_SECONDS} from './visual-tasks.js?v=3.5.0';
+export function createScanUI({getState,getPlayer,action,fx,sound,onClose}){const root=document.createElement('section');root.className='scan-ui hidden';root.setAttribute('aria-label','Submit Scan');root.innerHTML='<button aria-label="Close scan" class="scan-close">×</button><canvas class="scan-top" width="1008" height="358"></canvas><canvas class="scan-bottom" width="1008" height="308"></canvas><output class="sr-only" aria-live="polite"></output>';document.body.append(root);let active=false,stop=null,letters=0,openedAt=0;
+ root.querySelector('button').onclick=close;
+ function close(){if(!active)return;active=false;root.classList.add('hidden');stop?.();stop=null;action('cancelTask');onClose?.();}
+ function open(){active=true;letters=0;openedAt=performance.now();root.classList.remove('hidden');}
+ function render(){if(!active)return;const state=getState(),p=getPlayer(),a=p?.activeTask;if(state?.phase!=='playing'){close();return;}if(!a?.scan){if(performance.now()-openedAt>2000)close();return;}const scan=a.scan,elapsed=scan.at===null?0:Math.max(0,state.time-scan.at),scanning=scan.phase==='scanning';if(scanning&&!stop)stop=sound('scan',.6,{loop:true});if(!scanning&&stop){stop();stop=null;}
+  const lines=['ID: '+(p.name.slice(0,3).toUpperCase())+String(p.color).padStart(2,'0')+'        HT: 3\' 6"       WT: 92lb','C: '+['RED','BLUE','GREEN','PINK','ORANGE','YELLOW','BLACK','WHITE','PURPLE','BROWN','CYAN','LIME','MAROON','ROSE','BANANA','GRAY','TAN','CORAL'][p.color]+'            BT: '+['A+','A-','B+','B-','AB+','AB-','O+','O-'][p.color%8]],count=Math.max(0,Math.floor(elapsed*24)),text=lines.join('\n').slice(0,count);
+  const top=root.querySelector('.scan-top'),c=top.getContext('2d');c.clearRect(0,0,1008,358);fx.fit(c,'medbayScan_panelTop',0,0,1008,358);c.fillStyle='#fff';c.font='31px Arial';for(const [i,line]of text.split('\n').entries())c.fillText(line,68,152+i*58);
+  const bottom=root.querySelector('.scan-bottom'),b=bottom.getContext('2d');b.clearRect(0,0,1008,308);fx.fit(b,'medbayScan_panelBottom',0,0,1008,308);b.fillStyle='#08d40b';b.fillRect(58,43,Math.min(1,elapsed/SCAN_SECONDS)*890,58);b.fillStyle='#fff';b.font='32px Arial';const status=scan.phase==='walking'?'Walking to scanner':scan.phase==='waiting'?'Waiting for '+(state.players.find(q=>q.id===scan.waitingFor)?.name||'scanner'):elapsed>=SCAN_SECONDS?'Scan Complete':'Scan Complete in '+Math.max(1,Math.ceil(SCAN_SECONDS-elapsed));b.fillText(status,67,237);
+  root.querySelector('output').textContent=status;if(count>letters&&elapsed<3.5&&scanning){sound('ejectText',.15);letters=count;}
+  if(scanning&&elapsed>=SCAN_SECONDS){stop?.();stop=null;if(action('task',{id:a.id,stage:a.stage})!==false){sound('complete');active=false;root.classList.add('hidden');onClose?.();}}
+ }
+ return {open,close,render,get active(){return active;}};
+}

@@ -1,4 +1,4 @@
-const LOBBY_FILES={lobbySpawn:'assets-lobby-spawn.ogg',lobbyLeave:'assets-lobby-leave.ogg',lobbyOptions:'assets-lobby-options.wav',lobbyTimeout:'assets-lobby-timeout.wav',lobbyCopy:'assets-lobby-copy.wav'};
+const LOBBY_FILES={ladderDown:"assets-sfx-ladderDown.wav",ladderUp:"assets-sfx-ladderUp.wav",platformMove:"assets-sfx-platformMove.wav",lobbySpawn:'assets-lobby-spawn.ogg',lobbyLeave:'assets-lobby-leave.ogg',lobbyOptions:'assets-lobby-options.wav',lobbyTimeout:'assets-lobby-timeout.wav',lobbyCopy:'assets-lobby-copy.wav'};
 const ALIASES={medScan:'scan',phantom:'phantomIn',click:'button',complete:'taskComplete',roundstart:'roundStart',vent:'ventOpen',kill:'killKnife',alarm:'alarmCritical',chat:'notification',tab:'button',select:'button',cosmeticEquip:'button',shopOpen:'panelOpen',purchase:'stardustPurchase',deny:'notificationError',cubeActivate:'button',equip:'button',roleGuardianAngel:'roleCrewmate',roleInfluencer:'roleCrewmate'};
 // World distances use the same pixel coordinates as player/map positions.
 export function spatialVolume(source,listener,{maxDistance=900,referenceDistance=140,occluded=false,occlusion=.35,requireLineOfSight=false}={}){

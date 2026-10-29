@@ -1,4 +1,4 @@
-import {recordShiftWitnesses,isShifting} from './perception.js?v=3.4.0';
+import {recordShiftWitnesses,isShifting} from './perception.js?v=3.5.0';
 export const IMPOSTOR_ROLES=['Impostor','Shapeshifter','Phantom','Viper'];
 export const CREW_ROLES=['Crewmate','Engineer','Scientist','Tracker','Noisemaker','Detective','Judge'];
 export const GHOST_ROLES=['Guardian Angel','Influencer'];

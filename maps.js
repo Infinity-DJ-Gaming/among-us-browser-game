@@ -1,5 +1,7 @@
-import {STATIONS,WIRE_PANELS,TASK_MIN,registerTaskMap} from './task-data.js?v=3.4.0';
-import {POLUS} from './polus.js?v=3.4.0';
+import {MIRA} from './mira.js?v=3.5.0';
+import {AIRSHIP} from './airship.js?v=3.5.0';
+import {STATIONS,WIRE_PANELS,TASK_MIN,registerTaskMap} from './task-data.js?v=3.5.0';
+import {POLUS} from './polus.js?v=3.5.0';
 const rooms=[
  {name:'Cafeteria',x:3320,y:850,box:[2660,120,1370,1210]},
  {name:'Weapons',x:4520,y:740,box:[4250,270,590,680]},
@@ -19,7 +21,8 @@ const rooms=[
 const systems={lights:{label:'Fix Lights',room:'Electrical',x:2490,y:1775},reactor:{label:'Reactor Meltdown',room:'Reactor',x:950,y:1070},oxygen:{label:'Oxygen Depleted',room:'O2',x:4250,y:1260},comms:{label:'Comms Sabotaged',room:'Communications',x:3900,y:2600}};
 
 export const SKELD={id:'skeld',name:'The Skeld',image:'assets-skeld.png',navFile:'assets-map.json',width:5792,height:3168,rooms,systems,stations:STATIONS,wirePanels:WIRE_PANELS,spawn:{x:3315,y:860},meetingSpawn:{x:3315,y:860},emergency:{x:3315,y:800},security:{x:1830,y:1180},admin:{x:3990,y:1740},oxygenSecondary:{x:4110,y:1650},ventLinks:[[0,1],[2,3],[4,8],[5,11],[6,10],[7,9],[12,13]],doors:[{id:'cafeteria',x:3240,y:1494,w:210,h:32}],cameras:[{x:3320,y:1500,name:'CAFETERIA HALL'},{x:1480,y:1390,name:'WEST HALL'},{x:4890,y:1390,name:'NAVIGATION HALL'},{x:3800,y:2250,name:'SOUTH HALL'}]};
-export const MAPS={skeld:SKELD,polus:POLUS};
-registerTaskMap('polus',POLUS.stations);Object.assign(TASK_MIN,POLUS.taskMin);
+export const MAPS={skeld:SKELD,mira:MIRA,polus:POLUS,airship:AIRSHIP};
+for(const m of [POLUS,MIRA,AIRSHIP]){registerTaskMap(m.id,m.stations);Object.assign(TASK_MIN,m.taskMin);}
 export const mapById=id=>MAPS[id]||SKELD;
-export function mapRoomAt(map,p){return map.rooms.find(r=>p.x>=r.box[0]&&p.y>=r.box[1]&&p.x<=r.box[0]+r.box[2]&&p.y<=r.box[1]+r.box[3])?.name||(map.id==='polus'?'Outside':'Hallway');}
+function inside(poly,p){let yes=false;for(let i=0,j=poly.length-1;i<poly.length;j=i++){const a=poly[i],b=poly[j];if((a[1]>p.y)!==(b[1]>p.y)&&p.x<(b[0]-a[0])*(p.y-a[1])/(b[1]-a[1])+a[0])yes=!yes;}return yes;}
+export function mapRoomAt(map,p){return map.rooms.find(r=>r.polygon?inside(r.polygon,p):p.x>=r.box[0]&&p.y>=r.box[1]&&p.x<=r.box[0]+r.box[2]&&p.y<=r.box[1]+r.box[3])?.name||(map.id==='polus'?'Outside':'Hallway');}

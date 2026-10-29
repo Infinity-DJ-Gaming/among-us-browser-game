@@ -1,8 +1,9 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"><meta name="theme-color" content="#06070b"><meta name="description" content="An unofficial Among Us browser fan game. Play The Skeld with bots or host a friend lobby."><title>Among Us • Browser Fan Game</title><link rel="icon" href="assets-crew-red.png"><link rel="stylesheet" href="styles.css?v=3.4.0"><link rel="stylesheet" href="v2.css?v=3.4.0"><link rel="stylesheet" href="v3.css?v=3.4.0"><link rel="stylesheet" href="v4.css?v=3.4.0"><link rel="stylesheet" href="v5.css?v=3.4.0"><link rel="stylesheet" href="v6.css?v=3.4.0"><link rel="stylesheet" href="lobby-chat.css?v=3.4.0">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"><meta name="theme-color" content="#06070b"><meta name="description" content="An unofficial Among Us browser fan game. Play The Skeld with bots or host a friend lobby."><title>Among Us • Browser Fan Game</title><link rel="icon" href="assets-crew-red.png"><link rel="stylesheet" href="styles.css?v=3.5.0"><link rel="stylesheet" href="v2.css?v=3.5.0"><link rel="stylesheet" href="v3.css?v=3.5.0"><link rel="stylesheet" href="v4.css?v=3.5.0"><link rel="stylesheet" href="v5.css?v=3.5.0"><link rel="stylesheet" href="v6.css?v=3.5.0"><link rel="stylesheet" href="lobby-chat.css?v=3.5.0">
+<link rel="stylesheet" href="v9.css?v=3.5.0">
 </head>
-<body>
+<body><script>if(new URLSearchParams(location.search).has('test')){const get=Storage.prototype.getItem,set=Storage.prototype.setItem,remove=Storage.prototype.removeItem;Storage.prototype.getItem=function(k){return get.call(this,'au-test-lab-'+k)};Storage.prototype.setItem=function(k,v){return set.call(this,'au-test-lab-'+k,v)};Storage.prototype.removeItem=function(k){return remove.call(this,'au-test-lab-'+k)}};</script>
  <canvas id="space" aria-hidden="true"></canvas>
  <main id="menu" class="screen ship-menu">
   <div class="menu-status-strip"><span class="status-light" title="Local profile"></span><span id="menu-status-name"></span><button id="menu-friends" class="native-menu-friends"><span>FRIENDS</span></button></div>
@@ -19,7 +20,7 @@
   </nav>
   <div class="menu-window"><span id="loading-ship" role="status">Loading game assets…</span><canvas id="menu-space" aria-label="Crewmates drifting past the ship window"></canvas><div class="menu-window-shine"></div><div class="menu-window-frame"></div><button id="menu-spawn" aria-label="More floating crewmates">×</button>
    <section id="play-menu" class="hidden" aria-label="Play"><button id="play-back" class="round-button" aria-label="Back to main menu">←</button><h1>PLAY</h1><button id="solo" disabled class="au-button primary">PLAY WITH BOTS</button><button id="host" disabled class="au-button">HOST ONLINE</button><button id="join" disabled class="au-button">ENTER CODE</button><div><button id="guide" class="round-button" aria-label="How to play">?</button><button id="sound" class="round-button" aria-label="Toggle sound">♫</button></div></section>
-  </div><span class="menu-build">Browser fan game · v3.4</span>
+  </div><span class="menu-build">Browser fan game · v3.5</span>
  </main>
  <section id="lobby" class="screen hidden">
   <canvas id="lobby-canvas" aria-label="Lobby with crewmates"></canvas>
@@ -53,6 +54,6 @@
  <div id="overlay" class="overlay hidden" role="dialog" aria-modal="true"><div id="modal" class="modal"></div></div>
  <div id="intro" class="cinematic hidden"></div><div id="banner" class="cinematic hidden"></div><canvas id="kill-cinematic" class="hidden" aria-label="Kill animation"></canvas>
  <div id="toast" role="status"></div>
- <script src="peerjs.min.js"></script><script type="module" src="game.js?v=3.4.0"></script>
+ <script src="peerjs.min.js"></script><script type="module" src="game.js?v=3.5.0"></script>
 </body></html>
 

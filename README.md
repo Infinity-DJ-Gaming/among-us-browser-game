@@ -1,4 +1,6 @@
-# Among Us — browser fan game v3.4
+# Among Us — browser fan game v3.5
+
+Latest update: MIRA HQ, the Airship, live scans, map ejections and a permanent [Test Lab](https://infinity-dj-gaming.github.io/among-us-browser-game/?test=1). See [V3_5_NOTES.md](V3_5_NOTES.md) for features, sources and remaining fidelity limits. The version history below describes earlier releases.
 
 Play: https://infinity-dj-gaming.github.io/among-us-browser-game/
 
@@ -6,7 +8,7 @@ A static, unofficial fan browser implementation with original Among Us artwork a
 
 ## Playing
 
-Play offers Local, Online, How to Play, Practice and a bot-match option. Create Game selects The Skeld or Polus, 4–15 players and 1–3 Impostors. The host starts a five-second countdown. Bots fill empty seats. Practice uses stationary dummies and grants no match rewards. Local browser rooms use an internet room code; automatic LAN discovery belongs to the official game.
+Play offers Local, Online, How to Play, Practice and a bot-match option. Create Game selects The Skeld, MIRA HQ, Polus or the Airship, 4–15 players and 1–3 Impostors. The host starts a five-second countdown. Bots fill empty seats. Practice uses stationary dummies and grants no match rewards. Local browser rooms use an internet room code; automatic LAN discovery belongs to the official game.
 
 WASD/arrows: move; E/Space: use; Q: kill; R: report; V: vent; F: sabotage; C: role ability; Tab/M: map; Esc: close/pause. Task panels have pointer controls and keyboard alternatives. Walk in the lobby and use the laptop to edit game settings, or Wardrobe to customize.
 
@@ -35,7 +37,7 @@ Original footsteps vary by floor material. Room ambience changes with location; 
 
 ## Fidelity and sources
 
-This is a new browser runtime, with two maps and selected native assets, not the official client. Official accounts, purchases, platform services, automatic LAN discovery, other maps, Hide n Seek and official matchmaking are not connected. Browser reward tuning, collisions, scene ground colors, task controls, balancing, some timings and cosmetic anchors are implementation choices. Polus room artwork/placements are original; ground colors and a conservative collision grid are reconstructed. Viper victim presentation uses clean acid corpse art rather than the complete official attack cinematic; Influencer retains a limited image-card set.
+This is a new browser runtime with four maps and selected native assets. Official accounts, purchases, platform services, automatic LAN discovery, the Fungle, Hide n Seek and official matchmaking are not connected. Browser reward tuning, task controls, balancing and some animation timing are implementation choices. Polus artwork, native ground mesh colors and object placements are original; native collisions are rasterized for browser navigation. Viper victim presentation remains limited; Influencer retains a limited image-card set.
 
 The menu/reference images span older versions; no claim is made that every bundled asset is from one specific 2026 client build. Brook glyph shapes are native with reconstructed advances. Report title/tape are labeled reference crops; the report shader uses original noise/math with estimated final material colors. Some skin/pet animations remain limited as described above.
 
