@@ -1,7 +1,7 @@
-import {MIRA} from './mira.js?v=3.6.0';
-import {AIRSHIP} from './airship.js?v=3.6.0';
-import {STATIONS,WIRE_PANELS,TASK_MIN,registerTaskMap} from './task-data.js?v=3.6.0';
-import {POLUS} from './polus.js?v=3.6.0';
+import {MIRA} from './mira.js?v=3.7.0';
+import {AIRSHIP} from './airship.js?v=3.7.0';
+import {STATIONS,WIRE_PANELS,TASK_MIN,registerTaskMap} from './task-data.js?v=3.7.0';
+import {POLUS} from './polus.js?v=3.7.0';
 const rooms=[
  {name:'Cafeteria',x:3320,y:850,box:[2660,120,1370,1210]},
  {name:'Weapons',x:4520,y:740,box:[4250,270,590,680]},

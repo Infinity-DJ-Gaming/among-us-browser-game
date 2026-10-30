@@ -1,5 +1,5 @@
-import {createNativeChat} from './native-chat.js?v=3.6.0';
-import {lobbySpawnPose,LOBBY_PROPS,LOBBY_QUICK_CHAT} from './lobby.js?v=3.6.0';
+import {createNativeChat} from './native-chat.js?v=3.7.0';
+import {lobbySpawnPose,LOBBY_PROPS,LOBBY_QUICK_CHAT} from './lobby.js?v=3.7.0';
 const load=url=>new Promise((ok,no)=>{const im=new Image();im.onload=()=>ok(im);im.onerror=no;im.src=url;});
 export async function createLobbyUI(api){
  const {$,$$,modal,closeModal,profile,visuals,drawCrew,sound,escape,getState,getRoom,getMap,region,create,customize,settings,toast,colors}=api;

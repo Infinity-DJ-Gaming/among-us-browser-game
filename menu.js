@@ -1,4 +1,4 @@
-import {createAccountUI} from './accounts.js?v=3.6.0';
+import {createAccountUI} from './accounts.js?v=3.7.0';
 const load=url=>new Promise((ok,no)=>{const im=new Image();im.onload=()=>ok(im);im.onerror=no;im.src=url;});
 export async function createFrontEnd(api){
  const {$,$$,modal,closeModal,toast,profile,stats,customize,sound,getImages,drawCrew,getMuted,toggleSound,soundBank,store,inventory,progression:bank}=api;

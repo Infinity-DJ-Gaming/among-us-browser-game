@@ -1,6 +1,6 @@
-# Among Us — browser fan game v3.6
+# Among Us — browser fan game v3.7
 
-Latest update: direct native-art task controls, drag-only wires, bottle/nozzle docking, eye-level vision on all four maps, button-operated decontamination and a larger live scan. See [V3_6_NOTES.md](V3_6_NOTES.md) for changes, references and limits. The permanent [Test Lab](https://infinity-dj-gaming.github.io/among-us-browser-game/?test=1) includes every task stage and decontamination previews. The history below describes earlier releases.
+Latest update: active-duration icon wipes, native Vitals/battery, close-range role targeting, persistent Detective files, witnessed transformation dialogue, vent hops/arrows, native task refinements and the 5,000 Beans → 10 Stars exchange. See [V3_7_NOTES.md](V3_7_NOTES.md) for changes, references and fidelity limits. The permanent [Test Lab](https://infinity-dj-gaming.github.io/among-us-browser-game/?test=1) includes every task stage and role/transport controls. The history below describes earlier releases.
 
 Play: https://infinity-dj-gaming.github.io/among-us-browser-game/
 

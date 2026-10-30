@@ -1,11 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {Game,Navigation} from './world.js?v=3.6.0';
-import {MAPS} from './maps.js?v=3.6.0';
-import {stationFor} from './task-data.js?v=3.6.0';
-import {deconSystems,pressDecon,tickDecon,doorFraction,deconBlocked,inBox} from './decontamination.js?v=3.6.0';
-import {canisterFits,canisterDock,canisterTarget,CANISTER_LAYOUT,wireDrop} from './task-geometry.js?v=3.6.0';
+import {Game,Navigation} from './world.js?v=3.7.0';
+import {MAPS} from './maps.js?v=3.7.0';
+import {stationFor} from './task-data.js?v=3.7.0';
+import {deconSystems,pressDecon,tickDecon,doorFraction,deconBlocked,inBox} from './decontamination.js?v=3.7.0';
+import {canisterFits,canisterDock,canisterTarget,CANISTER_LAYOUT,wireDrop} from './task-geometry.js?v=3.7.0';
 const read=file=>JSON.parse(fs.readFileSync(new URL(file,import.meta.url)));
 function match(id){const g=new Game(new Navigation({...read(MAPS[id].navFile),mapId:id}),()=>.42);g.addHuman('you');g.settings.preferred='Crewmate';g.settings.testBots=false;g.settings.practice=true;g.start();g.s.phase='playing';return g;}
 test('oxygen bottle docking uses the visible neck, generous nozzle bounds, and exact snap',()=>{const target=canisterTarget();assert.deepEqual(canisterDock(target),CANISTER_LAYOUT.socket);assert.ok(canisterFits(target));assert.ok(canisterFits({x:target.x+48,y:target.y-45}));assert.ok(!canisterFits(CANISTER_LAYOUT.idle));});

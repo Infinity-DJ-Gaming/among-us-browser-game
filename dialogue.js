@@ -1,5 +1,5 @@
-import {isImp} from './roles.js?v=3.6.0';
-import {parseMessage,normalize} from './chat-language.js?v=3.6.0';
+import {isImp} from './roles.js?v=3.7.0';
+import {parseMessage,normalize} from './chat-language.js?v=3.7.0';
 const COLORS=['red','blue','green','pink','orange','yellow','black','white','purple','brown','cyan','lime','maroon','rose','banana','gray','tan','coral'];
 const latest=(a,p)=>[...(a||[])].reverse().find(p);
 const shortRooms={Electrical:'elec',MedBay:'medbay',Navigation:'nav',Cafeteria:'caf',Communications:'comms',Laboratory:'lab','Specimen Room':'specimen','Upper Engine':'upper engine','Lower Engine':'lower engine'};
@@ -7,7 +7,7 @@ const roomName=(p,room)=>p.personality==='careful'?room:(shortRooms[room]||Strin
 const ownAlibi=(g,p)=>p.alibiRoom||p.meetingAlibi?.room||p.lastRoom||g.roomAt(p);
 function label(g,p,id,entry){const q=g.player(id);if(!q)return 'someone';const mention=entry?.parsed?.mentions?.find(m=>m.id===id);return mention?.kind==='name'?q.name:mention?.kind==='color'?COLORS[q.color]:g.random()<.7?COLORS[q.color]:q.name;}
 function facts(g,p){const relevant=m=>(!isImp(p)||!isImp(g.player(m.who)))&&g.player(m.who)?.alive;
- const memory=p.memory||[],witness=latest(memory,m=>['kill','death'].includes(m.type)&&relevant(m)),shift=latest(memory,m=>m.type==='shift'&&relevant(m)),clear=latest(memory,m=>m.type==='clear'&&relevant(m)),vent=latest(memory,m=>m.type==='vent'&&relevant(m)),clone=latest(memory,m=>['clone','duplicate'].includes(m.type));
+ const memory=p.memory||[],witness=latest(memory,m=>['kill','death'].includes(m.type)&&relevant(m)),shift=latest(memory,m=>['shift','phantom'].includes(m.type)&&relevant(m)),clear=latest(memory,m=>m.type==='clear'&&relevant(m)),vent=latest(memory,m=>m.type==='vent'&&relevant(m)),clone=latest(memory,m=>['clone','duplicate'].includes(m.type));
  const ranking=g.s.players.filter(q=>q.alive&&q!==p&&(!isImp(p)||!isImp(q))).map(q=>({p:q,score:p.suspicion?.[q.id]||0})).sort((a,b)=>b.score-a.score);return {witness,shift,clear,vent,clone,best:ranking[0],ranking};
 }
 export function beginConversation(g){
@@ -77,7 +77,7 @@ function alibi(g,p,entry){
  return 'i was in '+room+(seen?' saw '+label(g,p,seen.who,entry)+' there':'');
 }
 function evidence(g,p,target,entry){
- const id=target?.id,m=latest(p.memory,m=>(!id||m.who===id)&&['kill','death','shift','vent','clear'].includes(m.type)&&(!isImp(p)||!isImp(g.player(m.who))));
+ const id=target?.id,m=latest(p.memory,m=>(!id||m.who===id)&&['kill','death','shift','phantom','vent','clear'].includes(m.type)&&(!isImp(p)||!isImp(g.player(m.who))));
  if(m){const who=label(g,p,m.who,entry),room=roomName(p,m.room);
   if(m.type==='kill'||m.type==='death'){
    const told=p.evidenceTold?.[m.who]||0;
@@ -86,7 +86,8 @@ function evidence(g,p,target,entry){
    if(!m.uncertain&&told===1)return who+' killed '+label(g,p,m.victim,entry)+' in '+room+'. i was right there';
    return 'i saw '+who+' kill '+label(g,p,m.victim,entry)+' in '+room+(m.uncertain?'. could be a shift tho':'');
   }
-  if(m.type==='shift')return who+' shifted '+(m.reverting?'back from ':'into ')+label(g,p,m.as,entry)+' in '+room+'. i saw the egg';
+  if(m.type==='phantom')return who+' vanished in '+room+'. i watched the smoke';
+   if(m.type==='shift')return who+' shifted '+(m.reverting?'back from ':'into ')+label(g,p,m.as,entry)+' in '+room+'. i saw the egg';
   if(m.type==='vent')return 'i saw '+who+' vent in '+room+'. could be engineer tho';
   return 'i saw '+who+' do '+(m.task||'a visual task').toLowerCase()+' in '+room;
  }
@@ -156,8 +157,10 @@ export function makeReply(g,p,entry){
 }
 export function openingStatement(g,p){
  const c=g.s.conversation,m=g.s.meeting,f=facts(g,p);p.spoken=true;
- if(p.id===m.reporter)return m.body?(f.witness?evidence(g,p,g.player(f.witness.who)):'body in '+roomName(p,m.room)+', '+label(g,p,m.body)+' dead'):'called button. '+(f.best?.score>4?label(g,p,f.best.p.id)+' sus':'any info?');
+ if(p.id===m.reporter&&!m.body&&f.shift)return 'called button. '+evidence(g,p,g.player(f.shift.who));
+ if(p.id===m.reporter)return m.body?(f.witness?evidence(g,p,g.player(f.witness.who)):f.shift?('body in '+roomName(p,m.room)+'. '+evidence(g,p,g.player(f.shift.who))):'body in '+roomName(p,m.room)+', '+label(g,p,m.body)+' dead'):'called button. '+(f.best?.score>4?label(g,p,f.best.p.id)+' sus':'any info?');
  if(f.witness){p.accused=f.witness.who;return evidence(g,p,g.player(f.witness.who));}
+ const note=latest(p.memory||[],n=>n.type==='interrogate');if(note&&g.player(note.who)?.alive)return 'i questioned '+label(g,p,note.who)+'. they were in '+roomName(p,note.room)+' when '+label(g,p,note.victim)+' died';
  if(f.clone)return 'someone copied '+label(g,p,f.clone.who)+'. could be a shapeshifter';
  if(f.shift){p.accused=f.shift.who;return evidence(g,p,g.player(f.shift.who));}
  if(m.body&&!c.publicBodyRoom&&!c.bodyQuestionAsked){c.bodyQuestionAsked=true;return g.pick(['where','where body','where?']);}
@@ -185,7 +188,7 @@ export function tickConversation(g,dt){
  if(g.s.time<c.nextSpeech)return;
  const index=c.queue.findIndex(q=>q.due<=g.s.time&&(g.player(q.player)?.alive||q.allowDead));let entry=index>=0?c.queue.splice(index,1)[0]:null,p=entry?g.player(entry.player):null,text;
  if(entry)text=entry.scriptedText||makeReply(g,p,entry);
- else if(g.s.phase==='meeting'&&m?.timer>5){const candidates=g.s.players.filter(p=>p.bot&&p.alive&&!p.spoken);p=candidates.find(p=>p.id===m.reporter)||candidates.find(p=>facts(g,p).witness)||g.pick(candidates);if(!p)return;text=openingStatement(g,p);entry={opening:true,priority:1};}
+ else if(g.s.phase==='meeting'&&m?.timer>5){const candidates=g.s.players.filter(p=>p.bot&&p.alive&&!p.spoken);p=candidates.find(p=>p.id===m.reporter)||candidates.find(p=>facts(g,p).witness)||candidates.find(p=>facts(g,p).shift)||g.pick(candidates);if(!p)return;text=openingStatement(g,p);entry={opening:true,priority:1};}
  else if(g.s.phase==='lobby'&&c.lobbyBanter<2&&g.s.time-c.lastSpeech>3){p=g.pick(g.s.players.filter(p=>p.bot&&p.personality!=='quiet'));c.lobbyBanter++;text=g.s.lastWinnerTeam?g.pick(['gg','ggs','one more?','we threw 😭']):g.pick(['yo','ready','gl everyone']);entry={opening:true,priority:0};}
  if(!p||!text)return;if(p.chatRecent?.includes(normalize(text))&&!(entry.priority>=8&&entry.source&&!g.player(entry.source.player)?.bot))return;
  const beats=splitUtterance(text);c.typing={...entry,player:p.id,text:beats[0],rest:entry.rest||beats.slice(1,3),until:g.s.time+Math.min(1.65,.2+beats[0].length/(p.personality==='chatty'?110:80))};

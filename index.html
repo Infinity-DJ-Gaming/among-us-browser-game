@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"><meta name="theme-color" content="#06070b"><meta name="description" content="An unofficial Among Us browser fan game. Play The Skeld with bots or host a friend lobby."><title>Among Us • Browser Fan Game</title><link rel="icon" href="assets-crew-red.png"><link rel="stylesheet" href="styles.css?v=3.6.0"><link rel="stylesheet" href="v2.css?v=3.6.0"><link rel="stylesheet" href="v3.css?v=3.6.0"><link rel="stylesheet" href="v4.css?v=3.6.0"><link rel="stylesheet" href="v5.css?v=3.6.0"><link rel="stylesheet" href="v6.css?v=3.6.0"><link rel="stylesheet" href="lobby-chat.css?v=3.6.0">
-<link rel="stylesheet" href="v9.css?v=3.6.0"><link rel="stylesheet" href="v10.css?v=3.6.0">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"><meta name="theme-color" content="#06070b"><meta name="description" content="An unofficial Among Us browser fan game. Play The Skeld with bots or host a friend lobby."><title>Among Us • Browser Fan Game</title><link rel="icon" href="assets-crew-red.png"><link rel="stylesheet" href="styles.css?v=3.7.0"><link rel="stylesheet" href="v2.css?v=3.7.0"><link rel="stylesheet" href="v3.css?v=3.7.0"><link rel="stylesheet" href="v4.css?v=3.7.0"><link rel="stylesheet" href="v5.css?v=3.7.0"><link rel="stylesheet" href="v6.css?v=3.7.0"><link rel="stylesheet" href="lobby-chat.css?v=3.7.0">
+<link rel="stylesheet" href="v9.css?v=3.7.0"><link rel="stylesheet" href="v10.css?v=3.7.0">
 </head>
 <body><script>if(new URLSearchParams(location.search).has('test')){const get=Storage.prototype.getItem,set=Storage.prototype.setItem,remove=Storage.prototype.removeItem;Storage.prototype.getItem=function(k){return get.call(this,'au-test-lab-'+k)};Storage.prototype.setItem=function(k,v){return set.call(this,'au-test-lab-'+k,v)};Storage.prototype.removeItem=function(k){return remove.call(this,'au-test-lab-'+k)}};</script>
  <canvas id="space" aria-hidden="true"></canvas>
@@ -20,7 +20,7 @@
   </nav>
   <div class="menu-window"><span id="loading-ship" role="status">Loading game assets…</span><canvas id="menu-space" aria-label="Crewmates drifting past the ship window"></canvas><div class="menu-window-shine"></div><div class="menu-window-frame"></div><button id="menu-spawn" aria-label="More floating crewmates">×</button>
    <section id="play-menu" class="hidden" aria-label="Play"><button id="play-back" class="round-button" aria-label="Back to main menu">←</button><h1>PLAY</h1><button id="solo" disabled class="au-button primary">PLAY WITH BOTS</button><button id="host" disabled class="au-button">HOST ONLINE</button><button id="join" disabled class="au-button">ENTER CODE</button><div><button id="guide" class="round-button" aria-label="How to play">?</button><button id="sound" class="round-button" aria-label="Toggle sound">♫</button></div></section>
-  </div><span class="menu-build">Browser fan game · v3.6</span>
+  </div><span class="menu-build">Browser fan game · v3.7</span>
  </main>
  <section id="lobby" class="screen hidden">
   <canvas id="lobby-canvas" aria-label="Lobby with crewmates"></canvas>
@@ -37,7 +37,7 @@
   <div class="match-top"><button id="map-button" class="round-button" aria-label="Open map (Tab)"><img src="assets-ui-map.png" alt="Map"></button><button id="pause-button" class="round-button" aria-label="Pause and settings">⚙</button></div>
   <div id="role-tag"></div><div id="room-name">Cafeteria</div><div id="ghost-note" class="hidden">You are a ghost. Finish your tasks to help your team.</div>
   <div id="sabotage-alert" class="hidden"></div><div id="context-hint"></div>
-  <div id="actions"><button id="sabotage-action" aria-label="Sabotage (F)" class="action red hidden"><img src="assets-ui-sabotage.png" alt=""><span>SABOTAGE</span><kbd>F</kbd></button><button id="vent-action" aria-label="Vent (V)" class="action hidden"><img src="assets-ui-vent.png" alt=""><span>VENT</span><kbd>V</kbd></button><button id="ability-action" aria-label="Role ability (C)" class="action hidden"><canvas id="ability-icon" width="128" height="128"></canvas><span id="ability-label">ABILITY</span><b id="ability-cooldown"></b><kbd>C</kbd></button><button id="kill-action" aria-label="Kill (Q)" class="action red hidden"><img src="assets-ui-kill.png" alt=""><canvas id="kill-icon" class="hidden" width="128" height="128"></canvas><span>KILL</span><b id="kill-cooldown"></b><kbd>Q</kbd></button><button id="report-action" aria-label="Report body (R)" class="action red"><img src="assets-ui-report.png" alt=""><span>REPORT</span><kbd>R</kbd></button><button id="use-action" aria-label="Use (E)" class="action"><img id="use-image" src="assets-ui-use.png" alt=""><span id="use-label">USE</span><kbd>E</kbd></button></div>
+  <div id="actions"><button id="sabotage-action" aria-label="Sabotage (F)" class="action red hidden"><img src="assets-ui-sabotage.png" alt=""><span>SABOTAGE</span><kbd>F</kbd></button><button id="vent-action" aria-label="Vent (V)" class="action hidden"><img src="assets-ui-vent.png" alt=""><span>VENT</span><b id="vent-cooldown"></b><kbd>V</kbd></button><button id="ability-action" aria-label="Role ability (C)" class="action hidden"><canvas id="ability-icon" width="128" height="128"></canvas><span id="ability-label">ABILITY</span><b id="ability-cooldown"></b><kbd>C</kbd></button><button id="kill-action" aria-label="Kill (Q)" class="action red hidden"><img src="assets-ui-kill.png" alt=""><canvas id="kill-icon" class="hidden" width="128" height="128"></canvas><span>KILL</span><b id="kill-cooldown"></b><kbd>Q</kbd></button><button id="report-action" aria-label="Report body (R)" class="action red"><img src="assets-ui-report.png" alt=""><span>REPORT</span><kbd>R</kbd></button><button id="use-action" aria-label="Use (E)" class="action"><img id="use-image" src="assets-ui-use.png" alt=""><span id="use-label">USE</span><kbd>E</kbd></button></div>
   <div id="joystick"><i></i></div><div class="keyboard-hint">WASD to move · E to use · R to report · Tab for map</div>
  </section>
  <section id="meeting" class="screen hidden">
@@ -54,6 +54,6 @@
  <div id="overlay" class="overlay hidden" role="dialog" aria-modal="true"><div id="modal" class="modal"></div></div>
  <div id="intro" class="cinematic hidden"></div><div id="banner" class="cinematic hidden"></div><canvas id="kill-cinematic" class="hidden" aria-label="Kill animation"></canvas>
  <div id="toast" role="status"></div>
- <script src="peerjs.min.js"></script><script type="module" src="game.js?v=3.6.0"></script>
+ <script src="peerjs.min.js"></script><script type="module" src="game.js?v=3.7.0"></script>
 </body></html>
 

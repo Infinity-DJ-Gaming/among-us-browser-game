@@ -1,4 +1,4 @@
-import {DECON_SYSTEMS} from './decon-data.js?v=3.6.0';
+import {DECON_SYSTEMS} from './decon-data.js?v=3.7.0';
 export const deconSystems=map=>DECON_SYSTEMS[typeof map==='string'?map:map?.id]||[];
 export const inBox=(p,b,pad=0)=>p.x>=b[0]-pad&&p.y>=b[1]-pad&&p.x<=b[0]+b[2]+pad&&p.y<=b[1]+b[3]+pad;
 export function segmentBox(a,b,box,pad=0){let lo=0,hi=1;for(const [axis,i] of [['x',0],['y',1]]){const delta=b[axis]-a[axis],min=box[i]-pad,max=box[i]+box[i+2]+pad;if(Math.abs(delta)<1e-9){if(a[axis]<min||a[axis]>max)return false;}else{let x=(min-a[axis])/delta,y=(max-a[axis])/delta;if(x>y)[x,y]=[y,x];lo=Math.max(lo,x);hi=Math.min(hi,y);if(lo>hi)return false;}}return true;}

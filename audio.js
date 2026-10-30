@@ -1,4 +1,4 @@
-const LOBBY_FILES={ladderDown:"assets-sfx-ladderDown.wav",ladderUp:"assets-sfx-ladderUp.wav",platformMove:"assets-sfx-platformMove.wav",lobbySpawn:'assets-lobby-spawn.ogg',lobbyLeave:'assets-lobby-leave.ogg',lobbyOptions:'assets-lobby-options.wav',lobbyTimeout:'assets-lobby-timeout.wav',lobbyCopy:'assets-lobby-copy.wav'};
+const LOBBY_FILES={"scanNative":"assets-sfx-scanNative.wav","scanText":"assets-sfx-scanText.wav","scanReference":"assets-user-scanReference.mp3","deathSound":"assets-user-deathSound.mp3","murdered":"assets-user-murdered.mp3",ladderDown:"assets-sfx-ladderDown.wav",ladderUp:"assets-sfx-ladderUp.wav",platformMove:"assets-sfx-platformMove.wav",lobbySpawn:'assets-lobby-spawn.ogg',lobbyLeave:'assets-lobby-leave.ogg',lobbyOptions:'assets-lobby-options.wav',lobbyTimeout:'assets-lobby-timeout.wav',lobbyCopy:'assets-lobby-copy.wav'};
 const ALIASES={medScan:'scan',phantom:'phantomIn',click:'button',complete:'taskComplete',roundstart:'roundStart',vent:'ventOpen',kill:'killKnife',alarm:'alarmCritical',chat:'notification',tab:'button',select:'button',cosmeticEquip:'button',shopOpen:'panelOpen',purchase:'stardustPurchase',deny:'notificationError',cubeActivate:'button',equip:'button',roleGuardianAngel:'roleCrewmate',roleInfluencer:'roleCrewmate'};
 // World distances use the same pixel coordinates as player/map positions.
 export function spatialVolume(source,listener,{maxDistance=900,referenceDistance=140,occluded=false,occlusion=.35,requireLineOfSight=false}={}){
@@ -15,7 +15,7 @@ export class SoundBank {
  set musicVolume(value){this._musicVolume=Math.max(0,Math.min(1,Number(value)||0));for(const stop of this.active||[])stop.refresh?.();}
  async prepare(){
   const base=async()=>{try{const [meta,bytes]=await Promise.all([fetch('assets-sfx.json').then(r=>r.json()),fetch('assets-sfx.wav').then(r=>r.arrayBuffer())]);this.meta=meta;this.bytes=bytes;if(this.context)await this.decode();}catch(e){console.warn('Original SFX pack unavailable',e.message);}};
-  const extra=async()=>{try{this.extra=await fetch('assets-audio-v4.json?v=3.6.0').then(r=>r.json());this.bankBytes.actions=await fetch(this.extra.banks.actions.file).then(r=>r.arrayBuffer());if(this.context)await this.getBank('actions');}catch(e){console.warn('Expanded original audio pack unavailable',e.message);}};
+  const extra=async()=>{try{this.extra=await fetch('assets-audio-v4.json?v=3.7.0').then(r=>r.json());this.bankBytes.actions=await fetch(this.extra.banks.actions.file).then(r=>r.arrayBuffer());if(this.context)await this.getBank('actions');}catch(e){console.warn('Expanded original audio pack unavailable',e.message);}};
   await Promise.all([base(),extra()]);
  }
  async decode(){if(!this.context||!this.bytes)return;if(this.decodePromise)return this.decodePromise;
@@ -31,7 +31,7 @@ export class SoundBank {
  play(key,volume=.6,options={}){
   if(!this.enabled()||!this.context)return null;key=ALIASES[key]||key;const expanded=LOBBY_FILES[key]?null:this.extra?.clips[key],external=this.external[key],clip=expanded||(LOBBY_FILES[key]?{start:0,duration:external?.duration||3600}:external?{start:0,duration:external.duration}:this.meta?.clips[key]);if(!clip)return null;
   let stopped=false,source=null,gain=null,panner=null;const stop=()=>{if(stopped)return;stopped=true;this.active.delete(stop);try{source?.stop();source?.disconnect();gain?.disconnect();panner?.disconnect();}catch{}};this.active.add(stop);
-  const begin=buffer=>{if(stopped||!buffer||!this.enabled()){stop();return;}source=this.context.createBufferSource();gain=this.context.createGain();source.buffer=buffer;
+  const begin=buffer=>{if(stopped||!buffer||!this.enabled()){stop();return;}source=this.context.createBufferSource();gain=this.context.createGain();source.buffer=buffer;stop.setRate=rate=>{if(source?.playbackRate)source.playbackRate.value=Math.max(.25,Math.min(4,Number(rate)||1));};stop.setRate(options.rate??1);
    stop.refresh=()=>{gain.gain.value=Math.max(0,volume)*(options.bus==='music'?this.musicVolume:this.volume);};stop.refresh();source.connect(gain);
    if(Number.isFinite(options.pan)&&this.context.createStereoPanner){panner=this.context.createStereoPanner();panner.pan.value=Math.max(-1,Math.min(1,options.pan));gain.connect(panner).connect(this.context.destination);}else gain.connect(this.context.destination);
    source.onended=()=>{if(!options.loop)stop();};const start=Math.max(0,clip.start),duration=Math.min(clip.duration,buffer.duration-start);if(duration<=0){stop();return;}

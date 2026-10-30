@@ -1,4 +1,4 @@
-import {LOBBY_QUICK_CHAT,MEETING_QUICK_CHAT} from './lobby.js?v=3.6.0';
+import {LOBBY_QUICK_CHAT,MEETING_QUICK_CHAT} from './lobby.js?v=3.7.0';
 
 // Shared native chat presentation for the dropship and the larger meeting overlay.
 export function createNativeChat({root,prefix,getState,getRoom,drawCrew,colors,escape,sound,modal,closeModal,mutedPlayers=new Set()}){

@@ -1,4 +1,4 @@
-import {firebaseConfig} from './firebase-config.js?v=3.6.0';
+import {firebaseConfig} from './firebase-config.js?v=3.7.0';
 const loadSDK=async()=>{
  const [app,auth]=await Promise.all([import('https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js'),import('https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js')]);
  return {...app,...auth};

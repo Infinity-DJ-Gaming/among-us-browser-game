@@ -1,4 +1,4 @@
-import {isImp} from './roles.js?v=3.6.0';
+import {isImp} from './roles.js?v=3.7.0';
 export const appearanceOf=p=>p?.shifted||p;
 export const isShifting=(p,time)=>!!p?.alive&&p.transformUntil>time&&p.transformKind==='Shapeshift';
 export function perceivedIdentity(observer,actor,time){

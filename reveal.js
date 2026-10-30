@@ -1,4 +1,4 @@
-import {isImp,ROLE_INFO} from './roles.js?v=3.6.0';
+import {isImp,ROLE_INFO} from './roles.js?v=3.7.0';
 export const INTRO_DURATION=9;
 const ROLE_TAGLINES={Crewmate:'Do your tasks',Impostor:'Sabotage and kill everyone',Engineer:'Use vents to get around',Scientist:'Access vitals at any time',Shapeshifter:'Disguise yourself',Phantom:'Vanish to escape',Viper:'Dissolve your victims',Tracker:'Track your crewmates',Noisemaker:'Alert the crew when you die',Detective:'Interrogate the suspects',Judge:'Overrule the vote','Guardian Angel':'Protect your crew',Influencer:'Send clues from beyond'};
 export function revealStage(remaining){return remaining>7?'shhh':remaining>3.6?'team':'role';}

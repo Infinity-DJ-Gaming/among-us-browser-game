@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {Game,Navigation} from './world.js';
 import {MAPS} from './maps.js';
-import {stationFor} from './task-data.js?v=3.6.0';
+import {stationFor} from './task-data.js?v=3.7.0';
 import {beginTransit,tickTransit} from './transit.js';
 import {beginScan,tickScan,visualTask} from './visual-tasks.js';
 import {EJECTION_SECONDS,polusHand,ejectionText,typedEjection} from './ejection.js';
